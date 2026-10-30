@@ -1,0 +1,60 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: yucampus
+          POSTGRES_PASSWORD: yucampus
+          POSTGRES_DB: yucampus
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U yucampus -d yucampus" --health-interval 5s --health-timeout 3s --health-retries 10
+    env:
+      DATABASE_MIGRATE_URL: postgresql://yucampus:yucampus@localhost:5432/yucampus
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      # Local S3-compatible storage, so the upload/download tests run instead of being skipped.
+      - name: Start file storage
+        run: |
+          docker run -d --name storage -p 9000:8333 \
+            -v "$PWD/infra/seaweedfs/s3.json:/etc/seaweedfs/s3.json:ro" \
+            chrislusf/seaweedfs:4.47 server -dir=/data -s3 -s3.port=8333 -s3.config=/etc/seaweedfs/s3.json -ip.bind=0.0.0.0
+          for i in $(seq 1 60); do curl -s -o /dev/null http://localhost:9000 && break; sleep 2; done
+
+      - run: pnpm typecheck
+      # Includes the tenant-isolation tests, which run the migrations in an in-process Postgres.
+      - run: pnpm test
+
+      # The same migrations on a real PostgreSQL server, as the app role will meet them in production.
+      - name: Apply migrations to PostgreSQL
+        run: |
+          PGPASSWORD=yucampus psql -h localhost -U yucampus -d yucampus -c "CREATE ROLE yucampus_app LOGIN PASSWORD 'yucampus_app'"
+          pnpm --filter @yucampus/api exec prisma migrate deploy
+          pnpm --filter @yucampus/api db:seed
+      - name: Migrations match schema.prisma
+        run: |
+          diff=$(pnpm --filter @yucampus/api exec prisma migrate diff --from-config-datasource --to-schema prisma/schema.prisma --script)
+          echo "$diff"
+          echo "$diff" | grep -q "This is an empty migration" || { echo "::error::schema.prisma and the migrations differ. Add a migration."; exit 1; }
+
+      - run: pnpm build

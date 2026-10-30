@@ -1,0 +1,113 @@
+{
+  "version": "1",
+  "source": {
+    "title": "YuCampus first mapping of the AISHE college data capture format to the Data registers. Not yet checked against the current year's AISHE format.",
+    "verified": false
+  },
+  "blocks": [
+    {
+      "key": "profile",
+      "name": "Institution profile",
+      "owner": "Principal's office",
+      "profile": ["aisheCode", "name", "type", "state", "city", "affiliatingUniversity", "establishedYear"],
+      "items": []
+    },
+    {
+      "key": "programmes",
+      "name": "Programmes and admissions",
+      "owner": "Admissions office",
+      "perProgram": true,
+      "note": "Student batches hold the students admitted in each batch, not the students on roll in every year of study, which AISHE asks for per programme. The total on roll is shown from College figures.",
+      "items": [
+        { "key": "onRoll", "label": "Students on roll, all programmes", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"], "collegeOnly": true },
+        { "key": "intake", "label": "Sanctioned intake", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["intake"] },
+        { "key": "admitted", "label": "Admitted", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["enrolled"] },
+        { "key": "women", "label": "Of whom women", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["female"] },
+        { "key": "sc", "label": "Of whom SC", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["sc"] },
+        { "key": "st", "label": "Of whom ST", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["st"] },
+        { "key": "obc", "label": "Of whom OBC", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["obc"] },
+        { "key": "ews", "label": "Of whom EWS", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["ews"] },
+        { "key": "pwd", "label": "Of whom with disabilities", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["pwd"] },
+        { "key": "otherStates", "label": "Of whom from other states", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["otherStates"] },
+        { "key": "otherCountries", "label": "Of whom from other countries", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["otherCountries"] }
+      ]
+    },
+    {
+      "key": "results",
+      "name": "Examination results",
+      "owner": "Examination cell",
+      "perProgram": true,
+      "items": [
+        { "key": "appeared", "label": "Appeared in the final-year examination", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["appearedFinal"] },
+        { "key": "passed", "label": "Passed in the minimum time", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["passedOnTime"] },
+        { "key": "placed", "label": "Placed", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["placed"] },
+        { "key": "higherStudies", "label": "Went on to higher studies", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["higherStudies"] }
+      ]
+    },
+    {
+      "key": "teaching",
+      "name": "Teaching staff",
+      "owner": "HR office",
+      "items": [
+        { "key": "teachers", "label": "Teachers (all)", "register": "FACULTY", "op": "count" },
+        { "key": "professors", "label": "Professors", "register": "FACULTY", "op": "count", "where": { "designation": ["Professor"] } },
+        { "key": "associates", "label": "Associate Professors", "register": "FACULTY", "op": "count", "where": { "designation": ["Associate Professor"] } },
+        { "key": "assistants", "label": "Assistant Professors", "register": "FACULTY", "op": "count", "where": { "designation": ["Assistant Professor"] } },
+        { "key": "otherTeachers", "label": "Other teachers (lecturers, professors of practice, others)", "register": "FACULTY", "op": "count", "where": { "designation": ["Lecturer", "Professor of Practice", "Other"] } },
+        { "key": "fullTime", "label": "Full-time", "register": "FACULTY", "op": "count", "where": { "employment": ["Full-time"] } },
+        { "key": "women", "label": "Women", "register": "FACULTY", "op": "count", "where": { "gender": ["Female"] } },
+        { "key": "transgender", "label": "Transgender", "register": "FACULTY", "op": "count", "where": { "gender": ["Transgender"] } },
+        { "key": "sc", "label": "SC teachers", "register": "FACULTY", "op": "count", "where": { "socialCategory": ["SC"] } },
+        { "key": "st", "label": "ST teachers", "register": "FACULTY", "op": "count", "where": { "socialCategory": ["ST"] } },
+        { "key": "obc", "label": "OBC teachers", "register": "FACULTY", "op": "count", "where": { "socialCategory": ["OBC"] } },
+        { "key": "ews", "label": "EWS teachers", "register": "FACULTY", "op": "count", "where": { "socialCategory": ["EWS"] } },
+        { "key": "phd", "label": "With a Ph.D.", "register": "FACULTY", "op": "count", "where": { "qualification": ["Ph.D."] } },
+        { "key": "sanctioned", "label": "Sanctioned teaching posts", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["sanctionedTeachingPosts"] }
+      ]
+    },
+    {
+      "key": "nonTeaching",
+      "name": "Non-teaching staff",
+      "owner": "Administrative office",
+      "items": [{ "key": "nonTeaching", "label": "Non-teaching staff", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["nonTeachingStaff"] }]
+    },
+    {
+      "key": "phd",
+      "name": "Ph.D.",
+      "owner": "Research cell",
+      "items": [
+        { "key": "fullTime", "label": "Ph.D. students (full-time)", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdStudentsFullTime"] },
+        { "key": "partTime", "label": "Ph.D. students (part-time)", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdStudentsPartTime"] },
+        { "key": "awarded", "label": "Ph.D. degrees awarded", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdGraduated"] }
+      ]
+    },
+    {
+      "key": "scholarships",
+      "name": "Scholarships, fee reimbursement",
+      "owner": "Scholarship section",
+      "items": [{ "key": "feeReimbursed", "label": "Students with full fee reimbursement", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["feeReimbursed"] }]
+    },
+    {
+      "key": "infrastructure",
+      "name": "Infrastructure",
+      "owner": "Estate office",
+      "items": [
+        { "key": "computers", "label": "Computers available to students", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentComputers"] },
+        { "key": "accessible", "label": "Facilities for students with disabilities (1 = yes, 0 = no)", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["accessibleFacilities"] },
+        { "key": "laboratories", "label": "Laboratories listed", "register": "INFRA_FINANCE", "op": "count", "where": { "category": ["Laboratory"] } },
+        { "key": "smartRooms", "label": "ICT or smart classrooms listed", "register": "INFRA_FINANCE", "op": "count", "where": { "category": ["ICT or smart classroom"] } }
+      ]
+    },
+    {
+      "key": "finance",
+      "name": "Finance",
+      "owner": "Accounts section",
+      "items": [
+        { "key": "salary", "label": "Salary expenditure", "register": "INFRA_FINANCE", "op": "sum", "fields": ["amountLakh"], "where": { "category": ["Salary"] }, "unit": "₹ lakh" },
+        { "key": "capital", "label": "Capital expenditure", "register": "INFRA_FINANCE", "op": "sum", "fields": ["amountLakh"], "where": { "category": ["Capital expenditure"] }, "unit": "₹ lakh" },
+        { "key": "maintenance", "label": "Maintenance expenditure", "register": "INFRA_FINANCE", "op": "sum", "fields": ["amountLakh"], "where": { "category": ["Maintenance expenditure"] }, "unit": "₹ lakh" },
+        { "key": "exSalary", "label": "Total expenditure excluding salary", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["expenditureExSalaryLakh"], "unit": "₹ lakh" }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "@yucampus/config/tsconfig/library.json",
+  "compilerOptions": { "rootDir": "src", "outDir": "dist" },
+  "include": ["src"],
+  "exclude": ["src/**/*.test.ts"]
+}

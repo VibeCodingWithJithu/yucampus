@@ -1,0 +1,178 @@
+{
+  "version": "1",
+  "source": {
+    "title": "YuCampus first mapping of the NIRF parameters and the data each needs, based on the NIRF methodology as long published. Not yet checked against the current year's methodology or data capturing system.",
+    "verified": false
+  },
+  "categories": {
+    "NIRF_ENGINEERING": { "weights": { "TLR": 30, "RP": 30, "GO": 20, "OI": 10, "PR": 10 } },
+    "NIRF_OVERALL": { "weights": { "TLR": 30, "RP": 30, "GO": 20, "OI": 10, "PR": 10 } },
+    "NIRF_MANAGEMENT": { "weights": null },
+    "NIRF_PHARMACY": { "weights": null }
+  },
+  "parameters": [
+    {
+      "key": "TLR",
+      "name": "Teaching, learning and resources",
+      "subs": [
+        {
+          "code": "SS",
+          "name": "Student strength including doctoral students",
+          "owner": "Admissions office",
+          "items": [
+            { "key": "intake", "label": "Sanctioned intake", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["intake"] },
+            { "key": "onRoll", "label": "Students on roll", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"] },
+            { "key": "phdFull", "label": "Ph.D. students (full-time)", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdStudentsFullTime"] },
+            { "key": "phdPart", "label": "Ph.D. students (part-time)", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdStudentsPartTime"] }
+          ]
+        },
+        {
+          "code": "FSR",
+          "name": "Faculty–student ratio (permanent faculty)",
+          "owner": "HR office",
+          "items": [
+            { "key": "fullTime", "label": "Full-time teachers", "register": "FACULTY", "op": "count", "where": { "employment": ["Full-time"] } },
+            { "key": "onRoll", "label": "Students on roll", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"] }
+          ]
+        },
+        {
+          "code": "FQE",
+          "name": "Faculty qualification and experience",
+          "owner": "HR office",
+          "items": [
+            { "key": "phd", "label": "Full-time teachers with a Ph.D.", "register": "FACULTY", "op": "count", "where": { "employment": ["Full-time"], "qualification": ["Ph.D."] } },
+            { "key": "experience", "label": "Average teaching experience (years)", "register": "FACULTY", "op": "avg", "fields": ["experienceYears"], "where": { "employment": ["Full-time"] } }
+          ]
+        },
+        {
+          "code": "FRU",
+          "name": "Financial resources and their utilisation",
+          "owner": "Accounts section",
+          "items": [
+            { "key": "capital", "label": "Capital expenditure", "register": "INFRA_FINANCE", "op": "sum", "fields": ["amountLakh"], "unit": "₹ lakh", "where": { "category": ["Capital expenditure", "Laboratory", "Library", "ICT or smart classroom"] } },
+            { "key": "operational", "label": "Operational expenditure (maintenance and salary)", "register": "INFRA_FINANCE", "op": "sum", "fields": ["amountLakh"], "unit": "₹ lakh", "where": { "category": ["Maintenance expenditure", "Salary"] } }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "RP",
+      "name": "Research and professional practice",
+      "note": "NIRF takes publication and citation counts from Scopus and Web of Science itself. The numbers here are your own records, to check against theirs.",
+      "subs": [
+        {
+          "code": "PU",
+          "name": "Publications",
+          "owner": "Research cell",
+          "items": [
+            { "key": "journal", "label": "Journal papers", "register": "RESEARCH", "op": "count", "where": { "kind": ["Journal paper"] } },
+            { "key": "conference", "label": "Conference papers", "register": "RESEARCH", "op": "count", "where": { "kind": ["Conference paper"] } }
+          ]
+        },
+        {
+          "code": "QP",
+          "name": "Quality of publications",
+          "owner": "Research cell",
+          "items": [{ "key": "care", "label": "Papers in UGC CARE journals", "register": "RESEARCH", "op": "count", "where": { "kind": ["Journal paper"], "ugcCare": [true] } }]
+        },
+        {
+          "code": "IPR",
+          "name": "Patents published and granted",
+          "owner": "IPR cell",
+          "items": [
+            { "key": "published", "label": "Patents published", "register": "RESEARCH", "op": "count", "where": { "kind": ["Patent published"] } },
+            { "key": "granted", "label": "Patents granted", "register": "RESEARCH", "op": "count", "where": { "kind": ["Patent granted"] } }
+          ]
+        },
+        {
+          "code": "FPPP",
+          "name": "Sponsored research and consultancy",
+          "owner": "Accounts section",
+          "items": [
+            { "key": "sponsored", "label": "Sponsored research", "register": "RESEARCH", "op": "sum", "fields": ["amountLakh"], "unit": "₹ lakh", "where": { "kind": ["Funded project"] } },
+            { "key": "consultancy", "label": "Consultancy", "register": "RESEARCH", "op": "sum", "fields": ["amountLakh"], "unit": "₹ lakh", "where": { "kind": ["Consultancy"] } }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "GO",
+      "name": "Graduation outcomes",
+      "subs": [
+        {
+          "code": "GPH",
+          "name": "Placement and higher studies",
+          "owner": "Placement cell",
+          "items": [
+            { "key": "placed", "label": "Placed", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["placed"] },
+            { "key": "higher", "label": "Went on to higher studies", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["higherStudies"] },
+            { "key": "graduating", "label": "Graduating students", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["passedOnTime"] }
+          ]
+        },
+        {
+          "code": "GUE",
+          "name": "Graduation within the stipulated time",
+          "owner": "Examination cell",
+          "items": [
+            { "key": "admitted", "label": "Admitted", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["enrolled"] },
+            { "key": "onTime", "label": "Passed in the minimum time", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["passedOnTime"] }
+          ]
+        },
+        {
+          "code": "MS",
+          "name": "Median salary of graduates",
+          "owner": "Placement cell",
+          "items": [{ "key": "median", "label": "Median salary (average over batches)", "register": "STUDENT_BATCHES", "op": "avg", "fields": ["medianSalaryLakh"], "unit": "₹ lakh" }]
+        },
+        {
+          "code": "GPHD",
+          "name": "Doctoral students graduated",
+          "owner": "Research cell",
+          "items": [{ "key": "phdGraduated", "label": "Ph.D. degrees awarded", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdGraduated"] }]
+        }
+      ]
+    },
+    {
+      "key": "OI",
+      "name": "Outreach and inclusivity",
+      "subs": [
+        {
+          "code": "RD",
+          "name": "Students from other states and countries",
+          "owner": "Admissions office",
+          "items": [
+            { "key": "otherStates", "label": "Admitted from other states", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["otherStates"] },
+            { "key": "otherCountries", "label": "Admitted from other countries", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["otherCountries"] }
+          ]
+        },
+        {
+          "code": "WD",
+          "name": "Women students and faculty",
+          "owner": "HR office",
+          "items": [
+            { "key": "women", "label": "Women students admitted", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["female"] },
+            { "key": "womenFaculty", "label": "Women teachers", "register": "FACULTY", "op": "count", "where": { "gender": ["Female"] } }
+          ]
+        },
+        {
+          "code": "ESCS",
+          "name": "Economically and socially challenged students",
+          "owner": "Scholarship section",
+          "items": [{ "key": "reimbursed", "label": "Students with full fee reimbursement", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["feeReimbursed"] }]
+        },
+        {
+          "code": "PCS",
+          "name": "Facilities for differently-abled students",
+          "owner": "Estate office",
+          "items": [{ "key": "accessible", "label": "Accessible facilities (1 = yes, 0 = no)", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["accessibleFacilities"] }]
+        }
+      ]
+    },
+    {
+      "key": "PR",
+      "name": "Perception",
+      "note": "Perception is gathered by NIRF through its own surveys of academic peers and employers. There is nothing to enter here.",
+      "subs": [{ "code": "PR", "name": "Academic peer and employer perception", "owner": "Collected by NIRF", "items": [] }]
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Sign in</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<section aria-label="About YuCampus" style="flex: 1 1 480px; background: #2B3990; color: #FFFFFF; padding: 56px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px">
+<div style="display: flex; align-items: center; gap: 12px">
+<div aria-label="YuCampus logo" style="width: 48px; height: 48px; border-radius: 12px; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex: none"><svg width="34" height="34" viewBox="0 0 96 96" aria-hidden="true"><path d="M10 40 L48 12 L86 40" fill="none" stroke="#2B3990" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M28 44 L48 64 L68 44 M48 64 V86" fill="none" stroke="#0E7068" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div style="display: flex; flex-direction: column"><span style="font-weight: 800; font-size: 20px; letter-spacing: -0.01em"><span style="color: #5ED1C4">Yu</span>Campus</span><span style="font-size: 13px; color: #DDE1F5">by Yubhian Technologies</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 18px; max-width: 520px">
+<h1 style="margin: 0; font-size: 44px; line-height: 1.1; font-weight: 800; letter-spacing: -0.02em">Your campus, always accreditation-ready.</h1>
+<p style="margin: 0; font-size: 17px; line-height: 1.55; color: #DDE1F5">NAAC, NBA and NIRF data in one place, collected once and reused everywhere.</p>
+</div>
+<span style="font-size: 13px; color: #DDE1F5">Data stored securely in India</span>
+</section>
+
+<section aria-labelledby="signin-h" style="flex: 1 1 480px; display: flex; align-items: center; justify-content: center; padding: 48px 24px">
+<div style="width: 100%; max-width: 440px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; justify-content: flex-end">
+<label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #545B73">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>Language
+<select style="height: 40px; padding: 0 10px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733"><option>English</option><option>తెలుగు</option><option>हिन्दी</option></select>
+</label>
+</div>
+<div>
+<h2 id="signin-h" style="margin: 0; font-size: 28px; font-weight: 700">Sign in</h2>
+<p style="margin: 6px 0 0; font-size: 15px; color: #545B73">Use the email or mobile number your college registered.</p>
+</div>
+<div role="group" aria-label="Sign-in method" style="display: flex; align-items: center; gap: 8px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>
+<div style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; background: #E9EBF2; border-radius: 10px; padding: 4px">
+<button type="button" aria-pressed="{{mobPressed}}" onClick="{{pickMobile}}" style="height: 40px; border: none; border-radius: 8px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; {{mobStyle}}">Mobile OTP</button>
+<button type="button" aria-pressed="{{mailPressed}}" onClick="{{pickEmail}}" style="height: 40px; border: none; border-radius: 8px; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer; {{mailStyle}}">Email and password</button>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<sc-if value="{{isMobile}}" hint-placeholder-val="{{true}}">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73"><span style="display: flex; align-items: center; gap: 8px"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>Mobile number</span>
+<span style="display: flex; gap: 8px">
+<span style="height: 48px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; display: flex; align-items: center; font-size: 15px; color: #121733">+91</span>
+<input type="tel" placeholder="98765 43210" style="flex: 1; min-width: 0; height: 48px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 15px; color: #121733">
+</span>
+</label>
+<a href="Main.dc.html" style="height: 48px; border-radius: 8px; background: #2B3990; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center">Send OTP</a>
+</sc-if>
+<sc-if value="{{isEmail}}" hint-placeholder-val="{{false}}">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73"><span style="display: flex; align-items: center; gap: 8px"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>College email</span>
+<input type="email" placeholder="name@college.edu.in" style="height: 48px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 15px; color: #121733">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Password
+<input type="password" value="password" style="height: 48px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 15px; color: #121733">
+</label>
+<a href="Main.dc.html" style="height: 48px; border-radius: 8px; background: #2B3990; color: #FFFFFF; font-size: 15px; font-weight: 600; text-decoration: none; display: flex; align-items: center; justify-content: center">Sign in</a>
+</sc-if>
+</div>
+
+<div style="display: flex; align-items: center; gap: 12px; color: #545B73; font-size: 13px"><span style="flex: 1; height: 1px; background: #E3E6EF"></span>or<span style="flex: 1; height: 1px; background: #E3E6EF"></span></div>
+
+<div style="display: flex; align-items: center; gap: 8px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>
+<div style="flex: 1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<button type="button" style="height: 48px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Continue with Google</button>
+<button type="button" style="height: 48px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Continue with Microsoft</button>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; font-size: 14px">
+<span style="display: flex; align-items: center; gap: 8px"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">5</span></sc-if><a href="#" style="font-weight: 600; text-decoration: none">Forgot password?</a></span>
+<a href="#" style="font-weight: 600; text-decoration: none">Get help on WhatsApp</a>
+</div>
+</div>
+</section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: 'mobile' };
+  }
+  renderVals() {
+    const on = 'background: #FFFFFF; color: #2B3990; box-shadow: 0 1px 3px rgba(18, 23, 51, 0.12)';
+    const off = 'background: transparent; color: #545B73';
+    const m = this.state.mode === 'mobile';
+    return {
+      guide: !!this.props.guide,
+      isMobile: m, isEmail: !m,
+      mobStyle: m ? on : off, mailStyle: m ? off : on,
+      mobPressed: m ? 'true' : 'false', mailPressed: m ? 'false' : 'true',
+      pickMobile: () => this.setState({ mode: 'mobile' }),
+      pickEmail: () => this.setState({ mode: 'email' })
+    };
+  }
+}
+</script>
+</body>
+</html>

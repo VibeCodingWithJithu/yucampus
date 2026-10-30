@@ -1,0 +1,96 @@
+{
+  "code": "RESEARCH",
+  "version": "1",
+  "name": "Research",
+  "description": "Publications, patents, funded projects and consultancy.",
+  "status": "draft",
+  "source": {
+    "title": "YuCampus first proposal, based on NAAC Criterion 3 and NIRF research data. Not yet checked against the current formats.",
+    "verified": false
+  },
+  "department": "optional",
+  "person": {
+    "label": "Faculty member",
+    "required": false
+  },
+  "proof": "required",
+  "titleField": "title",
+  "feeds": [
+    "NAAC C3",
+    "NBA C5",
+    "NIRF RP"
+  ],
+  "sortOrder": 30,
+  "fields": [
+    {
+      "key": "title",
+      "label": "Title",
+      "type": "text",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "kind",
+      "label": "Type",
+      "type": "choice",
+      "required": true,
+      "column": true,
+      "options": [
+        "Journal paper",
+        "Conference paper",
+        "Book",
+        "Book chapter",
+        "Patent filed",
+        "Patent published",
+        "Patent granted",
+        "Funded project",
+        "Consultancy"
+      ]
+    },
+    {
+      "key": "authors",
+      "label": "Authors or investigators",
+      "type": "text",
+      "required": true
+    },
+    {
+      "key": "venue",
+      "label": "Journal, conference, publisher or agency",
+      "type": "text",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "date",
+      "label": "Date published, filed or sanctioned",
+      "type": "date",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "ugcCare",
+      "label": "In the UGC CARE list",
+      "type": "boolean",
+      "help": "For journal papers."
+    },
+    {
+      "key": "issnIsbn",
+      "label": "ISSN or ISBN",
+      "type": "text"
+    },
+    {
+      "key": "link",
+      "label": "DOI or link",
+      "type": "url"
+    },
+    {
+      "key": "amountLakh",
+      "label": "Amount",
+      "type": "number",
+      "min": 0,
+      "max": 100000,
+      "unit": "₹ lakh",
+      "help": "For funded projects and consultancy."
+    }
+  ]
+}

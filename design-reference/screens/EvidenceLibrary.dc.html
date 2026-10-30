@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Evidence library</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<div style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF">
+<dc-import name="Sidebar" active="Evidence library" hint-size="100%,860px"></dc-import>
+</div>
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="Main.dc.html" style="text-decoration: none">Dashboard</a> / Evidence library</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Evidence library</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Every document in one place, already sorted by criterion, year and department.</p>
+</div>
+<a href="SmartUpload.dc.html" style="height: 44px; padding: 0 18px; border-radius: 8px; background: #2B3990; color: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center">Upload evidence</a>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-labelledby="flt-h" style="flex: 1 1 240px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 16px">
+<h2 id="flt-h" style="margin: 0; font-size: 15px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>Filters</h2>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Academic year
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733"><option>2025–26</option><option>2024–25</option><option>All years</option></select>
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Criterion
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733"><option>All criteria</option><option>NAAC C3 · Research</option><option>NBA C5 · Faculty</option></select>
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Department
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733"><option>All departments</option><option>CSE</option><option>ECE</option></select>
+</label>
+<fieldset style="border: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px">
+<legend style="font-size: 13px; font-weight: 600; color: #545B73; margin-bottom: 6px">Status</legend>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 32px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #2B3990">Approved</label>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 32px"><input type="checkbox" checked style="width: 18px; height: 18px; accent-color: #2B3990">In review</label>
+<label style="display: flex; align-items: center; gap: 10px; font-size: 14px; min-height: 32px"><input type="checkbox" style="width: 18px; height: 18px; accent-color: #2B3990">Needs fix</label>
+</fieldset>
+</section>
+
+<div style="flex: 4 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>
+<input type="search" aria-label="Search documents" placeholder="Search by title, name, or words inside the document" style="flex: 1 1 320px; height: 44px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733">
+<span style="font-size: 13px; color: #545B73">1,248 documents</span>
+</div>
+
+<div style="background: {{barBg}}; border-radius: 10px; padding: 10px 14px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; min-height: 56px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>
+<span style="font-size: 14px; font-weight: 600; flex: 1">{{selText}}</span>
+<button type="button" style="height: 40px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Download as ZIP</button>
+<button type="button" style="height: 40px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Add to another criterion</button>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 14px">
+<sc-for list="{{files}}" as="f" hint-placeholder-count="9">
+<article style="background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 10px; {{f.border}}">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="width: 44px; height: 52px; border-radius: 8px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-size: 11px; font-weight: 800; color: #FFFFFF; background: {{f.typeBg}}">{{f.type}}</span>
+<label style="display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; cursor: pointer"><input type="checkbox" aria-label="Select {{f.name}}" checked="{{f.sel}}" onChange="{{f.toggle}}" style="width: 20px; height: 20px; accent-color: #2B3990"></label>
+</div>
+<span style="font-size: 14px; font-weight: 600; line-height: 1.35; display: flex; align-items: flex-start; gap: 8px"><sc-if value="{{f.mark}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>{{f.name}}</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{f.tags}}" as="t" hint-placeholder-count="2"><span style="font-size: 11px; font-weight: 700; color: #2B3990; background: #E8EAF6; border-radius: 6px; padding: 3px 7px">{{t}}</span></sc-for>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; font-size: 12px; color: #545B73">
+<span>{{f.who}} · {{f.when}}</span>
+<span style="font-weight: 700; border-radius: 999px; padding: 3px 8px; color: {{f.fg}}; background: {{f.bg}}">{{f.status}}</span>
+</div>
+<a href="#" style="font-size: 12px; font-weight: 600; text-decoration: none">Version {{f.ver}} · see history</a>
+</article>
+</sc-for>
+</div>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1240}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: { 1: true, 3: true } };
+  }
+  renderVals() {
+    const guide = !!this.props.guide;
+    const T = { PDF: '#B3261E', JPG: '#0E7068', XLS: '#1F7A3A', DOC: '#2B3990' };
+    const S = { Approved: ['#0B5852', '#DDF1EE'], 'In review': ['#7A4505', '#FDF0DC'], 'Needs fix': ['#8F1D17', '#FBE4E2'] };
+    const RAW = [
+      ['PDF', 'FDP certificate · Machine Learning', ['NAAC C6', 'NBA C5'], 'Dr. K. Rao', 'Today', 'In review', 1],
+      ['JPG', 'Guest lecture on cloud computing · photos', ['NAAC C3'], 'Dr. P. Kumar', 'Yesterday', 'Approved', 2],
+      ['XLS', 'Placement list 2025–26', ['NAAC C5', 'NIRF GO'], 'Placement cell', '8 Oct', 'Approved', 3],
+      ['PDF', 'MoU with Example Tech Pvt Ltd', ['NAAC C3'], 'HOD, ECE', '7 Oct', 'Approved', 1],
+      ['DOC', 'Mentor–mentee meeting minutes', ['NAAC C2'], 'HOD, CSE', '6 Oct', 'Needs fix', 2],
+      ['PDF', 'Journal paper · IoT in agriculture', ['NAAC C3', 'NIRF RP'], 'Ms. S. Devi', '5 Oct', 'In review', 1],
+      ['JPG', 'NSS blood donation camp', ['NAAC C3'], 'NSS coordinator', '3 Oct', 'Approved', 1],
+      ['XLS', 'Course exit survey · CS501', ['NBA C3'], 'Mr. R. Teja', '2 Oct', 'Approved', 1],
+      ['PDF', 'Annual budget statement 2025–26', ['NAAC C6', 'NIRF TLR'], 'Accounts', '30 Sep', 'Approved', 2]
+    ];
+    const sel = this.state.sel;
+    const files = RAW.map(([type, name, tags, who, when, status, ver], i) => ({
+      type, name, tags, who, when, status, ver,
+      typeBg: T[type], fg: S[status][0], bg: S[status][1],
+      sel: !!sel[i],
+      border: sel[i] ? 'border: 2px solid #2B3990' : 'border: 1px solid #E3E6EF',
+      mark: guide && i === 0,
+      toggle: () => this.setState({ sel: { ...sel, [i]: !sel[i] } })
+    }));
+    const n = Object.values(sel).filter(Boolean).length;
+    return {
+      guide, files,
+      selText: n ? n + ' selected' : 'Select documents to download or reuse them',
+      barBg: n ? '#E8EAF6' : '#FFFFFF'
+    };
+  }
+}
+</script>
+</body>
+</html>

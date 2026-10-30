@@ -1,0 +1,296 @@
+{
+  "body": "NAAC",
+  "selection": "single",
+  "attachesTo": "college",
+  "status": "draft",
+  "code": "NAAC_RAF",
+  "version": "demo",
+  "name": "NAAC RAF · DEMO DATA (not the official manual)",
+  "source": {
+    "title": "Made-up demo metrics so the screens can be tried. NOT from the NAAC manual. Do not use for a real college.",
+    "verified": false
+  },
+  "criteria": [
+    {
+      "number": 1,
+      "name": "Curricular Aspects",
+      "metrics": [
+        {
+          "code": "D1.1",
+          "name": "Courses with an employability focus",
+          "plainLanguage": "List the courses that build job skills, with the syllabus pages that show it.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "syllabus",
+              "name": "Syllabus copies"
+            },
+            {
+              "key": "bos-minutes",
+              "name": "Board of Studies minutes approving them"
+            }
+          ]
+        },
+        {
+          "code": "D1.2",
+          "name": "Feedback on the curriculum",
+          "plainLanguage": "Collect feedback on the syllabus from students and teachers, and record what was changed because of it.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "feedback-summary",
+              "name": "Feedback summary"
+            },
+            {
+              "key": "action-taken",
+              "name": "Action taken report"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Teaching-Learning and Evaluation",
+      "metrics": [
+        {
+          "code": "D2.1",
+          "name": "Faculty development programmes attended",
+          "plainLanguage": "Upload the certificate for every faculty development programme your teachers attended this year.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "fdp-certificates",
+              "name": "FDP certificates"
+            }
+          ]
+        },
+        {
+          "code": "D2.2",
+          "name": "Use of ICT in teaching",
+          "plainLanguage": "Show the digital tools teachers use in class: list them and add a few photos or screenshots.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "ict-list",
+              "name": "List of ICT tools"
+            },
+            {
+              "key": "ict-photos",
+              "name": "Photos or screenshots"
+            }
+          ]
+        },
+        {
+          "code": "D2.3",
+          "name": "Final-year results",
+          "plainLanguage": "Upload the final-year result sheets for each program.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "result-sheets",
+              "name": "Result sheets"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Research, Innovations and Extension",
+      "metrics": [
+        {
+          "code": "D3.1",
+          "name": "Research papers published",
+          "plainLanguage": "For each paper your teachers published, upload its first page and proof that the journal is recognised.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "requiredDocuments": [
+            {
+              "key": "paper-first-page",
+              "name": "First page of each paper"
+            },
+            {
+              "key": "journal-proof",
+              "name": "Proof that the journal is recognised"
+            }
+          ]
+        },
+        {
+          "code": "D3.2",
+          "name": "Extension and outreach activities",
+          "plainLanguage": "For each outreach activity (NSS, camps, community work), upload the report and photos.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "requiredDocuments": [
+            {
+              "key": "activity-report",
+              "name": "Activity report"
+            },
+            {
+              "key": "activity-photos",
+              "name": "Photos"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Infrastructure and Learning Resources",
+      "metrics": [
+        {
+          "code": "D4.1",
+          "name": "Library resources",
+          "plainLanguage": "Upload the library stock summary and the list of e-resources the college subscribes to.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "library-stock",
+              "name": "Library stock summary"
+            },
+            {
+              "key": "e-resources",
+              "name": "E-resource subscriptions"
+            }
+          ]
+        },
+        {
+          "code": "D4.2",
+          "name": "Campus facilities",
+          "plainLanguage": "Add photos of classrooms, labs and other facilities, with a short list of what exists.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "facility-photos",
+              "name": "Photos of facilities"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Student Support and Progression",
+      "metrics": [
+        {
+          "code": "D5.1",
+          "name": "Scholarships for students",
+          "plainLanguage": "Upload the sanctioned list of students who received scholarships or fee concessions.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "requiredDocuments": [
+            {
+              "key": "scholarship-list",
+              "name": "Sanctioned scholarship list"
+            }
+          ]
+        },
+        {
+          "code": "D5.2",
+          "name": "Placements",
+          "plainLanguage": "Upload offer letters and the yearly placement list.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "requiredDocuments": [
+            {
+              "key": "offer-letters",
+              "name": "Offer letters"
+            },
+            {
+              "key": "placement-list",
+              "name": "Placement list"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Governance, Leadership and Management",
+      "metrics": [
+        {
+          "code": "D6.1",
+          "name": "E-governance in administration",
+          "plainLanguage": "Show which office work is done online: the software contract and screenshots.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "egov-proof",
+              "name": "Contract or screenshots"
+            }
+          ]
+        },
+        {
+          "code": "D6.2",
+          "name": "IQAC meetings",
+          "plainLanguage": "Upload the minutes of every IQAC meeting held this year.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "iqac-minutes",
+              "name": "IQAC meeting minutes"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Institutional Values and Best Practices",
+      "metrics": [
+        {
+          "code": "D7.1",
+          "name": "Gender equity programmes",
+          "plainLanguage": "Upload the report of each programme on gender equity.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "gender-reports",
+              "name": "Programme reports"
+            }
+          ]
+        },
+        {
+          "code": "D7.2",
+          "name": "Best practices",
+          "plainLanguage": "Write up two best practices of the college in the given format.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "requiredDocuments": [
+            {
+              "key": "best-practices",
+              "name": "Best practices write-up"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "kind": "SSR",
+      "version": "1",
+      "name": "Self Study Report (SSR)",
+      "description": "Demo format. Every year each metric covers.",
+      "period": "cycle"
+    },
+    {
+      "kind": "AQAR",
+      "version": "1",
+      "name": "Annual Quality Assurance Report (AQAR)",
+      "description": "Demo format. One academic year.",
+      "period": "year"
+    }
+  ]
+}

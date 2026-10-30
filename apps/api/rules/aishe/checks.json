@@ -1,0 +1,49 @@
+{
+  "version": "1",
+  "source": {
+    "title": "YuCampus first set of consistency checks. Not yet checked by an AISHE nodal officer or IQAC expert.",
+    "verified": false
+  },
+  "checks": [
+    { "code": "SB-WOMEN", "kind": "record", "level": "error", "register": "STUDENT_BATCHES", "title": "More women than students admitted", "left": ["female"], "right": ["enrolled"] },
+    { "code": "SB-CATEGORY", "kind": "record", "level": "error", "register": "STUDENT_BATCHES", "title": "SC, ST, OBC and EWS together are more than those admitted", "left": ["sc", "st", "obc", "ews"], "right": ["enrolled"] },
+    { "code": "SB-PWD", "kind": "record", "level": "error", "register": "STUDENT_BATCHES", "title": "More students with disabilities than admitted", "left": ["pwd"], "right": ["enrolled"] },
+    { "code": "SB-ORIGIN", "kind": "record", "level": "error", "register": "STUDENT_BATCHES", "title": "Students from other states and countries are more than those admitted", "left": ["otherStates", "otherCountries"], "right": ["enrolled"] },
+    { "code": "SB-REIMBURSED", "kind": "record", "level": "error", "register": "STUDENT_BATCHES", "title": "More students with fee reimbursement than admitted", "left": ["feeReimbursed"], "right": ["enrolled"] },
+    { "code": "SB-INTAKE", "kind": "record", "level": "check", "register": "STUDENT_BATCHES", "title": "More students admitted than the sanctioned intake", "left": ["enrolled"], "right": ["intake"] },
+    { "code": "SB-PASSED", "kind": "record", "level": "error", "register": "STUDENT_BATCHES", "title": "More students passed than appeared", "left": ["passedOnTime"], "right": ["appearedFinal"] },
+    { "code": "SB-APPEARED", "kind": "record", "level": "check", "register": "STUDENT_BATCHES", "title": "More students appeared in the final year than were admitted", "left": ["appearedFinal"], "right": ["enrolled"] },
+    { "code": "SB-OUTCOME", "kind": "record", "level": "check", "register": "STUDENT_BATCHES", "title": "Placed and higher studies together are more than those who passed", "left": ["placed", "higherStudies"], "right": ["passedOnTime"] },
+    { "code": "CF-PHD", "kind": "total", "level": "error", "title": "Ph.D. students are more than all students on roll",
+      "left": { "key": "phd", "label": "Ph.D. students", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdStudentsFullTime", "phdStudentsPartTime"] },
+      "right": { "key": "onRoll", "label": "Students on roll", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"] } },
+    { "code": "CF-ADMITTED", "kind": "total", "level": "check", "title": "Students admitted this year are more than all students on roll",
+      "left": { "key": "admitted", "label": "Admitted this year", "register": "STUDENT_BATCHES", "op": "sum", "fields": ["enrolled"] },
+      "right": { "key": "onRoll", "label": "Students on roll", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"] } },
+    { "code": "FA-SANCTIONED", "kind": "total", "level": "error", "title": "More teachers on sanctioned posts than posts sanctioned",
+      "left": { "key": "onSanctioned", "label": "Teachers against a sanctioned post", "register": "FACULTY", "op": "count", "where": { "sanctionedPost": [true] } },
+      "right": { "key": "sanctioned", "label": "Sanctioned teaching posts", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["sanctionedTeachingPosts"] } },
+    { "code": "CH-ONROLL", "kind": "change", "level": "check", "title": "Students on roll changed sharply since last year", "maxPercent": 30,
+      "measure": { "key": "onRoll", "label": "Students on roll", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"] } },
+    { "code": "CH-TEACHERS", "kind": "change", "level": "check", "title": "Number of full-time teachers changed sharply since last year", "maxPercent": 30,
+      "measure": { "key": "fullTime", "label": "Full-time teachers", "register": "FACULTY", "op": "count", "where": { "employment": ["Full-time"] } } },
+    { "code": "CH-EXPENDITURE", "kind": "change", "level": "check", "title": "Expenditure excluding salary changed sharply since last year", "maxPercent": 50,
+      "measure": { "key": "exSalary", "label": "Expenditure excluding salary", "register": "COLLEGE_FIGURES", "op": "value", "fields": ["expenditureExSalaryLakh"], "unit": "₹ lakh" } },
+    { "code": "PF-AISHE", "kind": "profile", "level": "error", "title": "AISHE code not entered", "field": "aisheCode" },
+    { "code": "PF-UNIVERSITY", "kind": "profile", "level": "check", "title": "Affiliating university not entered", "field": "affiliatingUniversity", "only": ["affiliated"] },
+    { "code": "PF-ESTABLISHED", "kind": "profile", "level": "check", "title": "Year of establishment not entered", "field": "establishedYear" }
+  ],
+  "figures": [
+    { "key": "onRoll", "label": "Students on roll", "portals": ["AISHE", "NIRF", "NAAC"], "register": "COLLEGE_FIGURES", "op": "value", "fields": ["studentsOnRoll"] },
+    { "key": "intake", "label": "Sanctioned intake", "portals": ["AISHE", "NIRF", "NAAC"], "register": "STUDENT_BATCHES", "op": "sum", "fields": ["intake"] },
+    { "key": "admitted", "label": "Students admitted", "portals": ["AISHE", "NIRF", "NAAC"], "register": "STUDENT_BATCHES", "op": "sum", "fields": ["enrolled"] },
+    { "key": "women", "label": "Women students admitted", "portals": ["AISHE", "NIRF"], "register": "STUDENT_BATCHES", "op": "sum", "fields": ["female"] },
+    { "key": "fullTimeTeachers", "label": "Full-time teachers", "portals": ["AISHE", "NIRF", "NAAC"], "register": "FACULTY", "op": "count", "where": { "employment": ["Full-time"] } },
+    { "key": "phdTeachers", "label": "Teachers with a Ph.D.", "portals": ["AISHE", "NIRF", "NAAC"], "register": "FACULTY", "op": "count", "where": { "qualification": ["Ph.D."] } },
+    { "key": "sanctioned", "label": "Sanctioned teaching posts", "portals": ["AISHE", "NAAC"], "register": "COLLEGE_FIGURES", "op": "value", "fields": ["sanctionedTeachingPosts"] },
+    { "key": "phdStudents", "label": "Ph.D. students", "portals": ["AISHE", "NIRF"], "register": "COLLEGE_FIGURES", "op": "value", "fields": ["phdStudentsFullTime", "phdStudentsPartTime"] },
+    { "key": "passed", "label": "Students passed in the minimum time", "portals": ["AISHE", "NIRF", "NAAC"], "register": "STUDENT_BATCHES", "op": "sum", "fields": ["passedOnTime"] },
+    { "key": "placed", "label": "Students placed", "portals": ["NIRF", "NAAC"], "register": "STUDENT_BATCHES", "op": "sum", "fields": ["placed"] },
+    { "key": "exSalary", "label": "Expenditure excluding salary", "unit": "₹ lakh", "portals": ["AISHE", "NIRF", "NAAC"], "register": "COLLEGE_FIGURES", "op": "value", "fields": ["expenditureExSalaryLakh"] }
+  ]
+}

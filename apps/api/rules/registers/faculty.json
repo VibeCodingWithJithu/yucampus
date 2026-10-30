@@ -1,0 +1,145 @@
+{
+  "code": "FACULTY",
+  "version": "1",
+  "name": "Faculty",
+  "description": "One profile per teacher per academic year: post, qualification, experience and development.",
+  "status": "draft",
+  "source": {
+    "title": "YuCampus first proposal, based on NAAC teacher data, NIRF TLR and AISHE staff data. Not yet checked against the current formats.",
+    "verified": false
+  },
+  "department": "required",
+  "person": {
+    "label": "YuCampus account",
+    "required": false
+  },
+  "proof": "optional",
+  "titleField": "name",
+  "feeds": [
+    "NAAC C2",
+    "NAAC C6",
+    "NBA C5",
+    "NIRF TLR",
+    "AISHE staff"
+  ],
+  "sortOrder": 10,
+  "fields": [
+    {
+      "key": "name",
+      "label": "Name",
+      "type": "text",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "designation",
+      "label": "Designation",
+      "type": "choice",
+      "required": true,
+      "column": true,
+      "options": [
+        "Professor",
+        "Associate Professor",
+        "Assistant Professor",
+        "Professor of Practice",
+        "Lecturer",
+        "Other"
+      ]
+    },
+    {
+      "key": "qualification",
+      "label": "Highest qualification",
+      "type": "choice",
+      "required": true,
+      "column": true,
+      "options": [
+        "Ph.D.",
+        "M.Phil.",
+        "PG with NET/SET/SLET",
+        "PG",
+        "UG",
+        "Other"
+      ]
+    },
+    {
+      "key": "employment",
+      "label": "Employment",
+      "type": "choice",
+      "required": true,
+      "options": [
+        "Full-time",
+        "Part-time",
+        "Visiting",
+        "Contract"
+      ]
+    },
+    {
+      "key": "sanctionedPost",
+      "label": "Against a sanctioned post",
+      "type": "boolean"
+    },
+    {
+      "key": "dateOfJoining",
+      "label": "Date of joining",
+      "type": "date",
+      "required": true
+    },
+    {
+      "key": "experienceYears",
+      "label": "Teaching experience",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 60,
+      "unit": "years",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "gender",
+      "label": "Gender",
+      "type": "choice",
+      "options": [
+        "Female",
+        "Male",
+        "Transgender"
+      ],
+      "help": "Needed for AISHE staff data."
+    },
+    {
+      "key": "socialCategory",
+      "label": "Social category",
+      "type": "choice",
+      "options": [
+        "General",
+        "SC",
+        "ST",
+        "OBC",
+        "EWS"
+      ],
+      "help": "Needed for AISHE staff data."
+    },
+    {
+      "key": "phdAwardedYear",
+      "label": "Year Ph.D. awarded",
+      "type": "number",
+      "integer": true,
+      "min": 1950,
+      "max": 2100
+    },
+    {
+      "key": "fdpsThisYear",
+      "label": "FDPs and training this year",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 100,
+      "column": true
+    },
+    {
+      "key": "awards",
+      "label": "Awards and recognition this year",
+      "type": "longtext"
+    }
+  ]
+}

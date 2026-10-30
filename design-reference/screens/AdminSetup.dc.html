@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Institution setup</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<aside style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF; padding: 24px 16px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 8px">
+<div aria-label="YuCampus logo" style="width: 36px; height: 36px; border-radius: 9px; background: #2B3990; display: flex; align-items: center; justify-content: center; flex: none"><svg width="26" height="26" viewBox="0 0 96 96" aria-hidden="true"><path d="M10 40 L48 12 L86 40" fill="none" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"></path><path d="M28 44 L48 64 L68 44 M48 64 V86" fill="none" stroke="#5ED1C4" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"></path></svg></div>
+<div style="display: flex; flex-direction: column">
+<span style="font-weight: 800; font-size: 17px; letter-spacing: -0.01em"><span style="color: #0E7068">Yu</span>Campus</span>
+<span style="font-size: 11px; color: #545B73">by Yubhian Technologies</span>
+</div>
+</div>
+<nav aria-label="Main">
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<sc-for list="{{nav}}" as="item" hint-placeholder-count="9">
+<li>
+<sc-if value="{{item.active}}" hint-placeholder-val="{{false}}">
+<a href="{{item.href}}" aria-current="page" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 8px; background: #E8EAF6; color: #2B3990; font-weight: 600; font-size: 14px; text-decoration: none">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{item.d}}"></path></svg>{{item.label}}</a>
+</sc-if>
+<sc-if value="{{item.inactive}}" hint-placeholder-val="{{true}}">
+<a href="{{item.href}}" style="display: flex; align-items: center; gap: 12px; min-height: 44px; padding: 0 12px; border-radius: 8px; color: #545B73; font-weight: 500; font-size: 14px; text-decoration: none">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{item.d}}"></path></svg>{{item.label}}</a>
+</sc-if>
+</li>
+</sc-for>
+</ul>
+</nav>
+<div style="margin-top: auto; padding: 16px; border-radius: 12px; background: #F5F6FA; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 600">Sri Example Institute of Engineering</span>
+<span style="font-size: 12px; color: #545B73">Affiliated college · NAAC + NBA</span>
+</div>
+</aside>
+
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="Main.dc.html" style="text-decoration: none">Dashboard</a> / Admin / Institution setup</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Institution setup</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Step 2 of 5 · Departments and programs. Set this up once; every screen uses it.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>
+<button type="button" style="height: 44px; padding: 0 18px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Import from Excel</button>
+<button type="button" style="height: 44px; padding: 0 18px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Copy from college ERP</button>
+</div>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<nav aria-labelledby="steps-h" style="flex: 1 1 250px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 6px">
+<h2 id="steps-h" style="margin: 0 0 8px; font-size: 15px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>Setup progress</h2>
+<sc-for list="{{steps}}" as="s" hint-placeholder-count="5">
+<a href="{{s.href}}" aria-current="{{s.current}}" style="display: flex; align-items: center; gap: 12px; min-height: 52px; padding: 8px 10px; border-radius: 10px; text-decoration: none; color: #121733; background: {{s.bg}}">
+<span style="width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex: none; background: {{s.dotBg}}; color: {{s.dotFg}}">{{s.mark}}</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 14px; font-weight: 600">{{s.title}}</span>
+<span style="font-size: 12px; color: #545B73">{{s.state}}</span>
+</span>
+</a>
+</sc-for>
+</nav>
+
+<div style="flex: 3 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+<section aria-labelledby="dept-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap">
+<h2 id="dept-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>Departments and programs</h2>
+<span style="font-size: 13px; color: #545B73">{{deptCount}} departments</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 680px; border-collapse: collapse; font-size: 14px">
+<thead>
+<tr style="text-align: left; color: #545B73; font-size: 12px">
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Department</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Code</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Head of department</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Programs</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Faculty</th>
+<th style="padding: 10px 8px; border-bottom: 1px solid #E3E6EF"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Action</span></th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{depts}}" as="d" hint-placeholder-count="6">
+<tr>
+<td style="padding: 12px 8px; border-bottom: 1px solid #EEF0F4; font-weight: 600">{{d.name}}</td>
+<td style="padding: 12px 8px; border-bottom: 1px solid #EEF0F4"><span style="font-size: 12px; font-weight: 700; color: #2B3990; background: #E8EAF6; border-radius: 6px; padding: 3px 8px">{{d.code}}</span></td>
+<td style="padding: 12px 8px; border-bottom: 1px solid #EEF0F4">{{d.hod}}</td>
+<td style="padding: 12px 8px; border-bottom: 1px solid #EEF0F4">{{d.progs}}</td>
+<td style="padding: 12px 8px; border-bottom: 1px solid #EEF0F4">{{d.fac}}</td>
+<td style="padding: 12px 8px; border-bottom: 1px solid #EEF0F4; text-align: right"><a href="#" style="font-size: 14px; font-weight: 600; text-decoration: none">Edit</a></td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+
+<section aria-labelledby="add-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 16px">
+<h2 id="add-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>Add a department</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; align-items: end">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Department name
+<input type="text" value="{{fName}}" onChange="{{onName}}" placeholder="e.g. Artificial Intelligence and Data Science" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Short code
+<input type="text" value="{{fCode}}" onChange="{{onCode}}" placeholder="e.g. AIDS" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733">
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Programs offered
+<input type="text" value="{{fProgs}}" onChange="{{onProgs}}" placeholder="e.g. B.Tech" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733">
+</label>
+<button type="button" onClick="{{addDept}}" style="height: 44px; padding: 0 18px; border: none; border-radius: 8px; background: #2B3990; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Add department</button>
+</div>
+<p style="margin: 0; font-size: 13px; color: #545B73">The head of department can be chosen after users are added in the next step.</p>
+</section>
+
+<section aria-labelledby="fw-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="fw-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">5</span></sc-if>Which frameworks apply</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px">
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid #E3E6EF; border-radius: 10px; cursor: pointer">
+<input type="checkbox" checked style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #2B3990">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">NAAC</span><span style="font-size: 13px; color: #545B73">Whole institution · framework chosen below</span></span>
+</label>
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid #E3E6EF; border-radius: 10px; cursor: pointer">
+<input type="checkbox" checked style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #2B3990">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">NBA</span><span style="font-size: 13px; color: #545B73">Tier II · B.Tech CSE, ECE, EEE, MECH</span></span>
+</label>
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border: 1px solid #E3E6EF; border-radius: 10px; cursor: pointer">
+<input type="checkbox" checked style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #2B3990">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">NIRF</span><span style="font-size: 13px; color: #545B73">Engineering category</span></span>
+</label>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">NAAC framework
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; color: #121733"><option>Revised framework (RAF) · 7 criteria</option><option>Binary and MBGL · 10 criteria</option></select>
+</label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Institution type for NAAC
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; font-weight: 500; color: #121733"><option>Affiliated college</option><option>Autonomous college</option><option>University</option></select>
+</label>
+</div>
+<p style="margin: 0; font-size: 13px; color: #545B73">The right criteria, metrics and report formats load automatically. You can switch framework later without losing data.</p>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<a href="#" style="height: 44px; padding: 0 18px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center">Back</a>
+<div style="display: flex; align-items: center; gap: 12px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">6</span></sc-if>
+<a href="AdminUsers.dc.html" style="height: 44px; padding: 0 20px; border-radius: 8px; background: #2B3990; color: #FFFFFF; font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center">Save and continue to users</a>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      depts: [
+        ['Computer Science and Engineering', 'CSE', 'Dr. P. Kumar', 'B.Tech, M.Tech', 42],
+        ['Electronics and Communication Engineering', 'ECE', 'Dr. S. Reddy', 'B.Tech, M.Tech', 36],
+        ['Electrical and Electronics Engineering', 'EEE', 'Dr. M. Varma', 'B.Tech', 24],
+        ['Mechanical Engineering', 'MECH', 'Dr. R. Naidu', 'B.Tech', 28],
+        ['Civil Engineering', 'CIVIL', 'Dr. L. Prasad', 'B.Tech', 22],
+        ['Management Studies', 'MBA', 'Dr. N. Iyer', 'MBA', 18]
+      ],
+      fName: '', fCode: '', fProgs: ''
+    };
+  }
+  renderVals() {
+    const ACTIVE = 'Institution setup';
+    const NAV = [
+      ['Dashboard','M3 3h7v7H3zM14 3h7v7h-7zM3 14h7v7H3zM14 14h7v7h-7z','Main.dc.html'],
+      ['Tasks','M9 6h11M9 12h11M9 18h11M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2','AssignTasks.dc.html'],
+      ['Evidence library','M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z','EvidenceLibrary.dc.html'],
+      ['Data registers','M4 6c0-1.7 3.6-3 8-3s8 1.3 8 3-3.6 3-8 3-8-1.3-8-3zM4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3','DataRegisters.dc.html'],
+      ['NAAC','M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z','NaacCriteria.dc.html'],
+      ['NBA','M12 3l9 5-9 5-9-5zM3 13l9 5 9-5','CoPoMatrix.dc.html'],
+      ['NIRF','M4 20V10M10 20V4M16 20v-8M2 20h20','NirfDashboard.dc.html'],
+      ['Review queue','M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0zM8 12l3 3 5-6','SmartUpload.dc.html'],
+      ['Surveys','M8 10h8M8 14h5M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-6.4A8 8 0 1 1 21 12z','Surveys.dc.html'],
+      ['Reports','M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9zM14 3v6h6M8 13h8M8 17h5','ReportsExport.dc.html'],
+      ['Notifications','M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0','Notifications.dc.html'],
+      ['Users and roles','M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8','AdminUsers.dc.html'],
+      ['Institution setup','M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12','AdminSetup.dc.html']
+    ];
+    const nav = NAV.map(([label, d, href]) => ({ label, d, href, active: label === ACTIVE, inactive: label !== ACTIVE }));
+    const STEPS = [
+      ['Institution profile', 'Done', 'done', '#'],
+      ['Departments and programs', 'In progress', 'current', '#'],
+      ['Users and roles', 'Next', 'todo', 'AdminUsers.dc.html'],
+      ['Academic year and calendar', 'Not started', 'todo', 'AcademicYear.dc.html'],
+      ['Coordinators and task templates', 'Not started', 'todo', '#']
+    ];
+    const steps = STEPS.map(([title, state, kind, href], i) => ({
+      title, state, href,
+      current: kind === 'current' ? 'step' : 'false',
+      mark: kind === 'done' ? '✓' : String(i + 1),
+      bg: kind === 'current' ? '#E8EAF6' : 'transparent',
+      dotBg: kind === 'done' ? '#0E7068' : kind === 'current' ? '#2B3990' : '#EEF0F4',
+      dotFg: kind === 'todo' ? '#545B73' : '#FFFFFF'
+    }));
+    const depts = this.state.depts.map(([name, code, hod, progs, fac]) => ({ name, code, hod, progs, fac }));
+    return {
+      nav, steps, depts,
+      deptCount: depts.length,
+      guide: !!this.props.guide,
+      fName: this.state.fName, fCode: this.state.fCode, fProgs: this.state.fProgs,
+      onName: (e) => this.setState({ fName: e.target.value }),
+      onCode: (e) => this.setState({ fCode: e.target.value }),
+      onProgs: (e) => this.setState({ fProgs: e.target.value }),
+      addDept: () => {
+        const name = this.state.fName.trim();
+        if (!name) return;
+        const code = (this.state.fCode.trim() || name.slice(0, 4)).toUpperCase();
+        this.setState({
+          depts: this.state.depts.concat([[name, code, 'Not assigned yet', this.state.fProgs.trim() || '—', 0]]),
+          fName: '', fCode: '', fProgs: ''
+        });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

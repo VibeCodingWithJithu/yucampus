@@ -1,0 +1,1163 @@
+// YuCampus schema v1: tenancy, people, rules-as-configuration, evidence workflow, export, audit.
+// Data registers, NBA and survey tables are added with their own slices (see docs/ROADMAP.md, Phase 2).
+//
+// Tenancy rule: every tenant-owned table has college_id. Row-level security for those tables is created in
+// prisma/migrations/*_row_level_security. test/tenant-isolation.test.ts fails if a table is missed.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ---------------------------------------------------------------- Enums
+
+enum CollegeType {
+  affiliated
+  autonomous
+  university
+
+  @@map("college_type")
+}
+
+enum UserStatus {
+  active
+  invited
+  not_joined
+
+  @@map("user_status")
+}
+
+enum Role {
+  super_admin
+  college_admin
+  principal
+  iqac
+  hod
+  nba_coord
+  nirf_coord
+  faculty
+  office
+
+  @@map("role")
+}
+
+enum CollegeStatus {
+  active
+  suspended
+
+  @@map("college_status")
+}
+
+enum PlatformAdminStatus {
+  active
+  invited
+  disabled
+
+  @@map("platform_admin_status")
+}
+
+enum AcademicYearStatus {
+  current
+  locked
+  next
+
+  @@map("academic_year_status")
+}
+
+enum AccreditationBody {
+  NAAC
+  NBA
+  NIRF
+  AISHE
+
+  @@map("accreditation_body")
+}
+
+enum FrameworkStatus {
+  draft
+  active
+  retired
+
+  @@map("framework_status")
+}
+
+enum MetricType {
+  quantitative
+  qualitative
+
+  @@map("metric_type")
+}
+
+enum ReportKind {
+  SSR
+  AQAR
+  SAR
+  NIRF_SHEET
+  AISHE
+
+  @@map("report_kind")
+}
+
+enum EvidenceStatus {
+  in_review
+  /// Approved by the HOD; waiting for final approval. Used only when the college has two approval levels.
+  department_approved
+  approved
+  needs_fix
+  rejected
+
+  @@map("evidence_status")
+}
+
+enum ReviewActionKind {
+  submitted
+  /// The uploader sent a corrected file after "needs fix".
+  resubmitted
+  approved
+  needs_fix
+  rejected
+  remapped
+
+  @@map("review_action_kind")
+}
+
+enum ReviewLevel {
+  department
+  final
+
+  @@map("review_level")
+}
+
+enum FrameworkSelection {
+  /// At most one active per assessment cycle (NAAC).
+  single
+  /// Several active at once (NIRF categories).
+  multiple
+
+  @@map("framework_selection")
+}
+
+enum FrameworkAttachment {
+  college
+  /// Chosen per program (NBA).
+  program
+
+  @@map("framework_attachment")
+}
+
+enum CycleStatus {
+  planned
+  active
+  closed
+
+  @@map("cycle_status")
+}
+
+enum TaskStatus {
+  open
+  in_progress
+  done
+  overdue
+
+  @@map("task_status")
+}
+
+enum NotificationChannel {
+  in_app
+  email
+  whatsapp
+
+  @@map("notification_channel")
+}
+
+enum CourseStatus {
+  draft
+  /// Checked and locked by the HOD or NBA coordinator: read only, counts for attainment.
+  locked
+
+  @@map("course_status")
+}
+
+enum SurveyStatus {
+  draft
+  open
+  closed
+
+  @@map("survey_status")
+}
+
+enum ExportStatus {
+  queued
+  running
+  done
+  failed
+
+  @@map("export_status")
+}
+
+// ---------------------------------------------------------------- Tenancy and people
+
+model College {
+  id        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name      String
+  type      CollegeType
+  subdomain String        @unique
+  state     String
+  plan      String        @default("trial")
+  /// Set by the YuCampus team only (platform panel). A suspended college cannot sign in.
+  status    CollegeStatus @default(active)
+  settings  Json          @default("{}")
+  createdAt DateTime      @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt DateTime      @updatedAt @map("updated_at") @db.Timestamptz
+
+  users         User[]
+  departments   Department[]
+  programs      Program[]
+  academicYears AcademicYear[]
+  frameworks    CollegeFramework[]
+  cycles        AssessmentCycle[]
+  permissions   CollegeRolePermission[]
+
+  @@map("colleges")
+}
+
+model User {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  /// Null only for super admins (Yubhian team), who belong to no college.
+  collegeId    String?    @map("college_id") @db.Uuid
+  name         String
+  email        String?
+  mobile       String?
+  passwordHash String?    @map("password_hash")
+  status       UserStatus @default(not_joined)
+  lastLoginAt  DateTime?  @map("last_login_at") @db.Timestamptz
+  /// Wrong passwords in a row. Reset on a successful sign-in.
+  failedLogins Int        @default(0) @map("failed_logins")
+  lockedUntil  DateTime?  @map("locked_until") @db.Timestamptz
+  /// When to email notifications: "instant", or a daily summary at "09" or "17" (India time).
+  emailDigest  String     @default("instant") @map("email_digest")
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt    DateTime   @updatedAt @map("updated_at") @db.Timestamptz
+
+  college         College?         @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  roles           UserRole[]
+  refreshTokens   RefreshToken[]
+  passwordLinks   PasswordLink[]
+  registerRecords RegisterRecord[]
+  coursesTaught   Course[]
+
+  @@unique([collegeId, email])
+  @@unique([collegeId, mobile])
+  @@map("users")
+}
+
+/// One-time sign-in code sent to a mobile number. Only a hash of the code is stored.
+model OtpCode {
+  id         String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId  String    @map("college_id") @db.Uuid
+  mobile     String
+  codeHash   String    @map("code_hash")
+  expiresAt  DateTime  @map("expires_at") @db.Timestamptz
+  /// Wrong guesses so far. The code stops working after too many.
+  attempts   Int       @default(0)
+  consumedAt DateTime? @map("consumed_at") @db.Timestamptz
+  createdAt  DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([collegeId, mobile, createdAt])
+  @@map("otp_codes")
+}
+
+/// Long-lived sign-in session. Only a hash of the token is stored; each use replaces it with a new one.
+model RefreshToken {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String    @map("college_id") @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  revokedAt DateTime? @map("revoked_at") @db.Timestamptz
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId, userId])
+  @@map("refresh_tokens")
+}
+
+/// A one-time link to set a password: "reset" (forgot password) or "invite" (first sign-in). Only a hash is stored.
+model PasswordLink {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String    @map("college_id") @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  purpose   String
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  usedAt    DateTime? @map("used_at") @db.Timestamptz
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId, userId])
+  @@map("password_links")
+}
+
+/// A person can hold several duties, e.g. faculty + HOD of one department + NBA coordinator.
+model UserRole {
+  id           String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId    String? @map("college_id") @db.Uuid
+  userId       String  @map("user_id") @db.Uuid
+  role         Role
+  departmentId String? @map("department_id") @db.Uuid
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  department Department? @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+
+  /// The migration makes this NULLS NOT DISTINCT, so a college-wide duty cannot be given twice.
+  /// It also allows at most one HOD per department.
+  @@unique([userId, role, departmentId])
+  @@index([collegeId, role])
+  @@map("user_roles")
+}
+
+/// The head of department is the user holding the "hod" role for it (user_roles), not a column here.
+model Department {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String   @map("college_id") @db.Uuid
+  name      String
+  code      String
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  college         College          @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  programs        Program[]
+  userRoles       UserRole[]
+  registerRecords RegisterRecord[]
+
+  @@unique([collegeId, code])
+  @@map("departments")
+}
+
+model Program {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId    String   @map("college_id") @db.Uuid
+  departmentId String   @map("department_id") @db.Uuid
+  name         String
+  /// UG, PG, Diploma, PhD
+  level        String
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz
+
+  college     College            @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  department  Department         @relation(fields: [departmentId], references: [id], onDelete: Cascade)
+  frameworks  ProgramFramework[]
+  /// Attainment rules (NBA); empty means DEFAULT_ATTAINMENT_RULES in packages/types.
+  nbaSettings Json               @default("{}") @map("nba_settings")
+  /// Vision, mission and PEOs for the SAR (criterion 1).
+  nbaProfile  Json               @default("{}") @map("nba_profile")
+  courses     Course[]
+  outcomes    ProgramOutcome[]
+
+  @@index([collegeId, departmentId])
+  @@map("programs")
+}
+
+model AcademicYear {
+  id        String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String             @map("college_id") @db.Uuid
+  /// e.g. "2025-26"
+  label     String
+  startDate DateTime           @map("start_date") @db.Date
+  endDate   DateTime           @map("end_date") @db.Date
+  status    AcademicYearStatus
+  /// Semesters, e.g. [{ "name": "Odd semester", "start": "2026-07-01", "end": "2026-12-31" }]
+  terms     Json               @default("[]")
+
+  college          College           @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  keyDates         KeyDate[]
+  registerRecords  RegisterRecord[]
+  courses          Course[]
+  surveys          Survey[]
+  submittedFigures SubmittedFigure[]
+
+  @@unique([collegeId, label])
+  @@map("academic_years")
+}
+
+model KeyDate {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId      String   @map("college_id") @db.Uuid
+  academicYearId String   @map("academic_year_id") @db.Uuid
+  title          String
+  date           DateTime @db.Date
+  /// e.g. { "daysBefore": [14, 3, 1], "channels": ["in_app", "email"] }
+  reminderRule   Json     @default("{}") @map("reminder_rule")
+
+  academicYear AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId, academicYearId, date])
+  @@map("key_dates")
+}
+
+// ---------------------------------------------------------------- Rules as configuration
+// Global and versioned: these tables have no college_id. Colleges reference a version.
+
+model Framework {
+  id         String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  body       AccreditationBody
+  /// e.g. NAAC_RAF, NAAC_BINARY_MBGL
+  code       String
+  version    String
+  name       String
+  validFrom  DateTime?           @map("valid_from") @db.Date
+  status     FrameworkStatus     @default(draft)
+  selection  FrameworkSelection  @default(single)
+  attachesTo FrameworkAttachment @default(college) @map("attaches_to")
+  /// Where the content comes from: { "title": "...", "url": "...", "verified": true }. verified = checked
+  /// against the official manual. The app shows a clear warning for anything not verified (e.g. demo data).
+  source     Json                @default("{}")
+
+  criteria        Criterion[]
+  reportTemplates ReportTemplate[]
+  taskTemplates   TaskTemplate[]
+  colleges        CollegeFramework[]
+  programs        ProgramFramework[]
+
+  @@unique([code, version])
+  @@map("frameworks")
+}
+
+model Criterion {
+  id                        String        @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  frameworkId               String        @map("framework_id") @db.Uuid
+  number                    Int
+  name                      String
+  /// Weights differ by institution type, e.g. { "affiliated": 100, "autonomous": 150, "university": 150 }
+  weights                   Json          @default("{}")
+  appliesToInstitutionTypes CollegeType[] @map("applies_to_institution_types")
+
+  framework Framework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  metrics   Metric[]
+
+  @@unique([frameworkId, number])
+  @@map("criteria")
+}
+
+model Metric {
+  id                String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  criterionId       String     @map("criterion_id") @db.Uuid
+  /// e.g. "1.1.1"
+  code              String
+  name              String
+  /// Short explanation for non-technical faculty.
+  plainLanguage     String     @map("plain_language")
+  type              MetricType
+  yearsRequired     Int        @default(1) @map("years_required")
+  /// Marks (weightage) the manual gives this metric. Readiness of a criterion is weighted by it.
+  weight            Int?
+  requiredDocuments Json       @default("[]") @map("required_documents")
+  /// Where the metric's numbers come from in the data registers (rules; see metricDataSchema).
+  dataSource        Json?      @map("data_source")
+  sortOrder         Int        @default(0) @map("sort_order")
+
+  criterion Criterion        @relation(fields: [criterionId], references: [id], onDelete: Cascade)
+  evidence  EvidenceMetric[]
+  tasks     Task[]
+
+  @@unique([criterionId, code])
+  @@map("metrics")
+}
+
+model ReportTemplate {
+  id          String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  frameworkId String     @map("framework_id") @db.Uuid
+  kind        ReportKind
+  version     String
+  layout      Json
+
+  framework  Framework   @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+  exportJobs ExportJob[]
+
+  @@unique([frameworkId, kind, version])
+  @@map("report_templates")
+}
+
+model TaskTemplate {
+  id          String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  frameworkId String @map("framework_id") @db.Uuid
+  name        String
+  tasks       Json
+
+  framework Framework @relation(fields: [frameworkId], references: [id], onDelete: Cascade)
+
+  @@map("task_templates")
+}
+
+/// A college's accreditation cycle for one body, e.g. "NAAC cycle 3".
+model AssessmentCycle {
+  id        String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String            @map("college_id") @db.Uuid
+  body      AccreditationBody
+  label     String
+  startDate DateTime?         @map("start_date") @db.Date
+  endDate   DateTime?         @map("end_date") @db.Date
+  status    CycleStatus       @default(active)
+  createdAt DateTime          @default(now()) @map("created_at") @db.Timestamptz
+
+  college    College            @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  frameworks CollegeFramework[]
+  programs   ProgramFramework[]
+
+  @@unique([collegeId, body, label])
+  @@map("assessment_cycles")
+}
+
+/// Framework versions a college works against. Rows are kept when a framework is switched off (active = false),
+/// so switching back loses nothing. Framework.selection decides how many may be active at once.
+model CollegeFramework {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId   String    @map("college_id") @db.Uuid
+  frameworkId String    @map("framework_id") @db.Uuid
+  cycleId     String?   @map("cycle_id") @db.Uuid
+  active      Boolean   @default(true)
+  adoptedAt   DateTime  @default(now()) @map("adopted_at") @db.Timestamptz
+  retiredAt   DateTime? @map("retired_at") @db.Timestamptz
+
+  college   College          @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+  framework Framework        @relation(fields: [frameworkId], references: [id])
+  cycle     AssessmentCycle? @relation(fields: [cycleId], references: [id], onDelete: Cascade)
+
+  /// NULLS NOT DISTINCT in the migration.
+  @@unique([collegeId, frameworkId, cycleId])
+  @@map("college_frameworks")
+}
+
+/// NBA and other program-level frameworks: which format each program is assessed against.
+model ProgramFramework {
+  id          String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId   String    @map("college_id") @db.Uuid
+  programId   String    @map("program_id") @db.Uuid
+  frameworkId String    @map("framework_id") @db.Uuid
+  cycleId     String?   @map("cycle_id") @db.Uuid
+  active      Boolean   @default(true)
+  adoptedAt   DateTime  @default(now()) @map("adopted_at") @db.Timestamptz
+  retiredAt   DateTime? @map("retired_at") @db.Timestamptz
+
+  program   Program          @relation(fields: [programId], references: [id], onDelete: Cascade)
+  framework Framework        @relation(fields: [frameworkId], references: [id])
+  cycle     AssessmentCycle? @relation(fields: [cycleId], references: [id], onDelete: Cascade)
+
+  /// NULLS NOT DISTINCT in the migration.
+  @@unique([programId, frameworkId, cycleId])
+  @@index([collegeId])
+  @@map("program_frameworks")
+}
+
+/// A college's switch on one entry of the default permission templates (ROLE_TEMPLATES in @yucampus/types).
+/// No row means the template default applies.
+model CollegeRolePermission {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId  String   @map("college_id") @db.Uuid
+  role       Role
+  permission String
+  allowed    Boolean
+  changedBy  String   @map("changed_by") @db.Uuid
+  changedAt  DateTime @default(now()) @map("changed_at") @db.Timestamptz
+
+  college College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, role, permission])
+  @@map("college_role_permissions")
+}
+
+// ---------------------------------------------------------------- Evidence and workflow
+
+model Evidence {
+  id             String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId      String         @map("college_id") @db.Uuid
+  academicYearId String         @map("academic_year_id") @db.Uuid
+  departmentId   String?        @map("department_id") @db.Uuid
+  uploadedById   String         @map("uploaded_by_id") @db.Uuid
+  /// Object-storage key. Files are uploaded directly with pre-signed URLs, never through the API.
+  fileKey        String         @map("file_key")
+  fileType       String         @map("file_type")
+  fileSize       Int            @map("file_size")
+  /// The name the file had on the uploader's device (shown and used for downloads; never part of the key).
+  fileName       String         @map("file_name")
+  /// SHA-256 of the file, used to warn about duplicates.
+  fileSha256     String?        @map("file_sha256")
+  title          String
+  description    String?
+  /// The date the document is about (e.g. the workshop date), checked against the academic year.
+  documentDate   DateTime?      @map("document_date") @db.Date
+  /// The task this was uploaded for, if any. Its approval completes the task.
+  taskId         String?        @map("task_id") @db.Uuid
+  status         EvidenceStatus @default(in_review)
+  version        Int            @default(1)
+  /// AI extraction output. Suggestions only; nothing counts until IQAC approves.
+  extracted      Json?
+  aiConfidence   Float?         @map("ai_confidence")
+  createdAt      DateTime       @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime       @updatedAt @map("updated_at") @db.Timestamptz
+
+  metrics        EvidenceMetric[]
+  reviewActions  ReviewAction[]
+  versions       EvidenceVersion[]
+  registerProofs RegisterRecordEvidence[]
+
+  @@index([collegeId, academicYearId, status])
+  @@index([collegeId, departmentId])
+  @@index([collegeId, uploadedById])
+  @@index([collegeId, fileSha256])
+  @@index([collegeId, taskId])
+  @@map("evidence")
+}
+
+/// Every file an evidence item has had, including the current one. Older files are kept, never overwritten.
+model EvidenceVersion {
+  id           String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId    String   @map("college_id") @db.Uuid
+  evidenceId   String   @map("evidence_id") @db.Uuid
+  version      Int
+  fileKey      String   @map("file_key")
+  fileName     String   @map("file_name")
+  fileType     String   @map("file_type")
+  fileSize     Int      @map("file_size")
+  uploadedById String   @map("uploaded_by_id") @db.Uuid
+  uploadedAt   DateTime @default(now()) @map("uploaded_at") @db.Timestamptz
+
+  evidence Evidence @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
+
+  @@unique([evidenceId, version])
+  @@index([collegeId])
+  @@map("evidence_versions")
+}
+
+/// One document can count for several metrics.
+model EvidenceMetric {
+  collegeId   String  @map("college_id") @db.Uuid
+  evidenceId  String  @map("evidence_id") @db.Uuid
+  metricId    String  @map("metric_id") @db.Uuid
+  /// Which of the metric's required documents this evidence is (Metric.requiredDocuments[].key), if known.
+  documentKey String? @map("document_key")
+
+  evidence Evidence @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
+  metric   Metric   @relation(fields: [metricId], references: [id])
+
+  @@id([evidenceId, metricId])
+  @@index([collegeId, metricId])
+  @@map("evidence_metrics")
+}
+
+model ReviewAction {
+  id         String           @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId  String           @map("college_id") @db.Uuid
+  evidenceId String           @map("evidence_id") @db.Uuid
+  userId     String           @map("user_id") @db.Uuid
+  /// Which approval step this action belongs to (null for the uploader's own actions).
+  level      ReviewLevel?
+  action     ReviewActionKind
+  comment    String?
+  at         DateTime         @default(now()) @db.Timestamptz
+
+  evidence Evidence @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId, evidenceId, at])
+  @@map("review_actions")
+}
+
+model Task {
+  id                   String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId            String     @map("college_id") @db.Uuid
+  academicYearId       String     @map("academic_year_id") @db.Uuid
+  title                String
+  description          String?
+  metricId             String?    @map("metric_id") @db.Uuid
+  /// Which of the metric's required documents the task asks for, if any.
+  documentKey          String?    @map("document_key")
+  /// A task is assigned to one person or to a whole department.
+  assigneeUserId       String?    @map("assignee_user_id") @db.Uuid
+  assigneeDepartmentId String?    @map("assignee_department_id") @db.Uuid
+  createdById          String     @map("created_by_id") @db.Uuid
+  dueDate              DateTime?  @map("due_date") @db.Date
+  /// { "every": "month" | "semester" | "year" }, or null for once.
+  repeatRule           Json?      @map("repeat_rule")
+  /// { "daysBefore": [3, 0], "overdueDaily": true }
+  reminderRule         Json?      @map("reminder_rule")
+  status               TaskStatus @default(open)
+  completedAt          DateTime?  @map("completed_at") @db.Timestamptz
+  /// Set once the next occurrence of a repeating task has been created.
+  repeatedAt           DateTime?  @map("repeated_at") @db.Timestamptz
+  createdAt            DateTime   @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt            DateTime   @updatedAt @map("updated_at") @db.Timestamptz
+
+  metric Metric? @relation(fields: [metricId], references: [id])
+
+  @@index([collegeId, academicYearId, status])
+  @@index([collegeId, assigneeUserId, status])
+  @@index([collegeId, assigneeDepartmentId, status])
+  @@map("tasks")
+}
+
+model Comment {
+  id         String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId  String   @map("college_id") @db.Uuid
+  entityType String   @map("entity_type")
+  entityId   String   @map("entity_id") @db.Uuid
+  userId     String   @map("user_id") @db.Uuid
+  body       String
+  at         DateTime @default(now()) @db.Timestamptz
+
+  @@index([collegeId, entityType, entityId, at])
+  @@map("comments")
+}
+
+model Notification {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String    @map("college_id") @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  kind      String
+  text      String
+  link      String?
+  /// Stops the same reminder twice, e.g. "task:<id>:due:2026-10-31:3". Unique per person.
+  dedupeKey String?   @map("dedupe_key")
+  readAt    DateTime? @map("read_at") @db.Timestamptz
+  /// When it went out by email (immediately or in a daily summary). Null: not (yet) emailed.
+  emailedAt DateTime? @map("emailed_at") @db.Timestamptz
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  @@unique([userId, dedupeKey])
+  @@index([collegeId, userId, readAt, createdAt])
+  @@map("notifications")
+}
+
+model NotificationPreference {
+  collegeId String                @map("college_id") @db.Uuid
+  userId    String                @map("user_id") @db.Uuid
+  event     String
+  channels  NotificationChannel[]
+
+  @@id([userId, event])
+  @@index([collegeId])
+  @@map("notification_preferences")
+}
+
+// ---------------------------------------------------------------- Reports
+
+model ExportJob {
+  id          String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId   String       @map("college_id") @db.Uuid
+  templateId  String       @map("template_id") @db.Uuid
+  /// Shown in the export history, e.g. "NAAC AQAR 2026-27".
+  label       String       @default("")
+  /// What to include: { academicYearId?, departmentIds? } (a HOD's export covers their departments only).
+  params      Json         @default("{}")
+  /// Requested outputs: report (Word and PDF), index (Excel), pack (ZIP), missing (Excel).
+  outputs     String[]
+  status      ExportStatus @default(queued)
+  createdById String       @map("created_by_id") @db.Uuid
+  /// The generated files: [{ key, name, kind, size }].
+  files       Json         @default("[]")
+  error       String?
+  createdAt   DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  finishedAt  DateTime?    @map("finished_at") @db.Timestamptz
+
+  template ReportTemplate @relation(fields: [templateId], references: [id])
+
+  @@index([collegeId, createdAt])
+  @@map("export_jobs")
+}
+
+// ---------------------------------------------------------------- NBA outcomes (decided 2026-10-17)
+
+/// A program's outcomes: NBA's POs (copied from the rules file, read only) and its own PSOs.
+model ProgramOutcome {
+  id        String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String @map("college_id") @db.Uuid
+  programId String @map("program_id") @db.Uuid
+  /// PO or PSO
+  kind      String
+  code      String
+  statement String
+  sortOrder Int    @default(0) @map("sort_order")
+
+  program  Program       @relation(fields: [programId], references: [id], onDelete: Cascade)
+  mappings CoPoMapping[]
+
+  @@unique([programId, code])
+  @@index([collegeId, programId])
+  @@map("program_outcomes")
+}
+
+/// A course of a program in one academic year, taught by one teacher.
+model Course {
+  id             String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId      String       @map("college_id") @db.Uuid
+  programId      String       @map("program_id") @db.Uuid
+  academicYearId String       @map("academic_year_id") @db.Uuid
+  code           String
+  name           String
+  semester       Int?
+  teacherId      String?      @map("teacher_id") @db.Uuid
+  status         CourseStatus @default(draft)
+  lockedById     String?      @map("locked_by_id") @db.Uuid
+  lockedAt       DateTime?    @map("locked_at") @db.Timestamptz
+  createdAt      DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  program      Program            @relation(fields: [programId], references: [id], onDelete: Cascade)
+  academicYear AcademicYear       @relation(fields: [academicYearId], references: [id])
+  teacher      User?              @relation(fields: [teacherId], references: [id], onDelete: SetNull)
+  outcomes     CourseOutcome[]
+  results      AssessmentResult[]
+  surveys      Survey[]
+
+  @@unique([programId, academicYearId, code])
+  @@index([collegeId, programId, academicYearId])
+  @@index([collegeId, teacherId])
+  @@map("courses")
+}
+
+model CourseOutcome {
+  id            String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId     String @map("college_id") @db.Uuid
+  courseId      String @map("course_id") @db.Uuid
+  code          String
+  statement     String
+  sortOrder     Int    @default(0) @map("sort_order")
+  /// Course exit survey result on the 0–3 scale (indirect attainment), until surveys fill it in.
+  indirectLevel Float? @map("indirect_level")
+
+  course          Course             @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  mappings        CoPoMapping[]
+  results         AssessmentResult[]
+  surveyQuestions SurveyQuestion[]
+
+  @@unique([courseId, code])
+  @@index([collegeId, courseId])
+  @@map("course_outcomes")
+}
+
+/// How strongly a CO supports a PO or PSO: 1 low, 2 medium, 3 high. No row means not mapped.
+model CoPoMapping {
+  collegeId        String @map("college_id") @db.Uuid
+  courseOutcomeId  String @map("course_outcome_id") @db.Uuid
+  programOutcomeId String @map("program_outcome_id") @db.Uuid
+  strength         Int
+
+  courseOutcome  CourseOutcome  @relation(fields: [courseOutcomeId], references: [id], onDelete: Cascade)
+  programOutcome ProgramOutcome @relation(fields: [programOutcomeId], references: [id], onDelete: Cascade)
+
+  @@id([courseOutcomeId, programOutcomeId])
+  @@index([collegeId, programOutcomeId])
+  @@map("co_po_mappings")
+}
+
+/// CO totals for one assessment: how many students attempted and how many reached the target mark.
+model AssessmentResult {
+  id              String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId       String @map("college_id") @db.Uuid
+  courseId        String @map("course_id") @db.Uuid
+  courseOutcomeId String @map("course_outcome_id") @db.Uuid
+  /// internal or end_exam
+  kind            String
+  name            String
+  attempted       Int
+  reached         Int
+
+  course        Course        @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  courseOutcome CourseOutcome @relation(fields: [courseOutcomeId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId, courseId])
+  @@map("assessment_results")
+}
+
+// ---------------------------------------------------------------- Surveys (decided 2026-10-17)
+
+/// A survey answered through an open link or QR code. Answers are anonymous; no respondent list is kept.
+model Survey {
+  id                String       @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId         String       @map("college_id") @db.Uuid
+  /// From apps/api/rules/surveys/templates.json, e.g. course_exit
+  templateCode      String       @map("template_code")
+  title             String
+  audience          String
+  academicYearId    String       @map("academic_year_id") @db.Uuid
+  /// For a course exit survey.
+  courseId          String?      @map("course_id") @db.Uuid
+  status            SurveyStatus @default(draft)
+  /// The random part of the open link (/s/<token>).
+  publicToken       String       @unique @map("public_token")
+  expectedResponses Int?         @map("expected_responses")
+  closesOn          DateTime?    @map("closes_on") @db.Date
+  /// What closing did to the course's indirect attainment (course exit).
+  courseNote        String?      @map("course_note")
+  createdById       String       @map("created_by_id") @db.Uuid
+  createdAt         DateTime     @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime     @updatedAt @map("updated_at") @db.Timestamptz
+
+  academicYear AcademicYear     @relation(fields: [academicYearId], references: [id])
+  course       Course?          @relation(fields: [courseId], references: [id], onDelete: SetNull)
+  questions    SurveyQuestion[]
+  responses    SurveyResponse[]
+
+  @@index([collegeId, academicYearId])
+  @@index([collegeId, courseId])
+  @@map("surveys")
+}
+
+model SurveyQuestion {
+  id              String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId       String  @map("college_id") @db.Uuid
+  surveyId        String  @map("survey_id") @db.Uuid
+  sortOrder       Int     @default(0) @map("sort_order")
+  /// rating or comment
+  kind            String
+  text            String
+  /// 3 or 5
+  scale           Int     @default(5)
+  courseOutcomeId String? @map("course_outcome_id") @db.Uuid
+
+  survey        Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  courseOutcome CourseOutcome? @relation(fields: [courseOutcomeId], references: [id], onDelete: SetNull)
+  answers       SurveyAnswer[]
+
+  @@index([collegeId, surveyId])
+  @@map("survey_questions")
+}
+
+/// One anonymous answer sheet. Only a hash of the device token is kept, to stop one device answering twice.
+model SurveyResponse {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId   String   @map("college_id") @db.Uuid
+  surveyId    String   @map("survey_id") @db.Uuid
+  deviceHash  String   @map("device_hash")
+  submittedAt DateTime @default(now()) @map("submitted_at") @db.Timestamptz
+
+  survey  Survey         @relation(fields: [surveyId], references: [id], onDelete: Cascade)
+  answers SurveyAnswer[]
+
+  @@unique([surveyId, deviceHash])
+  @@index([collegeId, surveyId])
+  @@map("survey_responses")
+}
+
+model SurveyAnswer {
+  collegeId  String  @map("college_id") @db.Uuid
+  responseId String  @map("response_id") @db.Uuid
+  questionId String  @map("question_id") @db.Uuid
+  rating     Int?
+  comment    String?
+
+  response SurveyResponse @relation(fields: [responseId], references: [id], onDelete: Cascade)
+  question SurveyQuestion @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@id([responseId, questionId])
+  @@index([collegeId, questionId])
+  @@map("survey_answers")
+}
+
+// ---------------------------------------------------------------- Data registers (decided 2026-10-17)
+
+/// A register's fields and the reports it feeds, loaded from apps/api/rules/registers. Global and read-only for the app.
+model RegisterDefinition {
+  id         String          @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  code       String
+  version    String
+  name       String
+  status     FrameworkStatus @default(draft)
+  sortOrder  Int             @default(100) @map("sort_order")
+  /// The whole validated definition (fields, feeds, proof, person, department).
+  definition Json
+  createdAt  DateTime        @default(now()) @map("created_at") @db.Timestamptz
+
+  records RegisterRecord[]
+
+  @@unique([code, version])
+  @@map("register_definitions")
+}
+
+/// One row of a register in one academic year. Students are batch totals, never individual students (DPDP Act).
+model RegisterRecord {
+  id             String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId      String   @map("college_id") @db.Uuid
+  definitionId   String   @map("definition_id") @db.Uuid
+  academicYearId String   @map("academic_year_id") @db.Uuid
+  departmentId   String?  @map("department_id") @db.Uuid
+  /// The person the record is about (e.g. a faculty profile); that person may edit it.
+  userId         String?  @map("user_id") @db.Uuid
+  /// Field key -> value, as the definition describes.
+  data           Json     @default("{}")
+  createdById    String   @map("created_by_id") @db.Uuid
+  updatedById    String   @map("updated_by_id") @db.Uuid
+  createdAt      DateTime @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime @updatedAt @map("updated_at") @db.Timestamptz
+
+  definition   RegisterDefinition       @relation(fields: [definitionId], references: [id])
+  academicYear AcademicYear             @relation(fields: [academicYearId], references: [id])
+  department   Department?              @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+  user         User?                    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  proofs       RegisterRecordEvidence[]
+
+  @@index([collegeId, definitionId, academicYearId])
+  @@index([collegeId, userId])
+  @@map("register_records")
+}
+
+/// Approved evidence linked to a register record as proof.
+model RegisterRecordEvidence {
+  collegeId  String @map("college_id") @db.Uuid
+  recordId   String @map("record_id") @db.Uuid
+  evidenceId String @map("evidence_id") @db.Uuid
+
+  record   RegisterRecord @relation(fields: [recordId], references: [id], onDelete: Cascade)
+  evidence Evidence       @relation(fields: [evidenceId], references: [id], onDelete: Cascade)
+
+  @@id([recordId, evidenceId])
+  @@index([collegeId, evidenceId])
+  @@map("register_record_evidence")
+}
+
+// ---------------------------------------------------------------- AISHE (decided 2026-10-18)
+
+/// What the college actually typed into a portal (AISHE, NIRF or NAAC) for one figure and year.
+/// Compared with the registers and across portals by the consistency checker. Nothing is sent to any portal.
+model SubmittedFigure {
+  id             String            @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId      String            @map("college_id") @db.Uuid
+  academicYearId String            @map("academic_year_id") @db.Uuid
+  portal         AccreditationBody
+  /// From apps/api/rules/aishe/checks.json (figures), e.g. onRoll
+  figureKey      String            @map("figure_key")
+  value          Decimal           @db.Decimal(14, 2)
+  note           String?
+  updatedById    String            @map("updated_by_id") @db.Uuid
+  createdAt      DateTime          @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt      DateTime          @updatedAt @map("updated_at") @db.Timestamptz
+
+  academicYear AcademicYear @relation(fields: [academicYearId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, academicYearId, portal, figureKey])
+  @@map("submitted_figures")
+}
+
+/// Carries a finished Google or Microsoft sign-in back to the college's own address (decided 2026-10-21).
+/// One use, 60 seconds; only a hash of the code is stored.
+model SsoHandoff {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String    @map("college_id") @db.Uuid
+  userId    String    @map("user_id") @db.Uuid
+  provider  String
+  codeHash  String    @unique @map("code_hash")
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  usedAt    DateTime? @map("used_at") @db.Timestamptz
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  @@index([collegeId, userId])
+  @@map("sso_handoffs")
+}
+
+// ---------------------------------------------------------------- Platform (YuCampus team; decided 2026-10-18)
+// Global tables: no college_id and no row-level security. Only the platform module uses them.
+
+/// A member of the YuCampus team. Not a college account: platform tokens cannot call college APIs.
+model PlatformAdmin {
+  id              String              @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  email           String              @unique
+  name            String
+  passwordHash    String?             @map("password_hash")
+  status          PlatformAdminStatus @default(invited)
+  failedLogins    Int                 @default(0) @map("failed_logins")
+  lockedUntil     DateTime?           @map("locked_until") @db.Timestamptz
+  lastSignInAt    DateTime?           @map("last_sign_in_at") @db.Timestamptz
+  invitedById     String?             @map("invited_by_id") @db.Uuid
+  /// Authenticator-app secret, encrypted (AES-256-GCM). Set but unconfirmed while the person is setting it up.
+  totpSecret      String?             @map("totp_secret")
+  totpConfirmedAt DateTime?           @map("totp_confirmed_at") @db.Timestamptz
+  /// The time step of the last code used; codes at or before it are refused.
+  totpLastStep    Int?                @map("totp_last_step")
+  createdAt       DateTime            @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt       DateTime            @updatedAt @map("updated_at") @db.Timestamptz
+
+  refreshTokens PlatformRefreshToken[]
+  passwordLinks PlatformPasswordLink[]
+  recoveryCodes PlatformRecoveryCode[]
+
+  @@map("platform_admins")
+}
+
+model PlatformRefreshToken {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  adminId   String    @map("admin_id") @db.Uuid
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  revokedAt DateTime? @map("revoked_at") @db.Timestamptz
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  admin PlatformAdmin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@map("platform_refresh_tokens")
+}
+
+/// One-time link to choose a password (invite or reset). Only a hash of the token is stored.
+model PlatformPasswordLink {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  adminId   String    @map("admin_id") @db.Uuid
+  purpose   String
+  tokenHash String    @unique @map("token_hash")
+  expiresAt DateTime  @map("expires_at") @db.Timestamptz
+  usedAt    DateTime? @map("used_at") @db.Timestamptz
+  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
+
+  admin PlatformAdmin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@map("platform_password_links")
+}
+
+/// One-time codes for signing in without the authenticator app. Only hashes are stored.
+model PlatformRecoveryCode {
+  id       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  adminId  String    @map("admin_id") @db.Uuid
+  codeHash String    @map("code_hash")
+  usedAt   DateTime? @map("used_at") @db.Timestamptz
+
+  admin PlatformAdmin @relation(fields: [adminId], references: [id], onDelete: Cascade)
+
+  @@index([adminId])
+  @@map("platform_recovery_codes")
+}
+
+/// Append-only: the app role can insert and read, never update or delete.
+model PlatformAuditLog {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  adminId   String?  @map("admin_id") @db.Uuid
+  action    String
+  /// The college it concerns, if any. Not named college_id: this global table has no tenant policy.
+  collegeId String?  @map("about_college_id") @db.Uuid
+  detail    Json     @default("{}")
+  at        DateTime @default(now()) @db.Timestamptz
+
+  @@index([at])
+  @@map("platform_audit_logs")
+}
+
+// ---------------------------------------------------------------- Audit
+
+/// Append-only: the app database role can insert and read, never update or delete.
+model AuditLog {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  collegeId String   @map("college_id") @db.Uuid
+  userId    String?  @map("user_id") @db.Uuid
+  entity    String
+  entityId  String   @map("entity_id")
+  action    String
+  before    Json?
+  after     Json?
+  at        DateTime @default(now()) @db.Timestamptz
+
+  @@index([collegeId, entity, entityId, at])
+  @@index([collegeId, at])
+  @@map("audit_logs")
+}

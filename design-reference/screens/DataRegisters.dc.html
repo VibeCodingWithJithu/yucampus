@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Data registers</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<div style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF">
+<dc-import name="Sidebar" active="Data registers" hint-size="100%,860px"></dc-import>
+</div>
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="Main.dc.html" style="text-decoration: none">Dashboard</a> / Data registers</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Data registers</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Enter each record once. YuCampus reuses it in NAAC, NBA, NIRF and AISHE automatically.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; align-items: center">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>
+<button type="button" style="height: 44px; padding: 0 18px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Import from Excel</button>
+<button type="button" style="height: 44px; padding: 0 18px; border: none; border-radius: 8px; background: #2B3990; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Add a record</button>
+</div>
+</header>
+
+<div role="tablist" aria-label="Registers" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px; border-bottom: 1px solid #E3E6EF; padding-bottom: 12px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="5">
+<button type="button" role="tab" aria-selected="{{t.selected}}" onClick="{{t.pick}}" style="height: 44px; padding: 0 16px; border-radius: 8px; font: inherit; font-size: 14px; cursor: pointer; {{t.style}}">{{t.label}} <span style="font-size: 12px; opacity: 0.8">· {{t.count}}</span></button>
+</sc-for>
+</div>
+
+<section aria-labelledby="use-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 18px 22px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<h2 id="use-h" style="margin: 0; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>This register fills:</h2>
+<sc-for list="{{uses}}" as="u" hint-placeholder-count="4"><span style="font-size: 12px; font-weight: 700; color: #2B3990; background: #E8EAF6; border-radius: 6px; padding: 5px 9px">{{u}}</span></sc-for>
+</section>
+
+<section aria-labelledby="reg-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px">
+<h2 id="reg-h" style="margin: 0; font-size: 17px; font-weight: 700">{{title}}</h2>
+<span style="font-size: 13px; font-weight: 600; color: #7A4505; background: #FDF0DC; border-radius: 999px; padding: 5px 12px; display: flex; align-items: center; gap: 8px"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 12px; font-weight: 700; flex: none">4</span></sc-if>{{missing}}</span>
+</div>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 720px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left; color: #545B73; font-size: 12px">
+<sc-for list="{{heads}}" as="h" hint-placeholder-count="6"><th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">{{h}}</th></sc-for>
+</tr></thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="6">
+<tr>
+<sc-for list="{{r}}" as="c" hint-placeholder-count="6"><td style="padding: 11px 8px; border-bottom: 1px solid #EEF0F4; {{c.style}}">{{c.text}}</td></sc-for>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { tab: 'fac' };
+  }
+  renderVals() {
+    const D = {
+      fac: { label: 'Faculty', count: 186, title: 'Faculty profiles', missing: '9 profiles have missing fields',
+        uses: ['NAAC C2 and C6', 'NBA C5', 'NIRF TLR', 'AISHE staff'],
+        heads: ['Name', 'Department', 'Qualification', 'Experience', 'Publications', 'FDPs this year'],
+        rows: [['Dr. K. Rao', 'CSE', 'PhD', '14 years', '22', '3'], ['Dr. P. Kumar', 'CSE', 'PhD', '19 years', '35', '2'], ['Ms. S. Devi', 'ECE', 'M.Tech', '6 years', '4', ''], ['Dr. M. Varma', 'EEE', 'PhD', '17 years', '18', '1'], ['Mr. R. Teja', 'CSE', 'M.Tech', '8 years', '6', '2'], ['Ms. A. Fatima', 'MBA', 'MBA, NET', '5 years', '', '1']] },
+      stu: { label: 'Students', count: 3420, title: 'Student records', missing: '41 records missing category',
+        uses: ['NAAC C2 and C5', 'NBA C4', 'NIRF GO and OI', 'AISHE enrolment'],
+        heads: ['Batch', 'Program', 'Enrolled', 'Passed on time', 'Placed', 'Higher studies'],
+        rows: [['2022–26', 'B.Tech CSE', '180', '164', '128', '14'], ['2022–26', 'B.Tech ECE', '120', '108', '82', '9'], ['2022–26', 'B.Tech EEE', '60', '52', '31', '6'], ['2022–26', 'B.Tech MECH', '60', '50', '28', ''], ['2024–26', 'MBA', '60', '57', '44', '2'], ['2024–26', 'M.Tech CSE', '18', '17', '9', '3']] },
+      res: { label: 'Research', count: 312, title: 'Publications, patents and projects', missing: '14 papers missing proof',
+        uses: ['NAAC C3', 'NBA C5', 'NIRF RP'],
+        heads: ['Title', 'Type', 'Faculty', 'Year', 'Journal or agency', 'Proof'],
+        rows: [['IoT in agriculture', 'Journal paper', 'Ms. S. Devi', '2025–26', 'Sample Journal of IoT', 'Uploaded'], ['Smart grid fault detection', 'Patent published', 'Dr. M. Varma', '2025–26', 'Patent office', 'Uploaded'], ['Campus energy audit', 'Consultancy', 'EEE dept', '2024–25', 'Example Industries', ''], ['Deep learning for X-rays', 'Journal paper', 'Dr. K. Rao', '2024–25', 'Sample Medical AI Journal', 'Uploaded'], ['Low-cost water filter', 'Funded project', 'CIVIL dept', '2024–25', 'State science council', 'Uploaded'], ['Supply chain analytics', 'Conference paper', 'Ms. A. Fatima', '2025–26', 'Sample Conference', '']] },
+      act: { label: 'Activities', count: 268, title: 'Events, MoUs and extension activities', missing: '6 events missing photos',
+        uses: ['NAAC C3 and C5', 'NBA C7', 'NIRF OI'],
+        heads: ['Activity', 'Type', 'Department', 'Date', 'Participants', 'Report'],
+        rows: [['Guest lecture on cloud computing', 'Lecture', 'CSE', '9 Oct 2026', '140', 'Uploaded'], ['Blood donation camp', 'Extension', 'NSS', '3 Oct 2026', '220', 'Uploaded'], ['MoU with Example Tech', 'MoU', 'ECE', '7 Oct 2026', '—', 'Uploaded'], ['Hackathon 2026', 'Competition', 'CSE', '20 Sep 2026', '300', ''], ['Industrial visit', 'Visit', 'MECH', '15 Sep 2026', '60', 'Uploaded'], ['Women safety workshop', 'Workshop', 'Women cell', '8 Sep 2026', '180', '']] },
+      inf: { label: 'Infrastructure and finance', count: 94, title: 'Labs, library and budget', missing: '2 budget heads not updated',
+        uses: ['NAAC C4 and C6', 'NBA C6 and C9', 'NIRF TLR', 'AISHE infrastructure'],
+        heads: ['Item', 'Category', 'Department', 'Quantity or amount', 'Year', 'Proof'],
+        rows: [['AI and ML lab', 'Laboratory', 'CSE', '60 systems', '2025–26', 'Uploaded'], ['Library e-journals', 'Library', 'Central', '4,200 titles', '2025–26', 'Uploaded'], ['Equipment purchase', 'Capital expenditure', 'ECE', '₹18.4 lakh', '2025–26', 'Uploaded'], ['Solar plant', 'Infrastructure', 'Estate', '100 kW', '2024–25', 'Uploaded'], ['Maintenance', 'Revenue expenditure', 'All', '₹42.0 lakh', '2025–26', ''], ['Smart classrooms', 'ICT', 'All', '38 rooms', '2025–26', 'Uploaded']] }
+    };
+    const tab = this.state.tab;
+    const cur = D[tab];
+    const tabs = Object.keys(D).map((k) => ({
+      label: D[k].label, count: D[k].count.toLocaleString('en-IN'),
+      selected: k === tab ? 'true' : 'false',
+      style: k === tab ? 'border: 1px solid #2B3990; background: #2B3990; color: #FFFFFF; font-weight: 600' : 'border: 1px solid #E3E6EF; background: #FFFFFF; color: #121733; font-weight: 500',
+      pick: () => this.setState({ tab: k })
+    }));
+    const rows = cur.rows.map((r, ri) => r.map((v, ci) => ({
+      text: v === '' ? 'Missing' : v,
+      style: v === '' ? 'color: #8F1D17; font-weight: 600; background: #FBE4E2' : ci === 0 ? 'font-weight: 600' : ''
+    })));
+    return { guide: !!this.props.guide, tabs, uses: cur.uses, heads: cur.heads, rows, title: cur.title, missing: cur.missing };
+  }
+}
+</script>
+</body>
+</html>

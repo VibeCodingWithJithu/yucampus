@@ -1,0 +1,71 @@
+{
+  "code": "INFRA_FINANCE",
+  "version": "1",
+  "name": "Infrastructure and finance",
+  "description": "Labs, library, ICT, buildings and spending.",
+  "status": "draft",
+  "source": {
+    "title": "YuCampus first proposal, based on NAAC Criteria 4 and 6, NIRF TLR and AISHE infrastructure. Not yet checked against the current formats.",
+    "verified": false
+  },
+  "department": "optional",
+  "person": null,
+  "proof": "optional",
+  "titleField": "item",
+  "feeds": [
+    "NAAC C4",
+    "NAAC C6",
+    "NBA C6",
+    "NIRF TLR",
+    "AISHE infrastructure"
+  ],
+  "sortOrder": 50,
+  "fields": [
+    {
+      "key": "item",
+      "label": "Item",
+      "type": "text",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "category",
+      "label": "Category",
+      "type": "choice",
+      "required": true,
+      "column": true,
+      "options": [
+        "Laboratory",
+        "Library",
+        "ICT or smart classroom",
+        "Building or campus",
+        "Sports",
+        "Capital expenditure",
+        "Maintenance expenditure",
+        "Salary",
+        "Other"
+      ]
+    },
+    {
+      "key": "quantity",
+      "label": "Quantity or size",
+      "type": "text",
+      "column": true,
+      "help": "For example 60 systems, 4,200 titles or 100 kW."
+    },
+    {
+      "key": "amountLakh",
+      "label": "Amount",
+      "type": "number",
+      "min": 0,
+      "max": 1000000,
+      "unit": "₹ lakh",
+      "column": true
+    },
+    {
+      "key": "notes",
+      "label": "Notes",
+      "type": "longtext"
+    }
+  ]
+}

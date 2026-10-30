@@ -1,0 +1,38 @@
+{
+  "name": "@yucampus/web",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "next typegen && tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.9.1",
+    "@tanstack/react-query": "5.104.0",
+    "@yucampus/types": "workspace:*",
+    "@yucampus/ui": "workspace:*",
+    "@yucampus/validation": "workspace:*",
+    "fflate": "0.7.5",
+    "next": "^16.4.0",
+    "qrcode": "1.5.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "react-hook-form": "^7.90.0",
+    "read-excel-file": "9.3.10",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/qrcode": "1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@yucampus/config": "workspace:*",
+    "postcss": "^8.5.29",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3"
+  }
+}

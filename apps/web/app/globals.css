@@ -1,0 +1,5 @@
+@import 'tailwindcss';
+@import '@yucampus/ui/styles.css';
+
+/* Tailwind must also scan the shared components for class names. */
+@source '../../../packages/ui/src';

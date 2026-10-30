@@ -1,0 +1,102 @@
+{
+  "version": "1",
+  "source": {
+    "title": "YuCampus first proposal of survey questions, based on what NAAC (1.4.1, 2.7.1) and NBA (indirect attainment) ask colleges to collect. Not yet checked by an IQAC expert.",
+    "verified": false
+  },
+  "templates": [
+    {
+      "code": "student_satisfaction",
+      "name": "Student satisfaction",
+      "audience": "Students",
+      "description": "How students rate teaching, learning and support.",
+      "feeds": ["NAAC 2.7.1"],
+      "scale": 5,
+      "questions": [
+        { "kind": "rating", "text": "The syllabus was covered in time." },
+        { "kind": "rating", "text": "Teachers come well prepared and explain clearly." },
+        { "kind": "rating", "text": "Internal assessment is fair and transparent." },
+        { "kind": "rating", "text": "Teachers use examples, projects and activities, not only lectures." },
+        { "kind": "rating", "text": "Mentoring helps me with my studies and problems." },
+        { "kind": "rating", "text": "Labs, library and internet support my learning." },
+        { "kind": "rating", "text": "Overall, I am satisfied with teaching and learning here." },
+        { "kind": "comment", "text": "What one thing should the college improve?" }
+      ]
+    },
+    {
+      "code": "course_exit",
+      "name": "Course exit survey",
+      "audience": "Students of a course",
+      "description": "At the end of a course: how well students think they reached each course outcome.",
+      "feeds": ["NBA indirect attainment"],
+      "scale": 3,
+      "perCourse": true,
+      "questions": [{ "kind": "comment", "text": "What would have helped you learn this course better?" }]
+    },
+    {
+      "code": "alumni",
+      "name": "Alumni feedback",
+      "audience": "Alumni",
+      "description": "How well the curriculum prepared former students for work and further study.",
+      "feeds": ["NAAC 1.4.1"],
+      "scale": 5,
+      "questions": [
+        { "kind": "rating", "text": "The curriculum prepared me for my career." },
+        { "kind": "rating", "text": "There was enough practical and lab work." },
+        { "kind": "rating", "text": "Industry exposure (visits, internships, talks) was useful." },
+        { "kind": "rating", "text": "Placement and career support were helpful." },
+        { "kind": "rating", "text": "I would recommend this college to others." },
+        { "kind": "comment", "text": "What should the curriculum add or change?" }
+      ]
+    },
+    {
+      "code": "employer",
+      "name": "Employer feedback",
+      "audience": "Employers",
+      "description": "How employers rate the graduates they hired.",
+      "feeds": ["NAAC 1.4.1"],
+      "scale": 5,
+      "questions": [
+        { "kind": "rating", "text": "Graduates from this college have the knowledge the job needs." },
+        { "kind": "rating", "text": "They communicate well." },
+        { "kind": "rating", "text": "They work well in teams." },
+        { "kind": "rating", "text": "They learn new things quickly." },
+        { "kind": "rating", "text": "They act professionally and ethically." },
+        { "kind": "rating", "text": "Overall, we are satisfied with graduates from this college." },
+        { "kind": "comment", "text": "Which skills should the college strengthen?" }
+      ]
+    },
+    {
+      "code": "parent",
+      "name": "Parent feedback",
+      "audience": "Parents",
+      "description": "How parents see teaching, facilities and communication.",
+      "feeds": ["NAAC 1.4.1"],
+      "scale": 5,
+      "questions": [
+        { "kind": "rating", "text": "My ward is taught well." },
+        { "kind": "rating", "text": "The college keeps me informed about attendance and marks." },
+        { "kind": "rating", "text": "The campus is safe and disciplined." },
+        { "kind": "rating", "text": "Facilities (labs, library, hostel, transport) are good." },
+        { "kind": "rating", "text": "Overall, I am satisfied with the college." },
+        { "kind": "comment", "text": "What would you like the college to do better?" }
+      ]
+    },
+    {
+      "code": "teacher_curriculum",
+      "name": "Teacher feedback on curriculum",
+      "audience": "Teachers",
+      "description": "How teachers rate the syllabus they teach.",
+      "feeds": ["NAAC 1.4.1"],
+      "scale": 5,
+      "questions": [
+        { "kind": "rating", "text": "The syllabus matches the course objectives." },
+        { "kind": "rating", "text": "The syllabus is up to date with the field." },
+        { "kind": "rating", "text": "The prescribed books and references are adequate." },
+        { "kind": "rating", "text": "The balance of theory and practice is right." },
+        { "kind": "rating", "text": "There is enough time to cover the syllabus." },
+        { "kind": "comment", "text": "What should be added to or removed from the syllabus?" }
+      ]
+    }
+  ]
+}

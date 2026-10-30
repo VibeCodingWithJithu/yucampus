@@ -1,0 +1,185 @@
+{
+  "code": "STUDENT_BATCHES",
+  "version": "1",
+  "name": "Student batches",
+  "description": "Totals per program and batch: admissions, categories and outcomes. No individual student records.",
+  "status": "draft",
+  "source": {
+    "title": "YuCampus first proposal, based on NAAC student data, NIRF GO and AISHE enrolment. Not yet checked against the current formats.",
+    "verified": false
+  },
+  "department": "optional",
+  "person": null,
+  "proof": "optional",
+  "titleField": "batch",
+  "feeds": [
+    "NAAC C2",
+    "NAAC C5",
+    "NBA C4",
+    "NIRF GO",
+    "AISHE enrolment"
+  ],
+  "sortOrder": 20,
+  "fields": [
+    {
+      "key": "batch",
+      "label": "Batch",
+      "type": "text",
+      "required": true,
+      "column": true,
+      "help": "Years of the batch, e.g. 2022–26."
+    },
+    {
+      "key": "program",
+      "label": "Program",
+      "type": "program",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "intake",
+      "label": "Sanctioned intake",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "enrolled",
+      "label": "Admitted",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "female",
+      "label": "Of whom women",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "sc",
+      "label": "Of whom SC",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "st",
+      "label": "Of whom ST",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "obc",
+      "label": "Of whom OBC",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "ews",
+      "label": "Of whom EWS",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "pwd",
+      "label": "Of whom with disabilities",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "otherStates",
+      "label": "Of whom from other states",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "help": "Needed for NIRF OI (regional diversity)."
+    },
+    {
+      "key": "otherCountries",
+      "label": "Of whom from other countries",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "feeReimbursed",
+      "label": "Of whom with full fee reimbursement",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "help": "From the state, the institution or private bodies. Needed for NIRF OI (ESCS)."
+    },
+    {
+      "key": "reservedSeats",
+      "label": "Seats earmarked for reserved categories",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "help": "As per the reservation policy that applies to the college."
+    },
+    {
+      "key": "appearedFinal",
+      "label": "Appeared in the final-year examination",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "passedOnTime",
+      "label": "Passed in the minimum time",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "column": true
+    },
+    {
+      "key": "placed",
+      "label": "Placed",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "column": true
+    },
+    {
+      "key": "higherStudies",
+      "label": "Went on to higher studies",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000,
+      "column": true
+    },
+    {
+      "key": "medianSalaryLakh",
+      "label": "Median salary of those placed",
+      "type": "number",
+      "min": 0,
+      "max": 500,
+      "unit": "₹ lakh a year",
+      "help": "Used for NIRF graduation outcomes."
+    }
+  ]
+}

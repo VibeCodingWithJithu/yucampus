@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Academic year and calendar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<div style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF">
+<dc-import name="Sidebar" active="Institution setup" hint-size="100%,860px"></dc-import>
+</div>
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="AdminSetup.dc.html" style="text-decoration: none">Institution setup</a> / Academic year and calendar</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Academic year and calendar</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Step 4 of 5 · set the year, its dates and deadlines. Every report and reminder follows this calendar.</p>
+</header>
+
+<section aria-labelledby="yrs-h" style="display: flex; flex-direction: column; gap: 12px">
+<h2 id="yrs-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>Academic years</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px">
+<sc-for list="{{years}}" as="y" hint-placeholder-count="4">
+<div style="background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px; {{y.border}}">
+<span style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 18px; font-weight: 700">{{y.ay}}</span><span style="font-size: 11px; font-weight: 700; border-radius: 999px; padding: 3px 8px; color: {{y.fg}}; background: {{y.bg}}">{{y.status}}</span></span>
+<span style="font-size: 13px; color: #545B73">{{y.note}}</span>
+</div>
+</sc-for>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-labelledby="dates-h" style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="dates-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>Dates for 2025–26</h2>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Year starts<input type="text" value="1 Jul 2025" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Year ends<input type="text" value="30 Jun 2026" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Odd semester<input type="text" value="Jul – Dec 2025" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73">Even semester<input type="text" value="Jan – Jun 2026" style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; font: inherit; font-size: 14px; color: #121733"></label>
+</div>
+<p style="margin: 0; font-size: 13px; color: #545B73">Evidence dated outside these dates is flagged during review.</p>
+</section>
+
+<section aria-labelledby="kd-h" style="flex: 1 1 420px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 10px">
+<h2 id="kd-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>Key dates and deadlines</h2>
+<button type="button" style="height: 40px; padding: 0 14px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #2B3990; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer">Add a date</button>
+</div>
+<sc-for list="{{dates}}" as="d" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 14px; padding: 10px 0; border-bottom: 1px solid #EEF0F4">
+<span style="width: 90px; flex: none; font-size: 13px; font-weight: 700; color: #2B3990">{{d.date}}</span>
+<span style="flex: 1; font-size: 14px">{{d.what}}</span>
+<span style="font-size: 12px; color: #545B73">{{d.remind}}</span>
+</div>
+</sc-for>
+</section>
+</div>
+
+<section aria-labelledby="new-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="new-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>Start the next academic year</h2>
+<p style="margin: 0; font-size: 14px; color: #3B4157; line-height: 1.5">The current year is locked for editing, and these items are carried forward so nothing is set up twice:</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px">
+<label style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid #E3E6EF; border-radius: 10px; font-size: 14px; cursor: pointer"><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #2B3990">Departments and users</label>
+<label style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid #E3E6EF; border-radius: 10px; font-size: 14px; cursor: pointer"><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #2B3990">Recurring task templates</label>
+<label style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid #E3E6EF; border-radius: 10px; font-size: 14px; cursor: pointer"><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #2B3990">Yearly surveys</label>
+<label style="display: flex; align-items: center; gap: 10px; padding: 12px 14px; border: 1px solid #E3E6EF; border-radius: 10px; font-size: 14px; cursor: pointer"><input type="checkbox" checked style="width: 20px; height: 20px; accent-color: #2B3990">Faculty profiles</label>
+</div>
+<sc-if value="{{notStarted}}" hint-placeholder-val="{{true}}">
+<div><button type="button" onClick="{{start}}" style="height: 48px; padding: 0 22px; border: none; border-radius: 8px; background: #2B3990; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Start 2026–27</button></div>
+</sc-if>
+<sc-if value="{{started}}" hint-placeholder-val="{{false}}">
+<div role="status" style="background: #DDF1EE; color: #0B5852; border-radius: 10px; padding: 14px 16px; font-size: 14px; font-weight: 600">2026–27 is ready. Tasks from templates have been created and assigned.</div>
+</sc-if>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { started: false };
+  }
+  renderVals() {
+    const K = { Current: ['#0B5852', '#DDF1EE', 'border: 2px solid #2B3990'], Locked: ['#545B73', '#EEF0F4', 'border: 1px solid #E3E6EF'], Next: ['#7A4505', '#FDF0DC', 'border: 1.5px dashed #AEB5E3'] };
+    const years = [
+      ['2025–26', 'Current', 'Data collection in progress'],
+      ['2024–25', 'Locked', 'AQAR submitted'],
+      ['2023–24', 'Locked', 'Archived, read only'],
+      ['2026–27', 'Next', 'Not started yet']
+    ].map(([ay, status, note]) => ({ ay, status, note, fg: K[status][0], bg: K[status][1], border: K[status][2] }));
+    const dates = [
+      { date: '24 Oct 2026', what: 'Internal IQAC audit', remind: 'Reminder 7 days before' },
+      { date: '30 Nov 2026', what: 'NBA SAR · B.Tech CSE', remind: 'Reminder 14 days before' },
+      { date: '15 Dec 2026', what: 'AQAR 2025–26 submission', remind: 'Reminder 30 days before' },
+      { date: 'Jan 2027', what: 'NIRF data submission window (expected)', remind: 'Reminder when announced' },
+      { date: 'Monthly', what: 'Department evidence upload day', remind: 'Reminder on the 25th' }
+    ];
+    return {
+      guide: !!this.props.guide, years, dates,
+      started: this.state.started, notStarted: !this.state.started,
+      start: () => this.setState({ started: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

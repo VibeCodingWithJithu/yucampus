@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Notifications</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<div style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF">
+<dc-import name="Sidebar" active="Notifications" hint-size="100%,860px"></dc-import>
+</div>
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="Main.dc.html" style="text-decoration: none">Dashboard</a> / Notifications</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Notifications</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Everything that needs your attention, and how you want to be told.</p>
+</div>
+<div style="display: flex; align-items: center; gap: 10px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>
+<button type="button" onClick="{{readAll}}" style="height: 44px; padding: 0 18px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Mark all as read</button>
+</div>
+</header>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-label="Notification list" style="flex: 2 1 520px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 12px">
+<div role="group" aria-label="Filter notifications" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>
+<sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{f.pressed}}" onClick="{{f.pick}}" style="height: 40px; padding: 0 14px; border-radius: 999px; font: inherit; font-size: 13px; cursor: pointer; {{f.style}}">{{f.label}}</button>
+</sc-for>
+</div>
+<sc-for list="{{items}}" as="n" hint-placeholder-count="6">
+<div style="display: flex; gap: 12px; align-items: flex-start; padding: 14px; border-radius: 10px; background: {{n.bg}}">
+<span style="width: 10px; height: 10px; margin-top: 6px; border-radius: 50%; flex: none; background: {{n.dot}}"></span>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+<span style="font-size: 14px; line-height: 1.45; display: flex; align-items: flex-start; gap: 8px; font-weight: {{n.weight}}"><sc-if value="{{n.mark}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>{{n.text}}</span>
+<span style="font-size: 12px; color: #545B73">{{n.when}} · {{n.kind}}</span>
+</div>
+<a href="{{n.href}}" style="font-size: 13px; font-weight: 600; text-decoration: none; flex: none">{{n.action}}</a>
+</div>
+</sc-for>
+</section>
+
+<section aria-labelledby="pref-h" style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="pref-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>How to tell me</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; border-collapse: collapse; font-size: 13px">
+<thead><tr style="color: #545B73; font-size: 12px">
+<th style="padding: 8px 4px; text-align: left; font-weight: 600; border-bottom: 1px solid #E3E6EF">Event</th>
+<th style="padding: 8px 4px; font-weight: 600; border-bottom: 1px solid #E3E6EF">In app</th>
+<th style="padding: 8px 4px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Email</th>
+<th style="padding: 8px 4px; font-weight: 600; border-bottom: 1px solid #E3E6EF">WhatsApp</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{prefs}}" as="p" hint-placeholder-count="5">
+<tr>
+<td style="padding: 8px 4px; border-bottom: 1px solid #EEF0F4; font-weight: 600">{{p.event}}</td>
+<sc-for list="{{p.ch}}" as="c" hint-placeholder-count="3">
+<td style="padding: 4px; border-bottom: 1px solid #EEF0F4; text-align: center"><label style="display: inline-flex; width: 44px; height: 44px; align-items: center; justify-content: center; cursor: pointer"><input type="checkbox" aria-label="{{c.label}}" checked="{{c.on}}" onChange="{{c.toggle}}" style="width: 20px; height: 20px; accent-color: #2B3990"></label></td>
+</sc-for>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 600; color: #545B73"><span style="display: flex; align-items: center; gap: 8px"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">5</span></sc-if>Daily summary instead of many messages</span>
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733"><option>One summary at 9:00 AM</option><option>One summary at 5:00 PM</option><option>Send each message right away</option></select>
+</label>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filter: 'all', allRead: false,
+      prefs: {
+        'New task for me': [true, true, true],
+        'Deadline approaching': [true, false, true],
+        'Upload approved or sent back': [true, false, true],
+        'Item waiting for my review': [true, true, false],
+        'Rule or format update': [true, true, false]
+      }
+    };
+  }
+  renderVals() {
+    const guide = !!this.props.guide;
+    const ALL = [
+      ['task', 'IQAC assigned you: Upload FDP certificate (NAAC C6)', '10 min ago', 'Open task', 'AssignTasks.dc.html', true],
+      ['review', '12 new uploads are waiting for your review', '1 hour ago', 'Review', 'SmartUpload.dc.html', true],
+      ['deadline', 'NBA SAR · B.Tech CSE is due in 14 days', 'Today', 'View', 'ReportsExport.dc.html', true],
+      ['mention', 'Dr. V. Lakshmi mentioned you on Research papers per teacher', 'Yesterday', 'Reply', 'MetricDetail.dc.html', false],
+      ['update', 'New NAAC report format is available and loaded', '2 days ago', 'See changes', 'ReportsExport.dc.html', false],
+      ['review', 'Your industry visit photos were sent back: add date', '3 days ago', 'Fix', 'EvidenceLibrary.dc.html', false]
+    ];
+    const DOT = { task: '#2B3990', review: '#0E7068', deadline: '#B3261E', mention: '#C77A12', update: '#545B73' };
+    const KIND = { task: 'Task', review: 'Review', deadline: 'Deadline', mention: 'Mention', update: 'Update' };
+    const f = this.state.filter;
+    const allRead = this.state.allRead;
+    const list = ALL.filter((n) => f === 'all' || (f === 'unread' && n[5] && !allRead) || (f === 'mention' && n[0] === 'mention') || (f === 'deadline' && n[0] === 'deadline'));
+    const items = list.map(([kind, text, when, action, href, unread], i) => {
+      const u = unread && !allRead;
+      return { text, when, action, href, kind: KIND[kind], dot: DOT[kind], bg: u ? '#F2F3FB' : '#FFFFFF', weight: u ? '600' : '400', mark: guide && i === 0 };
+    });
+    const unreadCount = allRead ? 0 : ALL.filter((n) => n[5]).length;
+    const filters = [['all', 'All'], ['unread', 'Unread (' + unreadCount + ')'], ['mention', 'Mentions'], ['deadline', 'Deadlines']].map(([id, label]) => ({
+      label, pressed: f === id ? 'true' : 'false',
+      style: f === id ? 'border: 1px solid #2B3990; background: #2B3990; color: #FFFFFF; font-weight: 600' : 'border: 1px solid #E3E6EF; background: #FFFFFF; color: #121733; font-weight: 500',
+      pick: () => this.setState({ filter: id })
+    }));
+    const CH = ['In app', 'Email', 'WhatsApp'];
+    const prefs = Object.keys(this.state.prefs).map((event) => ({
+      event,
+      ch: this.state.prefs[event].map((on, j) => ({
+        on, label: event + ' by ' + CH[j],
+        toggle: () => {
+          const next = { ...this.state.prefs, [event]: this.state.prefs[event].slice() };
+          next[event][j] = !on;
+          this.setState({ prefs: next });
+        }
+      }))
+    }));
+    return { guide, items, filters, prefs, readAll: () => this.setState({ allRead: true }) };
+  }
+}
+</script>
+</body>
+</html>

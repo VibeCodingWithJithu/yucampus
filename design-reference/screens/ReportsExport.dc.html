@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Reports and export</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<div style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF">
+<dc-import name="Sidebar" active="Reports" hint-size="100%,860px"></dc-import>
+</div>
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="Main.dc.html" style="text-decoration: none">Dashboard</a> / Reports</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Reports and export</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Create portal-ready files from approved data. Formats follow the latest official templates.</p>
+</header>
+
+<section aria-labelledby="pick-h" style="display: flex; flex-direction: column; gap: 12px">
+<h2 id="pick-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>Choose a report</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px">
+<sc-for list="{{reports}}" as="r" hint-placeholder-count="5">
+<button type="button" onClick="{{r.pick}}" aria-pressed="{{r.pressed}}" style="text-align: left; font: inherit; color: #121733; background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; {{r.border}}">
+<span style="font-size: 11px; font-weight: 700; color: #2B3990; letter-spacing: 0.04em">{{r.body}}</span>
+<span style="font-size: 15px; font-weight: 700">{{r.name}}</span>
+<span style="font-size: 12px; color: #545B73">{{r.info}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-labelledby="fix-h" style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px">
+<h2 id="fix-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>Fix before export</h2>
+<span style="font-size: 12px; font-weight: 600; color: #545B73">{{selName}}</span>
+</div>
+<sc-for list="{{issues}}" as="i" hint-placeholder-count="5">
+<div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; background: {{i.bg}}">
+<span style="font-size: 11px; font-weight: 800; color: {{i.fg}}; width: 64px; flex: none">{{i.level}}</span>
+<span style="flex: 1; min-width: 0; font-size: 14px; line-height: 1.4">{{i.text}}</span>
+<a href="MetricDetail.dc.html" style="font-size: 13px; font-weight: 600; text-decoration: none; flex: none">Fix</a>
+</div>
+</sc-for>
+</section>
+
+<section aria-labelledby="out-h" style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 id="out-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>What to create</h2>
+<sc-for list="{{outputs}}" as="o" hint-placeholder-count="4">
+<label style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; border: 1px solid #E3E6EF; border-radius: 10px; cursor: pointer">
+<input type="checkbox" checked style="width: 20px; height: 20px; margin: 2px 0 0; accent-color: #2B3990">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 600">{{o.name}}</span><span style="font-size: 12px; color: #545B73; line-height: 1.4">{{o.info}}</span></span>
+</label>
+</sc-for>
+<sc-if value="{{notReady}}" hint-placeholder-val="{{true}}">
+<button type="button" onClick="{{generate}}" style="height: 48px; border: none; border-radius: 8px; background: #2B3990; color: #FFFFFF; font: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Create files</button>
+</sc-if>
+<sc-if value="{{ready}}" hint-placeholder-val="{{false}}">
+<div role="status" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 10px; background: #DDF1EE; color: #0B5852; font-size: 14px; font-weight: 600">Files are ready<a href="#" style="height: 40px; padding: 0 14px; border-radius: 8px; background: #0E7068; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; font-size: 13px">Download all</a></div>
+</sc-if>
+</section>
+</div>
+
+<section aria-labelledby="hist-h" style="background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<h2 id="hist-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>Export history</h2>
+<div style="overflow-x: auto">
+<table style="width: 100%; min-width: 620px; border-collapse: collapse; font-size: 14px">
+<thead><tr style="text-align: left; color: #545B73; font-size: 12px">
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Report</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Files</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Created by</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Date</th>
+<th style="padding: 10px 8px; font-weight: 600; border-bottom: 1px solid #E3E6EF">Format version</th>
+</tr></thead>
+<tbody>
+<sc-for list="{{history}}" as="h" hint-placeholder-count="3">
+<tr>
+<td style="padding: 11px 8px; border-bottom: 1px solid #EEF0F4; font-weight: 600">{{h.r}}</td>
+<td style="padding: 11px 8px; border-bottom: 1px solid #EEF0F4">{{h.f}}</td>
+<td style="padding: 11px 8px; border-bottom: 1px solid #EEF0F4">{{h.by}}</td>
+<td style="padding: 11px 8px; border-bottom: 1px solid #EEF0F4">{{h.d}}</td>
+<td style="padding: 11px 8px; border-bottom: 1px solid #EEF0F4">{{h.v}}</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+</section>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1220}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 'aqar', ready: false };
+  }
+  renderVals() {
+    const R = [
+      ['ssr', 'NAAC', 'Self Study Report', 'Affiliated college format'],
+      ['aqar', 'NAAC', 'AQAR 2025–26', 'Yearly quality report'],
+      ['sar', 'NBA', 'SAR · B.Tech CSE', 'Tier II format'],
+      ['nirf', 'NIRF', 'Data sheets', 'Engineering category'],
+      ['aishe', 'AISHE', 'Survey data', 'Institution data format']
+    ];
+    const sel = this.state.sel;
+    const reports = R.map(([id, body, name, info]) => ({
+      body, name, info,
+      pressed: sel === id ? 'true' : 'false',
+      border: sel === id ? 'border: 2px solid #2B3990; box-shadow: 0 0 0 3px #E8EAF6' : 'border: 1px solid #E3E6EF',
+      pick: () => this.setState({ sel: id, ready: false })
+    }));
+    const cur = R.find((r) => r[0] === sel);
+    const E = { level: 'MUST FIX', fg: '#8F1D17', bg: '#FBE4E2' };
+    const W = { level: 'CHECK', fg: '#7A4505', bg: '#FDF0DC' };
+    const issues = [
+      { ...E, text: 'Proof missing for 14 research papers (Criterion 3)' },
+      { ...E, text: 'Faculty count differs from AISHE: 186 vs 181' },
+      { ...W, text: '3 documents are larger than the portal limit and will be compressed' },
+      { ...W, text: 'Best practices write-up is still a draft (Criterion 7)' },
+      { ...W, text: '2 events have dates outside the academic year' }
+    ];
+    const outputs = [
+      { name: 'Full report (Word and PDF)', info: 'For principal sign-off, records and the peer team visit' },
+      { name: 'Portal data sheets (Excel)', info: 'Fields in the same order as the online portal, ready to copy or bulk upload' },
+      { name: 'Evidence pack (ZIP)', info: 'PDFs organised in folders by criterion and metric, with clear file names' },
+      { name: 'Missing items list', info: 'Anything still incomplete, with owners, to share with departments' }
+    ];
+    const history = [
+      { r: 'AQAR 2024–25', f: 'Word, PDF, Excel, ZIP', by: 'Dr. V. Lakshmi', d: '12 Dec 2025', v: 'NAAC 2025 format' },
+      { r: 'NIRF data sheets', f: 'Excel', by: 'Dr. V. Lakshmi', d: '20 Jan 2026', v: 'NIRF 2026 format' },
+      { r: 'SAR · B.Tech ECE', f: 'Word, PDF, ZIP', by: 'Mr. R. Teja', d: '3 Mar 2026', v: 'NBA Tier II format' }
+    ];
+    return {
+      guide: !!this.props.guide, reports, issues, outputs, history,
+      selName: cur[1] + ' · ' + cur[2],
+      ready: this.state.ready, notReady: !this.state.ready,
+      generate: () => this.setState({ ready: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

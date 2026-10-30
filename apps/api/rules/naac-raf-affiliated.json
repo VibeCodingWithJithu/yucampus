@@ -1,0 +1,1660 @@
+{
+  "body": "NAAC",
+  "code": "NAAC_RAF_AFFILIATED",
+  "version": "20-07-2023",
+  "name": "NAAC RAF · Affiliated colleges",
+  "selection": "single",
+  "attachesTo": "college",
+  "status": "draft",
+  "source": {
+    "title": "Extracted from the NAAC Affiliated College Manual (20-07-2023). Not yet checked line by line against the manual.",
+    "url": null,
+    "verified": false
+  },
+  "criteria": [
+    {
+      "number": 1,
+      "name": "Curricular Aspects",
+      "weights": {
+        "affiliated": 100
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "1.1.1",
+          "name": "The Institution ensures effective curriculum planning and delivery through a well-planned and documented process including Academic calendar and conduct of continuous internal Assessment",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "1.2.1",
+          "name": "Number of Certificate/Value added courses offered and online courses of MOOCs, SWAYAM, NPTEL etc. where the students of the institution have enrolled and successfully completed during the last five years)",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Institutional programme brochure/notice for Certificate/Value added programs with course modules and outcomes; List of students and the attendance sheet for the above mentioned programs; Evidence of course completion, like course completion certificate etc..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "institutional-programme-brochure-not",
+              "name": "Institutional programme brochure/notice for Certificate/Value added programs with course modules and outcomes"
+            },
+            {
+              "key": "list-students-attendance-sheet",
+              "name": "List of students and the attendance sheet for the above mentioned programs"
+            },
+            {
+              "key": "evidence-course-completion-course",
+              "name": "Evidence of course completion, like course completion certificate etc."
+            }
+          ]
+        },
+        {
+          "code": "1.2.2",
+          "name": "Percentage of students enrolled in Certificate/ Value added courses and also completed online courses of MOOCs, SWAYAM, NPTEL etc. as against the total number of students during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (template merged with 1.2.1); Upload supporting document.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (template merged with 1.2.1)"
+            },
+            {
+              "key": "upload-supporting-document",
+              "name": "Upload supporting document"
+            }
+          ]
+        },
+        {
+          "code": "1.3.1",
+          "name": "Institution integrates crosscutting issues relevant to Professional Ethics, Gender, Human Values, Environment and Sustainability in transacting the Curriculum",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "1.3.2",
+          "name": "Percentage of students undertaking project work/field work/ internships (Data for the latest completed academic year)",
+          "plainLanguage": "Collect for the latest completed academic year: Institutional data in the prescribed format; Upload supporting document.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format"
+            },
+            {
+              "key": "upload-supporting-document",
+              "name": "Upload supporting document"
+            }
+          ]
+        },
+        {
+          "code": "1.4.1",
+          "name": "Institution obtains feedback on the academic performance and ambience of the institution from various stakeholders, such as Students, Teachers, Employers, Alumni etc. and action taken report on the feedback is made available on institutional website",
+          "plainLanguage": "Collect for the latest completed academic year: Institutional data in the prescribed format (data template); At least 4 filled-in feedback form from different stake holders like Students, Teachers, Employers, Alumni etc.; Feedback analysis report submitted to appropriate bodies; Action taken report on the feedback analysis; Link of institution’s website where comprehensive feedback, its analytics and action taken report are hosted.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "at-least-4-filled",
+              "name": "At least 4 filled-in feedback form from different stake holders like Students, Teachers, Employers, Alumni etc."
+            },
+            {
+              "key": "feedback-analysis-report-submitted",
+              "name": "Feedback analysis report submitted to appropriate bodies"
+            },
+            {
+              "key": "action-taken-report-feedback",
+              "name": "Action taken report on the feedback analysis"
+            },
+            {
+              "key": "link-institution-s-website",
+              "name": "Link of institution’s website where comprehensive feedback, its analytics and action taken report are hosted"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Teaching-Learning and Evaluation",
+      "weights": {
+        "affiliated": 350
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "2.1.1",
+          "name": "Enrolment percentage",
+          "plainLanguage": "Collect for the latest completed academic year: Institutional data in the prescribed format (data template); Document relating to sanction of intake as approved by competent authority; Final admission list as published by the HEI and endorsed by the competent authority..",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "document-relating-sanction-intake",
+              "name": "Document relating to sanction of intake as approved by competent authority"
+            },
+            {
+              "key": "final-admission-list-published",
+              "name": "Final admission list as published by the HEI and endorsed by the competent authority."
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "admitted",
+                "label": "Students admitted",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "enrolled"
+                ]
+              },
+              {
+                "key": "intake",
+                "label": "Sanctioned intake",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "intake"
+                ]
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Admitted as a share of the intake",
+                "numerator": "admitted",
+                "denominator": "intake",
+                "format": "percent"
+              }
+            ],
+            "note": "From the student batches recorded in each academic year."
+          }
+        },
+        {
+          "code": "2.1.2",
+          "name": "Percentage of seats filled against reserved categories (SC, ST, OBC etc.) as per applicable reservation policy for the first year admission during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Copy of the letter issued by the State govt. or Central Government Indicating the reserved categories(SC, ST, OBC, Divyangjan, etc.) to be considered as per the state rule (Translated copy in English to be provided as applicable); Final admission list indicating the category as published by the HEI and endorsed by the competent authority..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "copy-letter-issued-state",
+              "name": "Copy of the letter issued by the State govt. or Central Government Indicating the reserved categories(SC, ST, OBC, Divyangjan, etc.) to be considered as per the state rule (Translated copy in English to be provided as applicable)"
+            },
+            {
+              "key": "final-admission-list-indicating",
+              "name": "Final admission list indicating the category as published by the HEI and endorsed by the competent authority."
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "reserved",
+                "label": "Admitted from SC, ST and OBC",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "sc",
+                  "st",
+                  "obc"
+                ]
+              },
+              {
+                "key": "earmarked",
+                "label": "Seats earmarked for reserved categories",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "reservedSeats"
+                ]
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Reserved seats filled",
+                "numerator": "reserved",
+                "denominator": "earmarked",
+                "format": "percent"
+              }
+            ]
+          }
+        },
+        {
+          "code": "2.2.1",
+          "name": "Student – Full time Teacher Ratio (Data for the latest completed academic year)",
+          "plainLanguage": "Collect for the latest completed academic year: Numbers of students and full-time teachers (from the Extended Profile).",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 40,
+          "requiredDocuments": [
+            {
+              "key": "numbers-students-full-time",
+              "name": "Numbers of students and full-time teachers (from the Extended Profile)"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "students",
+                "label": "Students on roll",
+                "register": "COLLEGE_FIGURES",
+                "op": "sum",
+                "fields": [
+                  "studentsOnRoll"
+                ]
+              },
+              {
+                "key": "teachers",
+                "label": "Full-time teachers",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                }
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Students per full-time teacher",
+                "numerator": "students",
+                "denominator": "teachers",
+                "format": "per"
+              }
+            ]
+          }
+        },
+        {
+          "code": "2.3.1",
+          "name": "Student centric methods, such as experiential learning, participative learning and problem solving methodologies are used for enhancing learning experiences and teachers use ICT- enabled tools including online resources for effective teaching and learning process",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 40,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "2.4.1",
+          "name": "Percentage of full-time teachers against sanctioned posts during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Sanction letters indicating number of posts sanctioned by the competent authority (including Management sanctioned posts)..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "sanction-letters-indicating-number",
+              "name": "Sanction letters indicating number of posts sanctioned by the competent authority (including Management sanctioned posts)."
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "teachers",
+                "label": "Full-time teachers",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                }
+              },
+              {
+                "key": "posts",
+                "label": "Sanctioned teaching posts",
+                "register": "COLLEGE_FIGURES",
+                "op": "sum",
+                "fields": [
+                  "sanctionedTeachingPosts"
+                ]
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Full-time teachers against sanctioned posts",
+                "numerator": "teachers",
+                "denominator": "posts",
+                "format": "percent"
+              }
+            ]
+          }
+        },
+        {
+          "code": "2.4.2",
+          "name": "Percentage of full time teachers with NET/SET/SLET/ Ph. D./D.Sc. / D.Litt./L.L.D. during the last five years (consider only highest degree for count)",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template merged with 2.1); List of faculty having Ph.D./D.Sc. / D.Litt./ L.L.D along with particulars of the degree awarding university, subject and the year of award per academic year.; Copies of Ph.D./D.Sc. / D.Litt./ L.L.D awarded by UGC recognized universities.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 25,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template merged with 2.1)"
+            },
+            {
+              "key": "list-faculty-having-ph",
+              "name": "List of faculty having Ph.D./D.Sc. / D.Litt./ L.L.D along with particulars of the degree awarding university, subject and the year of award per academic year."
+            },
+            {
+              "key": "copies-ph-d-d",
+              "name": "Copies of Ph.D./D.Sc. / D.Litt./ L.L.D awarded by UGC recognized universities"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "teachers",
+                "label": "Full-time teachers",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                }
+              },
+              {
+                "key": "qualified",
+                "label": "Full-time teachers with Ph.D. or NET/SET/SLET",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ],
+                  "qualification": [
+                    "Ph.D.",
+                    "PG with NET/SET/SLET"
+                  ]
+                }
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Share with Ph.D. or NET/SET/SLET",
+                "numerator": "qualified",
+                "denominator": "teachers",
+                "format": "percent"
+              }
+            ],
+            "note": "Record D.Sc., D.Litt. and L.L.D. as Ph.D. in the faculty register."
+          }
+        },
+        {
+          "code": "2.5.1",
+          "name": "Mechanism of internal/ external assessment is transparent and the grievance redressal system is time- bound and efficient",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 40,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "2.6.1",
+          "name": "Programme Outcomes (POs) and Course Outcomes (COs) for all Programmes offered by the institution are stated and displayed on website",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 25,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "2.6.2",
+          "name": "Attainment of POs and COs are evaluated.",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description"
+            }
+          ]
+        },
+        {
+          "code": "2.6.3",
+          "name": "Pass percentage of Students during last five years (excluding backlog students)",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Annual report of Controller of Examinations ( COE) highlighting the pass percentage of final year students; Certified report from the COE indicating the pass percentage of students of the final year (final semester) eligible for the degree program-wise / year wise.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 45,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "annual-report-controller-examination",
+              "name": "Annual report of Controller of Examinations ( COE) highlighting the pass percentage of final year students"
+            },
+            {
+              "key": "certified-report-from-coe",
+              "name": "Certified report from the COE indicating the pass percentage of students of the final year (final semester) eligible for the degree program-wise / year wise"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "passed",
+                "label": "Passed (without backlog)",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "passedOnTime"
+                ]
+              },
+              {
+                "key": "appeared",
+                "label": "Appeared in the final-year examination",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "appearedFinal"
+                ]
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Pass percentage",
+                "numerator": "passed",
+                "denominator": "appeared",
+                "format": "percent"
+              }
+            ],
+            "note": "Students who passed in the minimum time are counted as passed without backlog."
+          }
+        },
+        {
+          "code": "2.7.1",
+          "name": "Online student satisfaction survey regarding to teaching learning process.",
+          "plainLanguage": "Collect for the latest completed academic year: Database of all students on roll for the satisfaction survey (as per the data template).",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 60,
+          "requiredDocuments": [
+            {
+              "key": "database-all-students-roll",
+              "name": "Database of all students on roll for the satisfaction survey (as per the data template)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Research, Innovations and Extension",
+      "weights": {
+        "affiliated": 110
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "3.1.1",
+          "name": "Grants received from Government and non-governmental agencies for research projects / endowments in the institution during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format; Upload supporting document.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format"
+            },
+            {
+              "key": "upload-supporting-document",
+              "name": "Upload supporting document"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "grants",
+                "label": "Grants for funded research projects",
+                "register": "RESEARCH",
+                "op": "sum",
+                "fields": [
+                  "amountLakh"
+                ],
+                "unit": "₹ lakh",
+                "where": {
+                  "kind": [
+                    "Funded project"
+                  ]
+                }
+              }
+            ],
+            "ratios": []
+          }
+        },
+        {
+          "code": "3.2.1",
+          "name": "Institution has created an ecosystem for innovations, Indian Knowledge System (IKS),including awareness about IPR, establishment of IPR cell, Incubation centre and other initiatives for the creation and transfer of knowledge/technology and the outcomes of the same are evident",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "3.2.2",
+          "name": "Number of workshops/seminars/conferences including programs conducted on Research Methodology, Intellectual Property Rights (IPR) and entrepreneurship during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format; Upload supporting document.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 5,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format"
+            },
+            {
+              "key": "upload-supporting-document",
+              "name": "Upload supporting document"
+            }
+          ]
+        },
+        {
+          "code": "3.3.1",
+          "name": "Number of research papers published per teacher in the Journals as notified on UGC CARE list during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Links to the paper published in journals listed in UGC CARE list or; Link to the uploaded papers, the first page/full paper (with author and affiliation details) on the institutional website; Link re-directing to journal source-cite website in case of digital journals.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "links-paper-published-journals",
+              "name": "Links to the paper published in journals listed in UGC CARE list or"
+            },
+            {
+              "key": "link-uploaded-papers-first",
+              "name": "Link to the uploaded papers, the first page/full paper (with author and affiliation details) on the institutional website"
+            },
+            {
+              "key": "link-re-directing-journal",
+              "name": "Link re-directing to journal source-cite website in case of digital journals"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "papers",
+                "label": "Papers in UGC CARE journals",
+                "register": "RESEARCH",
+                "op": "count",
+                "where": {
+                  "kind": [
+                    "Journal paper"
+                  ],
+                  "ugcCare": [
+                    true
+                  ]
+                }
+              },
+              {
+                "key": "teachers",
+                "label": "Full-time teachers",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                }
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Papers per full-time teacher",
+                "numerator": "papers",
+                "denominator": "teachers",
+                "format": "per"
+              }
+            ]
+          }
+        },
+        {
+          "code": "3.3.2",
+          "name": "Number of books and chapters in edited volumes/books published and papers published in national/ international conference proceedings per teacher during last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Copy of the Cover page, content page and first page of the publication indicating ISBN number and year of publication for books/chapters; List of chapter/book along with the links redirecting to the source website..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "copy-cover-page-content",
+              "name": "Copy of the Cover page, content page and first page of the publication indicating ISBN number and year of publication for books/chapters"
+            },
+            {
+              "key": "list-chapter-book-along",
+              "name": "List of chapter/book along with the links redirecting to the source website."
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "books",
+                "label": "Books, chapters and conference papers",
+                "register": "RESEARCH",
+                "op": "count",
+                "where": {
+                  "kind": [
+                    "Book",
+                    "Book chapter",
+                    "Conference paper"
+                  ]
+                }
+              },
+              {
+                "key": "teachers",
+                "label": "Full-time teachers",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                }
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Per full-time teacher",
+                "numerator": "books",
+                "denominator": "teachers",
+                "format": "per"
+              }
+            ]
+          }
+        },
+        {
+          "code": "3.4.1",
+          "name": "Outcomes of Extension activities in the neighborhood community in terms of impact and sensitizing the students to social issues for their holistic development during the last five years.",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 5,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "3.4.2",
+          "name": "Awards and recognitions received for extension activities from government / government recognised bodies",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 5,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "3.4.3",
+          "name": "Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Detailed report for each extension and outreach program to be made available, with specific mention of number of students participated and the details of the collaborating agency; Photographs and any other supporting document of relevance should have proper captions and dates..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "detailed-report-each-extension",
+              "name": "Detailed report for each extension and outreach program to be made available, with specific mention of number of students participated and the details of the collaborating agency"
+            },
+            {
+              "key": "photographs-any-other-supporting",
+              "name": "Photographs and any other supporting document of relevance should have proper captions and dates."
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "programs",
+                "label": "Extension and outreach programs",
+                "register": "ACTIVITIES",
+                "op": "count",
+                "where": {
+                  "kind": [
+                    "Extension or outreach"
+                  ]
+                }
+              }
+            ],
+            "ratios": []
+          }
+        },
+        {
+          "code": "3.5.1",
+          "name": "Number of functional MoUs/linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); List and Copies of documents indicating the functional MoUs/linkage/collaborations activity-wise and year-wise; Summary of the functional MoUs/linkage/collaboration indicating start date, end date, nature of collaboration etc.; List of year wise activities and exchange should be provided.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "list-copies-documents-indicating",
+              "name": "List and Copies of documents indicating the functional MoUs/linkage/collaborations activity-wise and year-wise"
+            },
+            {
+              "key": "summary-functional-mous-linkage",
+              "name": "Summary of the functional MoUs/linkage/collaboration indicating start date, end date, nature of collaboration etc."
+            },
+            {
+              "key": "list-year-wise-activities",
+              "name": "List of year wise activities and exchange should be provided"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "mous",
+                "label": "MoUs and collaborations",
+                "register": "ACTIVITIES",
+                "op": "count",
+                "where": {
+                  "kind": [
+                    "MoU or collaboration"
+                  ]
+                }
+              }
+            ],
+            "ratios": [],
+            "note": "NAAC counts MoUs that are functional, with activities under them. Check each one before submitting."
+          }
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "Infrastructure and Learning Resources",
+      "weights": {
+        "affiliated": 100
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "4.1.1",
+          "name": "The Institution has adequate infrastructure and other facilities for teaching – learning, viz., classrooms, laboratories, computing equipment etc",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description"
+            }
+          ]
+        },
+        {
+          "code": "4.1.2",
+          "name": "Percentage of expenditure for infrastructure development and augmentation excluding salary during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template is merged with 4.2.2 and 4.4.1); Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for infrastructure augmentation should be clearly highlighted).",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template is merged with 4.2.2 and 4.4.1)"
+            },
+            {
+              "key": "audited-income-expenditure-statement",
+              "name": "Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for infrastructure augmentation should be clearly highlighted)"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "capital",
+                "label": "Capital expenditure",
+                "register": "INFRA_FINANCE",
+                "op": "sum",
+                "fields": [
+                  "amountLakh"
+                ],
+                "unit": "₹ lakh",
+                "where": {
+                  "category": [
+                    "Capital expenditure"
+                  ]
+                }
+              },
+              {
+                "key": "total",
+                "label": "Total expenditure excluding salary",
+                "register": "COLLEGE_FIGURES",
+                "op": "sum",
+                "fields": [
+                  "expenditureExSalaryLakh"
+                ],
+                "unit": "₹ lakh"
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Share of expenditure excluding salary",
+                "numerator": "capital",
+                "denominator": "total",
+                "format": "percent"
+              }
+            ]
+          }
+        },
+        {
+          "code": "4.2.1",
+          "name": "Library is automated with digital facilities using Integrated Library Management System (ILMS), adequate subscriptions to e-resources and journals are made. The library is optimally used by the faculty and students",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "4.3.1",
+          "name": "Institution frequently updates its IT facilities and provides sufficient bandwidth for internet connection",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description"
+            }
+          ]
+        },
+        {
+          "code": "4.3.2",
+          "name": "Student – Computer ratio (Data for the latest completed academic year)",
+          "plainLanguage": "Collect for the latest completed academic year: (No template); Extracts stock register/ highlighting the computers issued to respective departments for student’s usage.; Purchased Bills/Copies highlighting the number of computers purchased.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "document",
+              "name": "(No template)"
+            },
+            {
+              "key": "extracts-stock-register-highlighting",
+              "name": "Extracts stock register/ highlighting the computers issued to respective departments for student’s usage."
+            },
+            {
+              "key": "purchased-bills-copies-highlighting",
+              "name": "Purchased Bills/Copies highlighting the number of computers purchased"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "students",
+                "label": "Students on roll",
+                "register": "COLLEGE_FIGURES",
+                "op": "sum",
+                "fields": [
+                  "studentsOnRoll"
+                ]
+              },
+              {
+                "key": "computers",
+                "label": "Computers available to students",
+                "register": "COLLEGE_FIGURES",
+                "op": "sum",
+                "fields": [
+                  "studentComputers"
+                ]
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Students per computer",
+                "numerator": "students",
+                "denominator": "computers",
+                "format": "per"
+              }
+            ]
+          }
+        },
+        {
+          "code": "4.4.1",
+          "name": "Percentage expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component, during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template merged with 4.1.2 and 4.2.2); Audited income and expenditure statement of the institution to; be signed by CA and counter signed by the competent authority; (relevant expenditure claimed for maintenance of physical facilities and academic support facilities should be clearly highlighted).",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template merged with 4.1.2 and 4.2.2)"
+            },
+            {
+              "key": "audited-income-expenditure-statement",
+              "name": "Audited income and expenditure statement of the institution to"
+            },
+            {
+              "key": "be-signed-ca-counter",
+              "name": "be signed by CA and counter signed by the competent authority"
+            },
+            {
+              "key": "document",
+              "name": "(relevant expenditure claimed for maintenance of physical facilities and academic support facilities should be clearly highlighted)"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "maintenance",
+                "label": "Maintenance expenditure",
+                "register": "INFRA_FINANCE",
+                "op": "sum",
+                "fields": [
+                  "amountLakh"
+                ],
+                "unit": "₹ lakh",
+                "where": {
+                  "category": [
+                    "Maintenance expenditure"
+                  ]
+                }
+              },
+              {
+                "key": "total",
+                "label": "Total expenditure excluding salary",
+                "register": "COLLEGE_FIGURES",
+                "op": "sum",
+                "fields": [
+                  "expenditureExSalaryLakh"
+                ],
+                "unit": "₹ lakh"
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Share of expenditure excluding salary",
+                "numerator": "maintenance",
+                "denominator": "total",
+                "format": "percent"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "name": "Student Support and Progression",
+      "weights": {
+        "affiliated": 140
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "5.1.1",
+          "name": "Percentage of students benefited by scholarships and freeships provided by the institution, government and non-government bodies, industries, individuals, philanthropists during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Upload Sanction letter of scholarship and free ships (along with English translated version if it is in regional language).; Upload policy document of the HEI for award of scholarship and freeships..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "upload-sanction-letter-scholarship",
+              "name": "Upload Sanction letter of scholarship and free ships (along with English translated version if it is in regional language)."
+            },
+            {
+              "key": "upload-policy-document-hei",
+              "name": "Upload policy document of the HEI for award of scholarship and freeships."
+            }
+          ]
+        },
+        {
+          "code": "5.1.2",
+          "name": "Following capacity development and skills enhancement activities are organised for improving students’ capability",
+          "plainLanguage": "Collect for the latest completed academic year: Institutional data in the prescribed format (data template); Report with photographs on programmes/activities conducted to enhance soft skills, Language & communication skills, and Life skills (Yoga, physical fitness, health and hygiene, self-employment and entrepreneurial skills); Report with photographs on programmes conducted for awareness of trends in technology.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "report-photographs-programmes-activi",
+              "name": "Report with photographs on programmes/activities conducted to enhance soft skills, Language & communication skills, and Life skills (Yoga, physical fitness, health and hygiene, self-employment and entrepreneurial skills)"
+            },
+            {
+              "key": "report-photographs-programmes-conduc",
+              "name": "Report with photographs on programmes conducted for awareness of trends in technology"
+            }
+          ]
+        },
+        {
+          "code": "5.1.3",
+          "name": "Percentage of students benefitted by guidance for competitive examinations and career counseling offered by the Institution during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format; Upload supporting document.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format"
+            },
+            {
+              "key": "upload-supporting-document",
+              "name": "Upload supporting document"
+            }
+          ]
+        },
+        {
+          "code": "5.1.4",
+          "name": "The institution adopts the following for redressal of student grievances including sexual harassment and ragging cases",
+          "plainLanguage": "Collect for the latest completed academic year: Details of statutory/regulatory Committees (to be notified in institutional website also); Proof for Implementation of guidelines of statutory/regulatory bodies; Proof w.r.t Organisation wide awareness and undertakings on policies with zero tolerance; Proof related to Mechanisms for submission of online/offline students’ grievances; Annual report of the committee monitoring the activities and number of grievances.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "details-statutory-regulatory-committ",
+              "name": "Details of statutory/regulatory Committees (to be notified in institutional website also)"
+            },
+            {
+              "key": "proof-implementation-guidelines-stat",
+              "name": "Proof for Implementation of guidelines of statutory/regulatory bodies"
+            },
+            {
+              "key": "proof-w-r-t",
+              "name": "Proof w.r.t Organisation wide awareness and undertakings on policies with zero tolerance"
+            },
+            {
+              "key": "proof-related-mechanisms-submission",
+              "name": "Proof related to Mechanisms for submission of online/offline students’ grievances"
+            },
+            {
+              "key": "annual-report-committee-monitoring",
+              "name": "Annual report of the committee monitoring the activities and number of grievances"
+            }
+          ]
+        },
+        {
+          "code": "5.2.1",
+          "name": "Percentage of placement of outgoing students and students progressing to higher education during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); List of students progressing for Higher Education, with details of program and institution that they are/have enrolled along with links to proof of continuation in higher education.(the above list should be available on institutional website).",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 25,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "list-students-progressing-higher",
+              "name": "List of students progressing for Higher Education, with details of program and institution that they are/have enrolled along with links to proof of continuation in higher education.(the above list should be available on institutional website)"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "progressed",
+                "label": "Placed or went on to higher studies",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "placed",
+                  "higherStudies"
+                ]
+              },
+              {
+                "key": "outgoing",
+                "label": "Outgoing students (passed in the minimum time)",
+                "register": "STUDENT_BATCHES",
+                "op": "sum",
+                "fields": [
+                  "passedOnTime"
+                ]
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Share placed or in higher studies",
+                "numerator": "progressed",
+                "denominator": "outgoing",
+                "format": "percent"
+              }
+            ]
+          }
+        },
+        {
+          "code": "5.2.2",
+          "name": "Percentage of students qualifying in state/national/ international level examinations during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); List of students qualified year wise with details of examination and links to Qualifying Certificates of the students taking the examination.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "list-students-qualified-year",
+              "name": "List of students qualified year wise with details of examination and links to Qualifying Certificates of the students taking the examination"
+            }
+          ]
+        },
+        {
+          "code": "5.3.1",
+          "name": "Number of awards/medals for outstanding performance in sports/ cultural activities at University / state/ national / international level during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); list and links to e-copies of award letters and certificates.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "list-links-e-copies",
+              "name": "list and links to e-copies of award letters and certificates"
+            }
+          ]
+        },
+        {
+          "code": "5.3.2",
+          "name": "Average number of sports and cultural programs in which students of the Institution participated during last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format; Upload supporting document.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 25,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format"
+            },
+            {
+              "key": "upload-supporting-document",
+              "name": "Upload supporting document"
+            }
+          ]
+        },
+        {
+          "code": "5.4.1",
+          "name": "There is a registered Alumni Association that contributes significantly to the development of the institution through financial and/or other support services",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "name": "Governance, Leadership and Management",
+      "weights": {
+        "affiliated": 100
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "6.1.1",
+          "name": "The institutional governance and leadership are in accordance with the vision and mission of the Institution and it is visible in various institutional practices such as NEP implementation, sustained institutional growth, decentralization, participation in the institutional governance and in their short term and long term Institutional Perspective Plan.",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "6.2.1",
+          "name": "The institutional perspective plan is effectively deployed and functioning of the institutional bodies is effective and efficient as visible from policies, administrative setup, appointment, service rules, and procedures, etc.",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Institutional perspective Plan and deployment documents on the website.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 8,
+          "requiredDocuments": [
+            {
+              "key": "institutional-perspective-plan-deplo",
+              "name": "Institutional perspective Plan and deployment documents on the website"
+            }
+          ]
+        },
+        {
+          "code": "6.2.2",
+          "name": "Institution implements e-governance in its operations",
+          "plainLanguage": "Collect for the latest completed academic year: Screen shots of user interfaces of each module reflecting the name of the HEI.; Institutional expenditure statements for the budget heads of e-governance implementation ERP Document; Annual e-governance report approved by the Governing Council/ Board of Management/ Syndicate Policy document on e-governance.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 4,
+          "requiredDocuments": [
+            {
+              "key": "screen-shots-user-interfaces",
+              "name": "Screen shots of user interfaces of each module reflecting the name of the HEI."
+            },
+            {
+              "key": "institutional-expenditure-statements",
+              "name": "Institutional expenditure statements for the budget heads of e-governance implementation ERP Document"
+            },
+            {
+              "key": "annual-e-governance-report",
+              "name": "Annual e-governance report approved by the Governing Council/ Board of Management/ Syndicate Policy document on e-governance"
+            }
+          ]
+        },
+        {
+          "code": "6.3.1",
+          "name": "The institution has performance appraisal system, effective welfare measures for teaching and non-teaching staff and avenues for career development/progression",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 6,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "6.3.2",
+          "name": "Percentage of teachers provided with financial support to attend conferences/workshops and towards membership fee of professional bodies during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Policy document on providing financial support to teachers; Copy of letter/s indicating financial assistance to teachers and list of teachers receiving financial support year-wise under each head.; Audited statement of account highlighting the financial support to teachers to attend conferences/workshops and towards membership fee for professional bodies..",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 12,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "policy-document-providing-financial",
+              "name": "Policy document on providing financial support to teachers"
+            },
+            {
+              "key": "copy-letter-s-indicating",
+              "name": "Copy of letter/s indicating financial assistance to teachers and list of teachers receiving financial support year-wise under each head."
+            },
+            {
+              "key": "audited-statement-account-highlighti",
+              "name": "Audited statement of account highlighting the financial support to teachers to attend conferences/workshops and towards membership fee for professional bodies."
+            }
+          ]
+        },
+        {
+          "code": "6.3.3",
+          "name": "Percentage of teaching and non-teaching staff participating in Faculty development Programmes (FDP), Management Development Programmes (MDPs) professional development /administrative training programs during the last five years",
+          "plainLanguage": "Collect for each of the last 5 years: Institutional data in the prescribed format (data template); Refresher course/Faculty Orientation or other programmes as per UGC/AICTE stipulated periods, as participated by teachers year-wise.; Copy of the certificates of the program attended by teachers.; Annual reports highlighting the programmes undertaken by the teachers.",
+          "type": "quantitative",
+          "yearsRequired": 5,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "refresher-course-faculty-orientation",
+              "name": "Refresher course/Faculty Orientation or other programmes as per UGC/AICTE stipulated periods, as participated by teachers year-wise."
+            },
+            {
+              "key": "copy-certificates-program-attended",
+              "name": "Copy of the certificates of the program attended by teachers."
+            },
+            {
+              "key": "annual-reports-highlighting-programm",
+              "name": "Annual reports highlighting the programmes undertaken by the teachers"
+            }
+          ],
+          "data": {
+            "measures": [
+              {
+                "key": "trained",
+                "label": "Full-time teachers with at least one FDP or training",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                },
+                "atLeast": {
+                  "fdpsThisYear": 1
+                }
+              },
+              {
+                "key": "teachers",
+                "label": "Full-time teachers",
+                "register": "FACULTY",
+                "op": "count",
+                "where": {
+                  "employment": [
+                    "Full-time"
+                  ]
+                }
+              }
+            ],
+            "ratios": [
+              {
+                "label": "Share of full-time teachers",
+                "numerator": "trained",
+                "denominator": "teachers",
+                "format": "percent"
+              }
+            ],
+            "note": "NAAC also counts non-teaching staff in development programs; the registers hold teachers only so far."
+          }
+        },
+        {
+          "code": "6.4.1",
+          "name": "Institution has strategies for mobilization and optimal utilization of resources and funds from various sources (government/ non-government organizations) and it conducts financial audits regularly (internal and external)",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "6.5.1",
+          "name": "Internal Quality Assurance Cell (IQAC) has contributed significantly for institutionalizing the quality assurance strategies and processes. It reviews teaching learning process, structures & methodologies of operations and learning outcomes at periodic intervals and records the incremental improvement in various activities",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "6.5.2",
+          "name": "Quality assurance initiatives of the institution include",
+          "plainLanguage": "Collect for the latest completed academic year: Link to Minute of IQAC meetings, hosted on HEI website; NIRF report, AAA report and details on follow up actions; Quality audit reports/certificate as applicable and valid for the assessment period.; List of Collaborative quality initiatives with other institution(s) along with brochures and geo-tagged photos with caption and date..",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 15,
+          "requiredDocuments": [
+            {
+              "key": "link-minute-iqac-meetings",
+              "name": "Link to Minute of IQAC meetings, hosted on HEI website"
+            },
+            {
+              "key": "nirf-report-aaa-report",
+              "name": "NIRF report, AAA report and details on follow up actions"
+            },
+            {
+              "key": "quality-audit-reports-certificate",
+              "name": "Quality audit reports/certificate as applicable and valid for the assessment period."
+            },
+            {
+              "key": "list-collaborative-quality-initiativ",
+              "name": "List of Collaborative quality initiatives with other institution(s) along with brochures and geo-tagged photos with caption and date."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "name": "Institutional Values and Best Practices",
+      "weights": {
+        "affiliated": 100
+      },
+      "appliesTo": [
+        "affiliated"
+      ],
+      "metrics": [
+        {
+          "code": "7.1.1",
+          "name": "Institution has initiated the Gender Audit and measures for the promotion of gender equity during the last five years.",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description.",
+          "type": "qualitative",
+          "yearsRequired": 5,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description"
+            }
+          ]
+        },
+        {
+          "code": "7.1.2",
+          "name": "The Institution has facilities and initiatives for",
+          "plainLanguage": "Collect for the latest completed academic year: Policy document on the green campus/plastic free campus.; Bills for the purchase of equipment’s for the facilities created under this metric.; Geo-tagged photographs/videos of the facilities.; Circulars and report of activities for the implementation of the initiatives document.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "policy-document-green-campus",
+              "name": "Policy document on the green campus/plastic free campus."
+            },
+            {
+              "key": "bills-purchase-equipment-s",
+              "name": "Bills for the purchase of equipment’s for the facilities created under this metric."
+            },
+            {
+              "key": "geo-tagged-photographs-videos",
+              "name": "Geo-tagged photographs/videos of the facilities."
+            },
+            {
+              "key": "circulars-report-activities-implemen",
+              "name": "Circulars and report of activities for the implementation of the initiatives document"
+            }
+          ]
+        },
+        {
+          "code": "7.1.3",
+          "name": "Quality audits on environment and energy regularly undertaken by the Institution.",
+          "plainLanguage": "Collect for the latest completed academic year: Institutional data in the prescribed format (data template); Policy document on environment and energy usage Certificate from the auditing agency.; Certificates of the awards received from recognized agency (if any).; Report on environmental promotion and sustainability activities conducted beyond the campus with geo-tagged photographs with caption and date.; Green audit/environmental audit report from recognized bodies.",
+          "type": "quantitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "institutional-data-prescribed-format",
+              "name": "Institutional data in the prescribed format (data template)"
+            },
+            {
+              "key": "policy-document-environment-energy",
+              "name": "Policy document on environment and energy usage Certificate from the auditing agency."
+            },
+            {
+              "key": "certificates-awards-received-from",
+              "name": "Certificates of the awards received from recognized agency (if any)."
+            },
+            {
+              "key": "report-environmental-promotion-susta",
+              "name": "Report on environmental promotion and sustainability activities conducted beyond the campus with geo-tagged photographs with caption and date."
+            },
+            {
+              "key": "green-audit-environmental-audit",
+              "name": "Green audit/environmental audit report from recognized bodies"
+            }
+          ]
+        },
+        {
+          "code": "7.1.4",
+          "name": "Describe the Institutional efforts/initiatives in providing an inclusive environment i.e., tolerance and harmony towards cultural, regional, linguistic, communal socioeconomic diversity and Sensitization of students and employees to the constitutional obligations: values, rights, duties and responsibilities of citizens",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Description (up to 500 words).",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 10,
+          "requiredDocuments": [
+            {
+              "key": "description",
+              "name": "Description (up to 500 words)"
+            }
+          ]
+        },
+        {
+          "code": "7.2.1",
+          "name": "Describe two best practices successfully implemented by the Institution as per NAAC format provided in the Manual",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Best practices as hosted on the Institutional website.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 30,
+          "requiredDocuments": [
+            {
+              "key": "best-practices-hosted-institutional",
+              "name": "Best practices as hosted on the Institutional website"
+            }
+          ]
+        },
+        {
+          "code": "7.3.1",
+          "name": "Portray the performance of the Institution in one area distinctive to its priority and thrust within 1000 words",
+          "plainLanguage": "Write how the institution does this, with supporting evidence. Collect: Appropriate web in the Institutional website.",
+          "type": "qualitative",
+          "yearsRequired": 1,
+          "weight": 20,
+          "requiredDocuments": [
+            {
+              "key": "appropriate-web-institutional-websit",
+              "name": "Appropriate web in the Institutional website"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "reports": [
+    {
+      "kind": "SSR",
+      "version": "1",
+      "name": "Self Study Report (SSR)",
+      "description": "Affiliated college format. Every year each metric covers.",
+      "period": "cycle"
+    },
+    {
+      "kind": "AQAR",
+      "version": "1",
+      "name": "Annual Quality Assurance Report (AQAR)",
+      "description": "Affiliated college format. One academic year.",
+      "period": "year"
+    }
+  ]
+}

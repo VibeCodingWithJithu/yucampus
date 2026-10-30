@@ -1,0 +1,23 @@
+{
+  "code": "NBA_SAR_ENGG",
+  "version": "1",
+  "appliesTo": ["NBA_ENGG_TIER1", "NBA_ENGG_TIER2"],
+  "name": "Self Assessment Report (SAR)",
+  "description": "One program and academic year. UG engineering format.",
+  "source": {
+    "title": "The ten criteria of the NBA SAR for UG engineering programs as long published. Not yet checked against the current NBA format.",
+    "verified": false
+  },
+  "criteria": [
+    { "number": 1, "name": "Vision, Mission and Program Educational Objectives", "compiles": "profile" },
+    { "number": 2, "name": "Program Curriculum and Teaching–Learning Processes", "compiles": "courses" },
+    { "number": 3, "name": "Course Outcomes and Program Outcomes", "compiles": "outcomes" },
+    { "number": 4, "name": "Students' Performance", "compiles": "students" },
+    { "number": 5, "name": "Faculty Information and Contributions", "compiles": "faculty" },
+    { "number": 6, "name": "Facilities and Technical Support", "compiles": "facilities" },
+    { "number": 7, "name": "Continuous Improvement", "compiles": null },
+    { "number": 8, "name": "First Year Academics", "compiles": null },
+    { "number": 9, "name": "Student Support Systems", "compiles": null },
+    { "number": 10, "name": "Governance, Institutional Support and Financial Resources", "compiles": null }
+  ]
+}

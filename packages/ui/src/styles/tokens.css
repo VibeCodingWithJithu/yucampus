@@ -1,0 +1,54 @@
+/* YuCampus design tokens (docs/DESIGN_SYSTEM.md). Imported after "tailwindcss" by each app. */
+@theme {
+  --font-sans: var(--font-jakarta), 'Plus Jakarta Sans', 'Noto Sans', 'Noto Sans Telugu', 'Noto Sans Devanagari',
+    system-ui, sans-serif;
+
+  --color-primary: #2b3990;
+  --color-primary-hover: #1e2870;
+  --color-primary-soft: #e8eaf6;
+
+  /* On track / approved */
+  --color-teal: #0e7068;
+  --color-teal-strong: #0b5852;
+  --color-teal-soft: #ddf1ee;
+  --color-teal-light: #5ed1c4;
+
+  /* In review / needs attention */
+  --color-amber: #a15c07;
+  --color-amber-strong: #7a4505;
+  --color-amber-fill: #c77a12;
+  --color-amber-soft: #fdf0dc;
+
+  /* Missing / rejected */
+  --color-red: #b3261e;
+  --color-red-strong: #8f1d17;
+  --color-red-soft: #fbe4e2;
+
+  --color-ink: #121733;
+  --color-muted: #545b73;
+  --color-secondary: #3b4157;
+  --color-on-primary-muted: #dde1f5;
+
+  --color-bg: #f5f6fa;
+  --color-surface: #ffffff;
+  --color-border: #e3e6ef;
+  --color-row: #eef0f4;
+  --color-track: #e9ebf2;
+
+  --radius-card: 12px;
+  --radius-control: 8px;
+}
+
+@layer base {
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+}

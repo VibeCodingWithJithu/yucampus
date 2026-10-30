@@ -1,0 +1,93 @@
+{
+  "code": "ACTIVITIES",
+  "version": "1",
+  "name": "Activities",
+  "description": "Events, MoUs, extension and outreach activities.",
+  "status": "draft",
+  "source": {
+    "title": "YuCampus first proposal, based on NAAC Criteria 3 and 5 and NIRF outreach data. Not yet checked against the current formats.",
+    "verified": false
+  },
+  "department": "optional",
+  "person": null,
+  "proof": "required",
+  "titleField": "title",
+  "feeds": [
+    "NAAC C3",
+    "NAAC C5",
+    "NBA C7",
+    "NIRF OI"
+  ],
+  "sortOrder": 40,
+  "fields": [
+    {
+      "key": "title",
+      "label": "Activity",
+      "type": "text",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "kind",
+      "label": "Type",
+      "type": "choice",
+      "required": true,
+      "column": true,
+      "options": [
+        "Guest lecture",
+        "Workshop",
+        "FDP or training",
+        "Seminar or conference",
+        "Extension or outreach",
+        "MoU or collaboration",
+        "Competition",
+        "Industrial visit",
+        "Cultural or sports",
+        "Other"
+      ]
+    },
+    {
+      "key": "organisedBy",
+      "label": "Organised by (department, cell or club)",
+      "type": "text"
+    },
+    {
+      "key": "startDate",
+      "label": "Date",
+      "type": "date",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "endDate",
+      "label": "End date (if more than a day)",
+      "type": "date"
+    },
+    {
+      "key": "level",
+      "label": "Level",
+      "type": "choice",
+      "options": [
+        "College",
+        "State",
+        "National",
+        "International"
+      ]
+    },
+    {
+      "key": "participants",
+      "label": "Participants",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 1000000,
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "partner",
+      "label": "Partner or collaborating organisation",
+      "type": "text"
+    }
+  ]
+}

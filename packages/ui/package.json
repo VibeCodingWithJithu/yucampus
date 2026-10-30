@@ -1,0 +1,27 @@
+{
+  "name": "@yucampus/ui",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "sideEffects": ["**/*.css"],
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./src/styles/tokens.css"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.7.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@yucampus/config": "workspace:*",
+    "react": "^19.3.0",
+    "typescript": "^6.0.3"
+  }
+}

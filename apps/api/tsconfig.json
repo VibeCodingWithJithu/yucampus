@@ -1,0 +1,5 @@
+{
+  "extends": "@yucampus/config/tsconfig/nest.json",
+  "compilerOptions": { "noEmit": true, "types": ["node"] },
+  "include": ["src", "test", "prisma", "prisma.config.ts", "vitest.config.ts"]
+}

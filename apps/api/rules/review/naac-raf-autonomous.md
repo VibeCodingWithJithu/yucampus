@@ -1,0 +1,427 @@
+# Review sheet: NAAC RAF · Autonomous colleges
+
+Source: NAAC Autonomous College Manual (29-03-2023, updated 09-08-2023). Extracted automatically on 2026-10-15.
+
+Tick each metric after checking its code, title, marks, years and documents against the manual.
+When every box is ticked, set `source.verified` to `true` in the template file and import it again.
+
+## Needs a closer look
+
+- 1.1.1: no files listed in the manual; using "Description (up to 500 words)"
+- 1.1.2: no files listed in the manual; using "Description (up to 500 words)"
+- 1.3.1: no files listed in the manual; using "Description (up to 500 words)"
+- 2.2.1: no files listed in the manual; using "Description (up to 500 words)"
+- 2.2.2: no files listed in the manual; using "Numbers of students and full-time teachers (from the Extended Profile)"
+- 2.3.1: no files listed in the manual; using "Description (up to 500 words)"
+- 2.3.3: no files listed in the manual; using "Description (up to 500 words)"
+- 2.7.1: no files listed in the manual; using "Database of all students on roll for the satisfaction survey (as per the data template)"
+- 3.3.1: no files listed in the manual; using "Description (up to 500 words)"
+- 3.6.1: no files listed in the manual; using "Description"
+- 4.1.1: no files listed in the manual; using "Description"
+- 4.3.1: no files listed in the manual; using "Description"
+- 4.3.3: no files listed in the manual; using "Description (up to 500 words)"
+- 4.4.2: no files listed in the manual; using "Description"
+- 5.1.2: no files listed in the manual; using "Description (up to 500 words)"
+- 5.3.2: no files listed in the manual; using "Description"
+- 5.4.2: no files listed in the manual; using "Description"
+- 6.1.1: no files listed in the manual; using "Description (up to 500 words)"
+- 6.3.1: no files listed in the manual; using "Description (up to 500 words)"
+- 6.4.1: no files listed in the manual; using "Description"
+- 6.4.3: no files listed in the manual; using "Description"
+- 6.5.1: no files listed in the manual; using "Description"
+- 6.5.2: no files listed in the manual; using "Description"
+- 7.2.1: no files listed in the manual; using "Two best practices written in the NAAC format; Web link to the best practices on the institutional website"
+
+## Criterion 1 · Curricular Aspects (150 marks)
+
+- [ ] **1.1.1** (QlM, 20 marks, 1 year) Curricula developed and implemented have relevance to the local, regional, national, and global developmental needs, which is reflected in the Programme outcomes (POs) and Course Outcomes(COs) of the Programmes offered by the institution
+  - Description (up to 500 words)
+  - _manual text line 4185_
+- [ ] **1.1.2** (QlM, 30 marks, 1 year) The programmes offered by the institution focus on employability/ entrepreneurship/ skill development and their course syllabi are adequately revised to incorporate contemporary requirements
+  - Description (up to 500 words)
+  - _manual text line 4201_
+- [ ] **1.2.1** (QnM, 30 marks, 5 years) Percentage of new courses introduced out of the total number of courses across all programmes offered during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Minutes of Board of Studies meeting clearly specifying the syllabus approval of new courses
+  - Subsequent Academic Council meeting extracts endorsing the decision of BOS
+  - _manual text line 4219_
+- [ ] **1.3.1** (QlM, 15 marks, 1 year) Institution integrates cross-cutting issues relevant to Professional Ethics, Gender, Human Values, Environment and Sustainability and other value framework enshrined in Sustainable Development Goals and National Education Policy – 2020 into the Curriculum
+  - Description (up to 500 words)
+  - _manual text line 4253_
+- [ ] **1.3.2** (QnM, 25 marks, 5 years) Number of certificate/value added courses/Diploma Programmes offered by the institutions and online courses of MOOCs, SWAYAM/e-PG Pathshala/ NPTEL and other recognized platforms where the students of the institution have enrolled and successfully completed during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Institutional programme brochure/notice for Certificate/Value added programs with course modules and outcomes
+  - List of students and the attendance sheet for the above mentioned programs
+  - Evidence of course completion, like course completion certificate etc.
+  - _manual text line 4271_
+- [ ] **1.3.3** (QnM, 10 marks, 5 years) Percentage of programmes that have components of field projects / research projects / internships during the last five years.
+  - Institutional data in the prescribed format (data template)
+  - Provide the relevant information in institutional website as part of public disclosure
+  - Program and course contents having element of field projects / research projects / internships as approved by BOS
+  - Sample Internship completion letter provided by host institutions
+  - Sample Evaluated project report/field work report submitted by the students
+  - _manual text line 4305_
+- [ ] **1.4.1** (QnM, 20 marks, 1 year) Structured feedback for curriculum and its transaction is regularly obtained from stakeholders like Students, Teachers, Employers, Alumni, Academic peers etc., and Feedback processes of the institution may be classified as follows
+  - At least 4 filled-in feedback form from different stake holders like Students, Teachers, Employers, Alumni etc.
+  - Feedback analysis report submitted to appropriate bodies
+  - Action taken report on the feedback analysis
+  - Link of institution’s website where comprehensive feedback, its analytics and action taken report are hosted
+  - _manual text line 4345_
+
+## Criterion 2 · Teaching-Learning and Evaluation (300 marks)
+
+- [ ] **2.1.1** (QnM, 10 marks, 1 year) Enrolment percentage
+  - Institutional data in the prescribed format (data template)
+  - Provide the relevant information in institutional website as part of public disclosure
+  - Document relating to sanction of intake as approved by competent authority
+  - Final admission list as published by the HEI and endorsed by the competent authority.
+  - _manual text line 4389_
+- [ ] **2.1.2** (QnM, 10 marks, 5 years) Percentage of seats filled against reserved categories (SC, ST, OBC etc.) as per applicable reservation policy for the first year admission during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Provide the relevant information in institutional website as part of public disclosure
+  - Copy of the letter issued by the State govt. or Central Government Indicating the reserved categories(SC, ST, OBC, Divyangjan, etc.) to be considered as per the state rule (Translated copy in English to be provided as applicable)
+  - Final admission list indicating the category as published by the HEI and endorsed by the competent authority.
+  - _manual text line 4481_
+- [ ] **2.2.1** (QlM, 15 marks, 1 year) The institution assesses the learning levels of the students and organises special Programmes to cater to differential learning needs of the student
+  - Description (up to 500 words)
+  - _manual text line 4577_
+- [ ] **2.2.2** (QnM, 15 marks, 1 year) Student - Full time teacher ratio (Data for the latest completed academic year)
+  - Numbers of students and full-time teachers (from the Extended Profile)
+  - _manual text line 4595_
+- [ ] **2.3.1** (QlM, 30 marks, 1 year) Student centric methods, such as experiential learning, participative learning and problem solving methodologies are used for enhancing learning experience and teachers use ICT- enabled tools including online resources for effective teaching and learning process
+  - Description (up to 500 words)
+  - _manual text line 4621_
+- [ ] **2.3.2** (QlM, 10 marks, 1 year) The institution adopts effective Mentor-Mentee Schemes to address academics and student-psychological issues
+  - List of Active mentors
+  - _manual text line 4639_
+- [ ] **2.3.3** (QlM, 10 marks, 1 year) Preparation and adherence of Academic Calendar and Teaching plans by the institution
+  - Description (up to 500 words)
+  - _manual text line 4659_
+- [ ] **2.4.1** (QnM, 15 marks, 5 years) Average percentage of full time teachers appointed against the number of sanctioned posts year wise during the last five years
+  - Institutional data in the prescribed format (data template merged with 2.4.3 and 2.4.4)
+  - Provide the relevant information in institutional website as part of public disclosure
+  - Sanction letters indicating number of posts sanctioned by the competent authority (including Management sanctioned posts).
+  - _manual text line 4681_
+- [ ] **2.4.2** (QnM, 25 marks, 5 years) Percentage of full time teachers with Ph.D./D.Sc. / D.Litt./ L.L.D during the last five years
+  - Institutional data in the prescribed format (data template merged with 3.2.3 and 3.4.2)
+  - Provide the relevant information in institutional website as part of public disclosure
+  - List of faculty having Ph.D./D.Sc. / D.Litt./ L.L.D along with particulars of the degree awarding university, subject and the year of award per academic year.
+  - Copies of Ph.D./D.Sc. / D.Litt./ L.L.D awarded by UGC recognized universities
+  - _manual text line 4737_
+- [ ] **2.4.3** (QnM, 5 marks, 1 year) Average teaching experience of full time teachers (Data to be provided only for the latest completed academic year, in number of years)
+  - Institutional data in the prescribed format (data template merged with 2.4.1 and 2.4.4)
+  - _manual text line 4775_
+- [ ] **2.4.4** (QnM, 5 marks, 5 years) Percentage of full time teachers working in the institution throughout during the last five years
+  - Institutional data in the prescribed format (data template merged with 2.4.1 and 2.4.3)
+  - _manual text line 4801_
+- [ ] **2.5.1** (QnM, 20 marks, 5 years) Average number of days from the date of last semester-end/ year- end examination till the last date of declaration of results during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Exam timetable released by the Controller of Examination
+  - Result Sheet with date of publication
+  - Policy document on Declaration of results (if any)
+  - _manual text line 4837_
+- [ ] **2.5.2** (QnM, 15 marks, 5 years) Percentage of student complaints/grievances about evaluation against total number appeared in the examinations during the last five years
+  - No data template
+  - List of students who have applied for re- valuation/re-totaling program wise certified by the Controller of Examinations year-wise for the assessment period.
+  - _manual text line 4893_
+- [ ] **2.5.3** (QlM, 15 marks, 1 year) IT integration and reforms in the examination procedures and processes including Continuous Internal Assessment (CIA)/Formative Assessment have brought in considerable improvement in Examination Management System (EMS) of the Institution
+  - Provide links as Additional Information
+  - _manual text line 4971_
+- [ ] **2.6.1** (QlM, 30 marks, 1 year) The institution has stated learning outcomes (programme and course outcome)/graduate attributes which are integrated into the assessment process and widely publicized through the website and other documents and the attainment of the same are evaluated by the institution
+  - Provide links as Additional Information
+  - Upload POs and COs for all courses (exemplars from Glossary)
+  - _manual text line 5001_
+- [ ] **2.6.2** (QnM, 20 marks, 1 year) Pass percentage of students (excluding backlog students) (Data for the latest completed academic year)
+  - Institutional data in the prescribed format (data template)
+  - Annual report of Controller of Examinations ( COE) highlighting the pass percentage of final year students
+  - Certified report from the COE indicating the pass percentage of students of the final year (final semester) eligible for the degree program-wise / year wise
+  - _manual text line 5023_
+- [ ] **2.7.1** (QnM, 50 marks, 1 year) Online student satisfaction survey regarding the teaching learning process. (Online survey will be conducted)
+  - Database of all students on roll for the satisfaction survey (as per the data template)
+  - _manual text line 5057_
+
+## Criterion 3 · Research, Innovations and Extension (150 marks)
+
+- [ ] **3.1.1** (QlM, 6 marks, 1 year) The institution’s research facilities are frequently updated and there are well defined policy for promotion of research which is uploaded on the institutional website and implemented
+  - Provide links as Additional Information
+  - _manual text line 5077_
+- [ ] **3.1.2** (QnM, 8 marks, 1 year) The institution provides seed money to its teachers for research
+  - Institutional data in the prescribed format (data template)
+  - List of faculty who have been provided with seed money for research along with the title of the project, duration and amount year-wise.
+  - Sanction letters of seed money to the teachers is mandatory.
+  - Audited Income-Expenditure statement highlighting the expenditure towards seed money endorsed by the Finance Officer
+  - _manual text line 5095_
+- [ ] **3.1.3** (QnM, 6 marks, 5 years) Percentage of teachers receiving national/ international fellowship/financial support by various agencies for advanced studies/ research during the last five years
+  - Institutional data in the prescribed format (data template)
+  - E-copies of the award letters of the teachers.
+  - List of teachers who have received the awards along with nature of award, the awarding agency etc.
+  - _manual text line 5147_
+- [ ] **3.2.1** (QnM, 5 marks, 5 years) Research funding received by the institution and its faculties through Government and non-government sources such as industry, corporate houses, international bodies for research project, endowment research chairs during the last five years
+  - Institutional data in the prescribed format (data template is merged with 3.2.2)
+  - List of Extramural funding received for research, Endowment Research Chairs received during the last five years along with the nature of award, the awarding agency and the amount.
+  - Copies of the letters of award for research, endowments, Chairs sponsored by non- government sources
+  - _manual text line 5177_
+- [ ] **3.2.2** (QnM, 2 marks, 5 years) Number of research projects per teacher funded by government, non-government , industry, corporate houses, international bodies during the last five years
+  - Institutional data in the prescribed format (data template merged with 3.2.1)
+  - List of project titles with details of Principal Investigator, amount sanctioned and sanctioning agency etc.
+  - Copies of the grant award letters for research projects sponsored by government agencies.
+  - _manual text line 5203_
+- [ ] **3.2.3** (QnM, 3 marks, 1 year) Percentage of teachers recognised as research guides as in the latest completed academic year
+  - Institutional data in the prescribed format (data template merged with 2.4.2 and 3.4.2)
+  - Upload copies of the letter of the university recognizing faculty as research guides
+  - _manual text line 5277_
+- [ ] **3.3.1** (QlM, 10 marks, 1 year) Institution has created an ecosystem for innovations, Indian Knowledge System (IKS),including awareness about IPR, establishment of IPR cell, Incubation centre and other initiatives for the creation and transfer of knowledge/technology and the outcomes of the same are evident
+  - Description (up to 500 words)
+  - _manual text line 5301_
+- [ ] **3.4.1** (QnM, 5 marks, 1 year) The Institution ensures implementation of its stated Code of Ethics for research
+  - Institutional data in the prescribed format (data template)
+  - Copy of the syllabus of the research methodology course work to indicate if research ethics is included.
+  - Constitution of the ethics committee and its proceedings as approved by the appropriate body.
+  - Constitution of research advisory committee and its proceedings as approved by the appropriate body.
+  - Bills of purchase of licensed plagiarism check software in the name of the HEI.
+  - _manual text line 5339_
+- [ ] **3.4.2** (QnM, 5 marks, 5 years) Number of candidates registered for Ph.D per teacher during the last five years
+  - Institutional data in the prescribed format (data template merged with 2.4.2 and 3.2.3)
+  - Ph.D. registration letters/Joining reports of candidates.
+  - Letter from the university indicating name of the Ph.D. student with title of the doctoral study and the name of the guide.
+  - _manual text line 5425_
+- [ ] **3.4.3** (QnM, 5 marks, 5 years) Number of research papers published per teacher in the Journals as notified on UGC CARE list during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Links to the paper published in journals listed in UGC CARE list or
+  - Link to the uploaded papers, the first page/full paper (with author and affiliation details) on the institutional website
+  - Link re-directing to journal source-cite website in case of digital journals
+  - _manual text line 5497_
+- [ ] **3.4.4** (QnM, 5 marks, 5 years) Number of books and chapters in edited volumes published per teacher during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Copy of the Cover page, content page and first page of the publication indicating ISBN number and year of publication for books/chapters
+  - List of chapter/book along with the links redirecting to the source website.
+  - _manual text line 5555_
+- [ ] **3.4.5** (QnM, 5 marks, 5 years) Bibliometrics of the publications during the last five years based on average Citation index in Scopus/ Web of Science
+  - Any additional information
+  - Bibliometrics of the publications during the last five years
+  - Bibliometric of the publications: citation report for the five preceding calendar years of the assessment period to be uploaded
+  - _manual text line 5607_
+- [ ] **3.4.6** (QnM, 5 marks, 5 years) Bibliometrics of the publications during the last five years based on Scopus/ Web of Science – h-index of the Institution h-index of the institution based on publications made in Scopus Web of Science during the last five years
+  - Bibiliometrics of publications based on Scopus/ Web of Science - h-index of the Institution
+  - Any additional information
+  - _manual text line 5679_
+- [ ] **3.5.1** (QnM, 10 marks, 5 years) Revenue generated from consultancy and corporate training during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Audited statements of accounts indicating the revenue generated through corporate training/consultancy.
+  - Letter from the corporate to whom training was imparted along with the fee paid.
+  - CA certified copy of statement of accounts as attested by head of the institution.
+  - Letter from the beneficiary of the consultancy along with details of the consultancy fee.
+  - _manual text line 5743_
+- [ ] **3.6.1** (QlM, 30 marks, 5 years) Outcomes of extension activities in the neighbourhood community in terms of impact and sensitizing the students to social issues and holistic development, and awards received if any during the last five years (Showcase at least four case studies to the peer team)
+  - Description
+  - _manual text line 5821_
+- [ ] **3.6.2** (QnM, 20 marks, 5 years) Number of extension and outreach programs conducted by the institution through organized forums including NSS/NCC with involvement of community year wise during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Detailed report for each extension and outreach program to be made available, with specific mention of number of students participated and the details of the collaborating agency
+  - Photographs and any other supporting document of relevance should have proper captions and dates.
+  - _manual text line 5857_
+- [ ] **3.7.1** (QnM, 20 marks, 5 years) Number of functional MoUs/linkages with institutions/ industries in India and abroad for internship, on-the-job training, project work, student / faculty exchange and collaborative research during the last five years
+  - Institutional data in the prescribed format (data template)
+  - List and Copies of documents indicating the functional MoUs/linkage/collaborations activity-wise and year-wise
+  - Summary of the functional MoUs/linkage/collaboration indicating start date, end date, nature of collaboration etc.
+  - List of year wise activities and exchange should be provided
+  - _manual text line 5935_
+
+## Criterion 4 · Infrastructure and Learning Resources (100 marks)
+
+- [ ] **4.1.1** (QlM, 20 marks, 1 year) The Institution has adequate infrastructure and other facilities for teaching – learning, viz., classrooms, laboratories, computing equipment etc
+  - Description
+  - _manual text line 6001_
+- [ ] **4.1.2** (QnM, 10 marks, 5 years) Percentage of expenditure excluding salary, for infrastructure development and augmentation year wise during the last five years
+  - Institutional data in the prescribed format (data template is merged with 4.2.2 and 4.4.1)
+  - Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for infrastructure augmentation should be clearly highlighted)
+  - _manual text line 6045_
+- [ ] **4.2.1** (QlM, 15 marks, 1 year) Library is automated with digital facilities using Integrated Library Management System (ILMS), adequate subscriptions to e-resources and journals are made. The library is optimally used by the faculty and students
+  - Provide the Paste link for additional information
+  - _manual text line 6129_
+- [ ] **4.2.2** (QnM, 5 marks, 5 years) Percentage of expenditure for purchase of books/ e-books and subscription to journals/e-journals year wise during the last five years
+  - Institutional data in the prescribed format (data template merged with 4.1.2 and 4.4.1)
+  - Audited income and expenditure statement of the institution to be signed by CA and counter signed by the competent authority (relevant expenditure claimed for purchase of books/ e-books and subscription to journals/e-journals should be clearly highlighted)
+  - _manual text line 6165_
+- [ ] **4.3.1** (QlM, 12 marks, 1 year) Institution frequently updates its IT facilities and provides sufficient bandwidth for internet connection
+  - Description
+  - _manual text line 6241_
+- [ ] **4.3.2** (QnM, 10 marks, 1 year) Student - Computer ratio (Data for the latest completed academic year)
+  - (No template)
+  - Extracts stock register/ highlighting the computers issued to respective departments for student’s usage.
+  - Purchased Bills/Copies highlighting the number of computers purchased
+  - _manual text line 6273_
+- [ ] **4.3.3** (QlM, 8 marks, 1 year) Institution has dedicated audio visual centre, mixing equipment, editing facility, media studio, lecture capturing system(LCS) and related hardware and software for e-content development
+  - Description (up to 500 words)
+  - _manual text line 6307_
+- [ ] **4.4.1** (QnM, 10 marks, 5 years) Percentage expenditure incurred on maintenance of physical facilities and academic support facilities excluding salary component, during the last five years
+  - Institutional data in the prescribed format (data template merged with 4.1.2 and 4.2.2)
+  - Audited income and expenditure statement of the institution to
+  - be signed by CA and counter signed by the competent authority
+  - (relevant expenditure claimed for maintenance of physical facilities and academic support facilities should be clearly highlighted)
+  - _manual text line 6341_
+- [ ] **4.4.2** (QlM, 10 marks, 1 year) There are established systems and procedures for maintaining and utilizing physical and academic support facilities – laboratory, library, sports complex, computers, classrooms etc.
+  - Description
+  - _manual text line 6435_
+
+## Criterion 5 · Student Support and Progression (100 marks)
+
+- [ ] **5.1.1** (QnM, 11 marks, 5 years) Percentage of students benefited by scholarships and freeships provided by the institution, government and non-government bodies, industries, individuals, philanthropists during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Upload Sanction letter of scholarship and free ships (along with English translated version if it is in regional language).
+  - Upload policy document of the HEI for award of scholarship and freeships.
+  - _manual text line 6473_
+- [ ] **5.1.2** (QlM, 6 marks, 5 years) Efforts taken by the institution to provide career counselling including e-counselling and guidance for competitive examinations during the last five years
+  - Description (up to 500 words)
+  - _manual text line 6561_
+- [ ] **5.1.3** (QnM, 8 marks, 1 year) Following capacity development and skills enhancement activities are organised for improving students’ capability
+  - Institutional data in the prescribed format (data template)
+  - Report with photographs on programmes/activities conducted to enhance soft skills, Language & communication skills, and Life skills (Yoga, physical fitness, health and hygiene, self-employment and entrepreneurial skills)
+  - Report with photographs on programmes conducted for awareness of trends in technology
+  - _manual text line 6583_
+- [ ] **5.1.4** (QnM, 5 marks, 1 year) The institution adopts the following for redressal of student grievances including sexual harassment and ragging cases
+  - Details of statutory/regulatory Committees (to be notified in institutional website also)
+  - Proof for Implementation of guidelines of statutory/regulatory bodies
+  - Proof w.r.t Organisation wide awareness and undertakings on policies with zero tolerance
+  - Proof related to Mechanisms for submission of online/offline students’ grievances
+  - Annual report of the committee monitoring the activities and number of grievances
+  - _manual text line 6675_
+- [ ] **5.2.1** (QnM, 20 marks, 5 years) Percentage of placement of outgoing students and students progressing to higher education during the last five years
+  - Institutional data in the prescribed format (data template)
+  - _manual text line 6791_
+- [ ] **5.2.2** (QnM, 10 marks, 5 years) Percentage of students qualifying in state/ national/ international level examinations out of the graduated students during the last five years (eg: NET/SLET/ Civil Services/State government examinations etc.)
+  - Institutional data in the prescribed format (data template)
+  - List of students qualified year wise with details of examination and links to Qualifying Certificates of the students taking the examination
+  - _manual text line 6859_
+- [ ] **5.3.1** (QnM, 15 marks, 5 years) Number of awards/medals for outstanding performance in sports/cultural activities at University / state /national / international Level events during the last five years
+  - Institutional data in the prescribed format (data template)
+  - list and links to e-copies of award letters and certificates
+  - _manual text line 6917_
+- [ ] **5.3.2** (QlM, 10 marks, 1 year) Presence of an active Student Council & representation of students on academic & administrative bodies/committees of the institution
+  - Description
+  - _manual text line 6997_
+- [ ] **5.3.3** (QnM, 5 marks, 1 year) The institution conducts / organizes following activities
+  - Institutional data in the prescribed format (data template)
+  - Report on Sports, Cultural competitions/events, Technical/academic fests, Any other events through active clubs and forums along with photographs appropriately dated and captioned (whichever is applicable)
+  - Copy of circular/brochure indicating such kind of activities.
+  - List of students participated in different events year wise signed by the head of the Institution.
+  - _manual text line 7027_
+- [ ] **5.4.1** (QnM, 5 marks, 5 years) Alumni contribution during the last five years to the institution through registered Alumni association
+  - (No template)
+  - Annual audited statements of accounts of the HEI highlighting the Alumni contribution duly certified by the Chartered Accountant/Finance Officer.
+  - List of alumnus/alumni with the amount contributed year-wise
+  - _manual text line 7097_
+- [ ] **5.4.2** (QlM, 5 marks, 1 year) Alumni contributes and engages significantly to the development of institution through academic and other support system
+  - Description
+  - _manual text line 7185_
+
+## Criterion 6 · Governance, Leadership and Management (100 marks)
+
+- [ ] **6.1.1** (QlM, 15 marks, 1 year) The institutional governance and leadership are in accordance with the vision and mission of the Institution and it is visible in various institutional practices such as NEP implementation, sustained institutional growth, decentralization, participation in the institutional governance and in their short term and long term Institutional Perspective Plan.
+  - Description (up to 500 words)
+  - _manual text line 7209_
+- [ ] **6.2.1** (QlM, 6 marks, 1 year) The institutional perspective plan is effectively deployed and functioning of the institutional bodies are effective and efficient as visible from policies, administrative setup, appointment, service rules, and procedures, etc.
+  - Institutional perspective Plan and deployment documents on the website
+  - _manual text line 7253_
+- [ ] **6.2.2** (QnM, 4 marks, 1 year) Institution implements e-governance in its operations e-governance is implemented covering the following areas of operations
+  - Screen shots of user interfaces of each module reflecting the name of the HEI.
+  - Institutional expenditure statements for the budget heads of e-governance implementation ERP Document
+  - Annual e-governance report approved by the Governing Council/ Board of Management/ Syndicate Policy document on e-governance
+  - _manual text line 7287_
+- [ ] **6.3.1** (QlM, 5 marks, 1 year) The institution has performance appraisal system, effective welfare measures for teaching and non-teaching staff and avenues for career development/progression
+  - Description (up to 500 words)
+  - _manual text line 7357_
+- [ ] **6.3.2** (QnM, 15 marks, 5 years) Percentage of teachers provided with financial support to attend conferences/workshops and towards membership fee of professional bodies during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Policy document on providing financial support to teachers
+  - Copy of letter/s indicating financial assistance to teachers and list of teachers receiving financial support year-wise under each head.
+  - Audited statement of account highlighting the financial support to teachers to attend conferences/workshops and towards membership fee for professional bodies.
+  - _manual text line 7391_
+- [ ] **6.3.3** (QnM, 10 marks, 5 years) Percentage of teachers undergoing online/ face-to-face Faculty Development Programmes (FDPs)/ Management Development Programmes (MDPs) during the last five years
+  - Institutional data in the prescribed format (data template)
+  - Refresher course/Faculty Orientation or other programmes as per UGC/AICTE stipulated periods, as participated by teachers year-wise.
+  - Copy of the certificates of the program attended by teachers.
+  - Annual reports highlighting the programmes undertaken by the teachers
+  - _manual text line 7449_
+- [ ] **6.4.1** (QlM, 5 marks, 1 year) Institutional strategies for mobilisation of funds other than salary and fees and the optimal utilisation of resources
+  - Description
+  - _manual text line 7545_
+- [ ] **6.4.2** (QnM, 5 marks, 5 years) Funds / Grants received from government bodies, non-government bodies, and philanthropists during the last five years (not covered in Criterion III and V)
+  - Institutional data in the prescribed format (data template)
+  - Annual audited statements of accounts highlighting the grants received.
+  - Copy of the sanction letters received from government/ non government bodies and philanthropists
+  - _manual text line 7571_
+- [ ] **6.4.3** (QlM, 5 marks, 1 year) Institution regularly conducts internal and external financial audits regularly
+  - Description
+  - _manual text line 7657_
+- [ ] **6.5.1** (QlM, 10 marks, 1 year) Internal Quality Assurance Cell (IQAC)/ Internal Quality Assurance System (IQAS) has contributed significantly for institutionalizing the quality assurance strategies and processes, by constantly reviewing the teaching-learning process, structures & methodologies of operations and learning outcomes, at periodic intervals
+  - Description
+  - _manual text line 7683_
+- [ ] **6.5.2** (QlM, 10 marks, 1 year) The institution reviews its teaching learning process, structures & methodologies of operations and learning outcomes at periodic intervals through IQAC set up as per norms
+  - Description
+  - _manual text line 7731_
+- [ ] **6.5.3** (QnM, 10 marks, 1 year) Institution has adopted the following for Quality assurance
+  - Link to Minute of IQAC meetings, hosted on HEI website
+  - NIRF report, AAA report and details on follow up actions
+  - Quality audit reports/certificate as applicable and valid for the assessment period.
+  - List of Collaborative quality initiatives with other institution(s) along with brochures and geo-tagged photos with caption and date.
+  - _manual text line 7761_
+
+## Criterion 7 · Institutional Values and Best Practices (100 marks)
+
+- [ ] **7.1.1** (QlM, 5 marks, 5 years) Institution has initiated the Gender Audit and measures for the promotion of gender equity during the last five years.
+  - Environmental Consciousness and Sustainability
+  - _manual text line 7853_
+- [ ] **7.1.2** (QnM, 6 marks, 1 year) The Institution has facilities for alternate sources of energy and energy conservation measures
+  - Geo-tagged photographs of the facilities.
+  - Bills for the purchase of equipment’s for the facilities created under this metric.
+  - Permission document for connecting to the grid from the Government/ Electricity authority
+  - _manual text line 7875_
+- [ ] **7.1.3** (QlM, 6 marks, 1 year) Describe the facilities in the Institution for the management of the following types of degradable and non-degradable waste (within 500 words)
+  - Relevant documents like agreements/MoUs with Government and other approved agencies
+  - Geo-tagged photographs of the facilities
+  - _manual text line 7897_
+- [ ] **7.1.4** (QnM, 5 marks, 1 year) Water conservation facilities available in the Institution
+  - Geo-tagged photographs of the facilities.
+  - Bills for the purchase of equipment’s for the facilities created under this metric.
+  - Green audit reports on water conservation by recognised bodies
+  - _manual text line 7927_
+- [ ] **7.1.5** (QlM, 4 marks, 1 year) Green campus initiatives include
+  - Policy document on the green campus/plastic free campus.
+  - Geo-tagged photographs/videos of the facilities.
+  - Circulars and report of activities for the implementation of the initiatives document
+  - _manual text line 7973_
+- [ ] **7.1.6** (QnM, 5 marks, 1 year) Quality audits on environment and energy are regularly undertaken by the institution
+  - Institutional data in the prescribed format (data template)
+  - Policy document on environment and energy usage Certificate from the auditing agency.
+  - Certificates of the awards received from recognized agency (if any).
+  - Report on environmental promotion and sustainability activities conducted beyond the campus with geo-tagged photographs with caption and date.
+  - Green audit/environmental audit report from recognized bodies
+  - _manual text line 7999_
+- [ ] **7.1.7** (QlM, 5 marks, 1 year) The Institution has Differently-abled (Divyangjan) friendly, barrier free environment
+  - Inclusion and Situatedness
+  - _manual text line 8053_
+- [ ] **7.1.8** (QlM, 5 marks, 1 year) Describe the Institutional efforts/initiatives in providing an inclusive environment i.e., tolerance and harmony towards cultural, regional, linguistic, communal socioeconomic and such other diversities (within 500 words).
+  - Supporting documents on the information provided (as reflected in the administrative and academic activities of the Institution)
+  - Human Values and Professional Ethics
+  - _manual text line 8087_
+- [ ] **7.1.9** (QlM, 4 marks, 1 year) Sensitization of students and employees of the Institution to the constitutional obligations: values, rights, duties and responsibilities of citizens
+  - Details of activities that inculcate values necessary to nurture students to become responsible citizens
+  - _manual text line 8103_
+- [ ] **7.1.10** (QnM, 5 marks, 1 year) The Institution has a prescribed code of conduct for students, teachers, administrators and other staff and conducts periodic programmes in this regard.
+  - Institutional data in the prescribed format (data template)
+  - Policy document on code of ethics.
+  - Constitution and proceedings of the monitoring committee.
+  - Circulars and geo-tagged photographs with date and caption of the activities organized under this metric for teachers, students, administrators and other staff.
+  - Document showing the Code of Conduct for students, teachers, governing body and administration as approved by the competent authority.
+  - Handbooks, manuals and brochures on human values and professional ethics
+  - Report on the student attributes facilitated by the Institution
+  - _manual text line 8121_
+- [ ] **7.2.1** (QlM, 30 marks, 1 year) Describe two best practices successfully implemented by the Institution as per NAAC format provided in the Manual.
+  - Two best practices written in the NAAC format
+  - Web link to the best practices on the institutional website
+  - _manual text line 8175_
+- [ ] **7.3.1** (QlM, 20 marks, 1 year) Portray the performance of the Institution in one area distinctive to its priority and thrust within 1000 words
+  - Appropriate webpage in the Institutional website
+  - _manual text line 8225_
+

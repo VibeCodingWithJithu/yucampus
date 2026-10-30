@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "yucampus-local",
+      "credentials": [{ "accessKey": "yucampus", "secretKey": "yucampus-local-secret" }],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}

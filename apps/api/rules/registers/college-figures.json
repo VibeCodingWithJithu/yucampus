@@ -1,0 +1,114 @@
+{
+  "code": "COLLEGE_FIGURES",
+  "version": "1",
+  "name": "College figures",
+  "description": "One record per academic year with the college-wide totals NAAC ratios divide by.",
+  "status": "draft",
+  "source": {
+    "title": "YuCampus first proposal, based on the NAAC extended profile and AISHE institution data. Not yet checked against the current formats.",
+    "verified": false
+  },
+  "department": "none",
+  "person": null,
+  "proof": "optional",
+  "singlePerYear": true,
+  "titleField": "source",
+  "feeds": [
+    "NAAC C2",
+    "NAAC C4",
+    "NAAC extended profile",
+    "AISHE",
+    "NIRF TLR",
+    "NIRF OI"
+  ],
+  "sortOrder": 60,
+  "fields": [
+    {
+      "key": "source",
+      "label": "Where these figures come from",
+      "type": "text",
+      "required": true,
+      "column": true,
+      "help": "For example: Office records, audited accounts 2026–27."
+    },
+    {
+      "key": "studentsOnRoll",
+      "label": "Students on roll (all years and programs)",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 500000,
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "phdStudentsFullTime",
+      "label": "Ph.D. students (full-time)",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 100000,
+      "help": "Needed for NIRF TLR and GO."
+    },
+    {
+      "key": "phdStudentsPartTime",
+      "label": "Ph.D. students (part-time)",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 100000
+    },
+    {
+      "key": "phdGraduated",
+      "label": "Ph.D. degrees awarded this year",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 10000
+    },
+    {
+      "key": "sanctionedTeachingPosts",
+      "label": "Sanctioned teaching posts",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 20000,
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "nonTeachingStaff",
+      "label": "Non-teaching staff",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 20000
+    },
+    {
+      "key": "expenditureExSalaryLakh",
+      "label": "Total expenditure excluding salary",
+      "type": "number",
+      "min": 0,
+      "max": 1000000,
+      "unit": "₹ lakh",
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "studentComputers",
+      "label": "Computers available to students",
+      "type": "number",
+      "integer": true,
+      "min": 0,
+      "max": 100000,
+      "required": true,
+      "column": true
+    },
+    {
+      "key": "accessibleFacilities",
+      "label": "Facilities for students with disabilities (ramps, lifts, accessible toilets)",
+      "type": "boolean",
+      "help": "Needed for NIRF OI (PCS)."
+    }
+  ]
+}

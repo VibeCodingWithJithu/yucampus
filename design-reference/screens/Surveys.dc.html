@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>YuCampus · Surveys and feedback</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+*{box-sizing:border-box}
+a{color:#2B3990}a:hover{color:#1E2870}
+</style>
+</helmet>
+<div style="min-height: 100vh; display: flex; flex-wrap: wrap; background: #F5F6FA; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #121733">
+<div style="flex: 1 1 240px; background: #FFFFFF; border-right: 1px solid #E3E6EF">
+<dc-import name="Sidebar" active="Surveys" hint-size="100%,860px"></dc-import>
+</div>
+<main style="flex: 999 1 560px; min-width: 0; padding: 32px; display: flex; flex-direction: column; gap: 24px">
+<header style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div>
+<nav aria-label="Breadcrumb" style="font-size: 13px; color: #545B73"><a href="Main.dc.html" style="text-decoration: none">Dashboard</a> / Surveys</nav>
+<h1 style="margin: 6px 0 0; font-size: 28px; font-weight: 700; letter-spacing: -0.01em">Surveys and feedback</h1>
+<p style="margin: 6px 0 0; font-size: 14px; color: #545B73">Collect feedback from students, alumni, employers and parents. Results flow into NAAC and NBA.</p>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; flex: none; box-shadow: 0 0 0 3px #FFE1D2">1</span></sc-if>
+<label style="display: flex; align-items: center; gap: 8px; font-size: 13px; color: #545B73">Template
+<select style="height: 44px; padding: 0 12px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; font: inherit; font-size: 14px; color: #121733"><option>Student satisfaction</option><option>Course exit survey</option><option>Alumni feedback</option><option>Employer feedback</option><option>Parent feedback</option><option>Teacher feedback on curriculum</option></select>
+</label>
+<button type="button" style="height: 44px; padding: 0 18px; border: none; border-radius: 8px; background: #2B3990; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">New survey</button>
+</div>
+</header>
+
+<section aria-labelledby="list-h" style="display: flex; flex-direction: column; gap: 12px">
+<h2 id="list-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">2</span></sc-if>Your surveys</h2>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px">
+<sc-for list="{{surveys}}" as="s" hint-placeholder-count="5">
+<button type="button" onClick="{{s.pick}}" aria-pressed="{{s.pressed}}" style="text-align: left; font: inherit; color: #121733; background: #FFFFFF; border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 8px; cursor: pointer; {{s.border}}">
+<span style="display: flex; justify-content: space-between; align-items: center; width: 100%"><span style="font-size: 11px; font-weight: 700; color: #2B3990; letter-spacing: 0.04em">{{s.who}}</span><span style="font-size: 11px; font-weight: 700; border-radius: 999px; padding: 3px 8px; color: {{s.fg}}; background: {{s.bg}}">{{s.status}}</span></span>
+<span style="font-size: 15px; font-weight: 700">{{s.name}}</span>
+<span style="display: flex; align-items: center; gap: 8px; width: 100%"><span style="flex: 1; height: 6px; border-radius: 3px; background: #EEF0F4; overflow: hidden"><span style="display: block; height: 6px; width: {{s.rate}}%; background: #2B3990"></span></span><span style="font-size: 12px; font-weight: 700">{{s.rate}}%</span></span>
+<span style="font-size: 12px; color: #545B73">{{s.resp}}</span>
+</button>
+</sc-for>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start">
+<section aria-labelledby="share-h" style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 12px">
+<h2 id="share-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">3</span></sc-if>Share and remind</h2>
+<button type="button" style="height: 48px; border: none; border-radius: 8px; background: #0E7068; color: #FFFFFF; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Send on WhatsApp</button>
+<button type="button" style="height: 48px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Send by email</button>
+<button type="button" style="height: 48px; border: 1px solid #E3E6EF; border-radius: 8px; background: #FFFFFF; color: #121733; font: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Show QR code for classrooms</button>
+<p style="margin: 0; font-size: 13px; color: #545B73; line-height: 1.5">Automatic reminders go to people who have not responded, every 3 days until the survey closes.</p>
+</section>
+
+<section aria-labelledby="res-h" style="flex: 2 1 480px; min-width: 0; background: #FFFFFF; border: 1px solid #E3E6EF; border-radius: 12px; padding: 24px; display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px">
+<h2 id="res-h" style="margin: 0; font-size: 17px; font-weight: 700"><sc-if value="{{guide}}" hint-placeholder-val="{{false}}"><span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; margin-right: 8px; border-radius: 50%; background: #C2410C; color: #FFFFFF; font-size: 14px; font-weight: 700; vertical-align: middle; box-shadow: 0 0 0 3px #FFE1D2">4</span></sc-if>Results · {{curName}}</h2>
+<span style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{feeds}}" as="f" hint-placeholder-count="2"><span style="font-size: 11px; font-weight: 700; color: #2B3990; background: #E8EAF6; border-radius: 6px; padding: 4px 8px">{{f}}</span></sc-for></span>
+</div>
+<sc-for list="{{questions}}" as="q" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; justify-content: space-between; gap: 10px; font-size: 14px"><span>{{q.text}}</span><span style="font-weight: 700">{{q.score}} / 5</span></div>
+<div style="height: 8px; border-radius: 4px; background: #EEF0F4; overflow: hidden"><div style="height: 8px; border-radius: 4px; width: {{q.pct}}%; background: {{q.fill}}"></div></div>
+</div>
+</sc-for>
+<div style="background: #F5F6FA; border-radius: 10px; padding: 14px 16px; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 13px; font-weight: 700">What people said most often</span>
+<span style="font-size: 14px; line-height: 1.5; color: #3B4157">{{themes}}</span>
+</div>
+</section>
+</div>
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"guide":{"editor":"boolean","default":false},"$preview":{"width":1440,"height":1120}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sel: 0 };
+  }
+  renderVals() {
+    const ST = { Live: ['#0B5852', '#DDF1EE'], Closed: ['#545B73', '#EEF0F4'], Draft: ['#7A4505', '#FDF0DC'] };
+    const S = [
+      { who: 'STUDENTS', name: 'Student satisfaction 2025–26', status: 'Live', rate: 68, resp: '2,326 of 3,420 responded', feeds: ['NAAC C2', 'NIRF PR support'],
+        q: [['Teaching quality', 4.1], ['Fairness of evaluation', 3.8], ['Mentoring support', 3.6], ['Library and labs', 3.3]],
+        themes: 'More lab hours, faster Wi-Fi in hostels, and more industry talks. Mentoring is appreciated in CSE and ECE.' },
+      { who: 'STUDENTS', name: 'Course exit · CS501 Machine Learning', status: 'Closed', rate: 91, resp: '164 of 180 responded', feeds: ['NBA indirect attainment'],
+        q: [['CO1 understood well', 4.4], ['CO2 able to apply', 4.2], ['CO3 able to evaluate', 3.9], ['CO4 able to design', 3.4]],
+        themes: 'Students want more hands-on project time for the pipeline design outcome (CO4).' },
+      { who: 'ALUMNI', name: 'Alumni feedback on curriculum', status: 'Live', rate: 34, resp: '412 of 1,210 responded', feeds: ['NAAC C1', 'NBA C7'],
+        q: [['Relevance to job', 3.9], ['Practical skills', 3.5], ['Soft skills', 3.7], ['Electives offered', 3.4]],
+        themes: 'Add cloud and DevOps electives. Communication training was useful in interviews.' },
+      { who: 'EMPLOYERS', name: 'Employer feedback 2025–26', status: 'Draft', rate: 0, resp: 'Not sent yet', feeds: ['NAAC C1', 'NBA C7'],
+        q: [['Technical skills', 0], ['Teamwork', 0], ['Communication', 0], ['Problem solving', 0]],
+        themes: 'Results will appear here once responses arrive.' },
+      { who: 'PARENTS', name: 'Parent feedback', status: 'Closed', rate: 47, resp: '806 of 1,720 responded', feeds: ['NAAC C1'],
+        q: [['Safety on campus', 4.3], ['Communication from college', 3.6], ['Academic progress updates', 3.5], ['Facilities', 3.9]],
+        themes: 'Parents want regular attendance and marks updates on WhatsApp.' }
+    ];
+    const sel = this.state.sel;
+    const surveys = S.map((s, i) => ({
+      who: s.who, name: s.name, status: s.status, rate: s.rate, resp: s.resp,
+      fg: ST[s.status][0], bg: ST[s.status][1],
+      pressed: sel === i ? 'true' : 'false',
+      border: sel === i ? 'border: 2px solid #2B3990; box-shadow: 0 0 0 3px #E8EAF6' : 'border: 1px solid #E3E6EF',
+      pick: () => this.setState({ sel: i })
+    }));
+    const cur = S[sel];
+    const questions = cur.q.map(([text, score]) => ({
+      text, score: score ? score.toFixed(1) : '—', pct: (score / 5 * 100).toFixed(0),
+      fill: score >= 4 ? '#0E7068' : score >= 3.5 ? '#2B3990' : '#C77A12'
+    }));
+    return { guide: !!this.props.guide, surveys, questions, curName: cur.name, feeds: cur.feeds, themes: cur.themes };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "@yucampus/config",
+  "version": "0.0.0",
+  "private": true,
+  "files": ["tsconfig"],
+  "exports": {
+    "./tsconfig/base.json": "./tsconfig/base.json",
+    "./tsconfig/library.json": "./tsconfig/library.json",
+    "./tsconfig/nest.json": "./tsconfig/nest.json",
+    "./tsconfig/next.json": "./tsconfig/next.json"
+  }
+}
