@@ -7,4 +7,5 @@ Rules for working in this repository are in [CLAUDE.md](CLAUDE.md).
 
 
 
-Putting it online (one server in India, Docker, HTTPS): [docs/DEPLOY.md](docs/DEPLOY.md).
+Putting it online: from Yubhian's own computer through a Cloudflare Tunnel, [docs/DEPLOY_HOME.md](docs/DEPLOY_HOME.md)
+(pilot); on a rented server, [docs/DEPLOY.md](docs/DEPLOY.md).

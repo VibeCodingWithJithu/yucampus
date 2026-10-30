@@ -36,7 +36,7 @@ const ssoStartQuerySchema = z.object({ college: z.string().trim().toLowerCase().
 const COOKIE_PATH = '/api/v1/auth';
 
 const CollegeHeader = () =>
-  ApiHeader({ name: 'x-college', required: false, description: 'College subdomain, e.g. "abc" for abc.yucampus.yubhiantechnologies.in' });
+  ApiHeader({ name: 'x-college', required: false, description: 'College subdomain, e.g. "abc" for abc.yubhiantechnologies.in' });
 
 @ApiTags('auth')
 @Controller('auth')

@@ -3,12 +3,12 @@
 A step-by-step checklist for the Yubhian team. Everything here is free. Do part A first: it needs no server and no
 domain, only your laptop. Parts B and C are for going live.
 
-Addresses used below (domain decided 2026-10-30):
+Addresses used below (decided 2026-10-30; colleges are <college>.yubhiantechnologies.in):
 
 | What | Local testing | Live |
 |---|---|---|
-| Google redirect address | `http://localhost:3000/api/v1/auth/sso/google/callback` | `https://auth.yucampus.yubhiantechnologies.in/api/v1/auth/sso/google/callback` |
-| Microsoft redirect address | `http://localhost:3000/api/v1/auth/sso/microsoft/callback` | `https://auth.yucampus.yubhiantechnologies.in/api/v1/auth/sso/microsoft/callback` |
+| Google redirect address | `http://localhost:3000/api/v1/auth/sso/google/callback` | `https://auth.yubhiantechnologies.in/api/v1/auth/sso/google/callback` |
+| Microsoft redirect address | `http://localhost:3000/api/v1/auth/sso/microsoft/callback` | `https://auth.yubhiantechnologies.in/api/v1/auth/sso/microsoft/callback` |
 
 Type them exactly: no trailing slash, all lowercase. Google and Microsoft rename menu items from time to time; if a
 label differs, look for the nearest match.
@@ -97,8 +97,8 @@ If something goes wrong:
 ## Part B: Going live
 
 ### B1 to B4. Server, DNS, HTTPS and email
-Follow [DEPLOY.md](DEPLOY.md), steps 1 to 9. It covers the server in India, the two DNS records at Hostinger,
-HTTPS (automatic) and email sending.
+Follow [DEPLOY_HOME.md](DEPLOY_HOME.md) (your own computer with a Cloudflare Tunnel), steps 1 to 8. It covers the
+computer, moving the DNS to Cloudflare, HTTPS (automatic) and email sending.
 
 ### B5. Google, for going live
 1. Verify `yubhiantechnologies.in` in [Google Search Console](https://search.google.com/search-console): add a
@@ -121,8 +121,8 @@ HTTPS (automatic) and email sending.
    "verified publisher" instead of a warning.
 
 ### B7. Server settings
-Put the four Google and Microsoft values in the server's `infra/production/.env` (DEPLOY.md, step 6), then run
-`docker compose up -d` in `infra/production`. The sign-in addresses are set from `ROOT_DOMAIN` automatically.
+Put the four Google and Microsoft values in the live copy's `infra/production/.env` (DEPLOY_HOME.md, step 5), then
+run `docker compose up -d` in that folder. The sign-in addresses are set from `ROOT_DOMAIN` automatically.
 
 ---
 
@@ -134,7 +134,7 @@ Put the four Google and Microsoft values in the server's `infra/production/.env`
 2. **College on Microsoft 365:** the college's IT admin may need to approve YuCampus once for everyone. Send them this
    link, with your Microsoft client ID filled in:
    ```
-   https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=YOUR_MICROSOFT_CLIENT_ID&scope=openid%20email%20profile&redirect_uri=https://auth.yucampus.yubhiantechnologies.in/api/v1/auth/sso/microsoft/callback
+   https://login.microsoftonline.com/organizations/v2.0/adminconsent?client_id=YOUR_MICROSOFT_CLIENT_ID&scope=openid%20email%20profile&redirect_uri=https://auth.yubhiantechnologies.in/api/v1/auth/sso/microsoft/callback
    ```
 3. **College on Google Workspace that blocks unknown apps:** the college's admin opens
    [Google Admin](https://admin.google.com/) → **Security** → **Access and data control** → **API controls** →

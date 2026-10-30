@@ -1,0 +1,16 @@
+# Home computer + Cloudflare Tunnel (decided 2026-10-30). Guide: docs/DEPLOY_HOME.md
+# Added on top of docker-compose.yml when .env has COMPOSE_FILE=docker-compose.yml,docker-compose.tunnel.yml.
+# Cloudflare provides HTTPS and sends visitors through the tunnel, so no ports are opened on this computer.
+services:
+  # Not used here; only started by the rented-server setup (docs/DEPLOY.md).
+  caddy:
+    profiles: ['server']
+
+  # Connects out to Cloudflare. Which address goes where is set in the Cloudflare dashboard (DEPLOY_HOME.md, step 4).
+  tunnel:
+    image: cloudflare/cloudflared:2026.10.0
+    command: ['tunnel', '--no-autoupdate', 'run']
+    environment:
+      TUNNEL_TOKEN: ${CLOUDFLARE_TUNNEL_TOKEN:?set CLOUDFLARE_TUNNEL_TOKEN in .env}
+    depends_on: [web, storage]
+    restart: unless-stopped

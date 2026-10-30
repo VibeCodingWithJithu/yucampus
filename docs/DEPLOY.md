@@ -1,4 +1,8 @@
-# Putting YuCampus online
+# Putting YuCampus online (rented server with Caddy)
+
+> The pilot runs on Yubhian's own computer through a Cloudflare Tunnel instead (decided 2026-10-30): see
+> [DEPLOY_HOME.md](DEPLOY_HOME.md). This guide is for a server whose DNS stays at Hostinger. In step 6, set
+> `ROOT_DOMAIN=yucampus.yubhiantechnologies.in` and delete the Cloudflare Tunnel section of `.env`.
 
 A step-by-step checklist for the Yubhian team, for the pilot setup decided on 2026-10-30 (docs/ARCHITECTURE.md):
 one server in India runs everything with Docker. It takes about two hours the first time. Do the steps in order.

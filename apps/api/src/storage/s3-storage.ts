@@ -114,7 +114,7 @@ export class S3Storage extends FileStorage {
   /**
    * Creates the bucket and lets the web app upload to it from the browser. Runs locally, and in production with
    * S3_SETUP=true (SeaweedFS on the pilot server). A provider bucket (e.g. S3 Mumbai) and its CORS rule
-   * (UPLOAD_ORIGINS, e.g. https://*.yucampus.yubhiantechnologies.in, methods PUT and GET) are set up once by hand.
+   * (UPLOAD_ORIGINS, e.g. https://*.yubhiantechnologies.in, methods PUT and GET) are set up once by hand.
    * Origins already allowed are kept, so two local servers (e.g. dev and an end-to-end run) can share the bucket.
    */
   async prepareBucket(origins: readonly string[]) {

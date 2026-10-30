@@ -123,4 +123,9 @@ export function platformActionLabel(action: string): string {
 }
 
 /** Subdomains a college can never take (they are YuCampus's own addresses). */
-export const RESERVED_SUBDOMAINS = ['admin', 'auth', 'files', 'api', 'app', 'www', 'mail', 'static', 'cdn', 'help', 'support', 'status', 'docs', 'demo'] as const;
+// Colleges share yubhiantechnologies.in with the company's own addresses (decided 2026-10-30), so those are reserved too.
+export const RESERVED_SUBDOMAINS = [
+  'admin', 'auth', 'files', 'api', 'app', 'www', 'mail', 'static', 'cdn', 'help', 'support', 'status', 'docs', 'demo',
+  'yucampus', 'webmail', 'smtp', 'imap', 'pop', 'ftp', 'cpanel', 'autodiscover', 'autoconfig', 'ns1', 'ns2',
+  'blog', 'shop', 'careers', 'jobs', 'portal', 'dev', 'staging', 'test',
+] as const;

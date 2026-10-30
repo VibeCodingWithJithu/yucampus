@@ -59,7 +59,7 @@ export class AppConfig {
 
   /**
    * Web addresses browsers may upload from directly to storage (the bucket's CORS rule). Every college has its
-   * own subdomain, so production uses a wildcard such as https://*.yucampus.yubhiantechnologies.in.
+   * own subdomain, so production uses a wildcard such as https://*.yubhiantechnologies.in.
    */
   uploadOrigins: string[] = ['http://localhost:3000', 'http://*.localhost:3000'];
 
@@ -151,7 +151,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   config.uploadOrigins = env.UPLOAD_ORIGINS
     ? env.UPLOAD_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean)
     : config.isProduction
-      ? [`https://*.${env.ROOT_DOMAIN ?? 'yucampus.yubhiantechnologies.in'}`]
+      ? [`https://*.${env.ROOT_DOMAIN ?? 'yubhiantechnologies.in'}`]
       : [...new Set([config.webOrigin, ...config.uploadOrigins])];
 
   config.prepareStorage = !config.isProduction || env.S3_SETUP === 'true';
@@ -162,7 +162,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
       throw new Error('DATABASE_URL must point to PostgreSQL in production.');
     }
     if (!config.smtpUrl) throw new Error('SMTP_URL must be set in production (password resets and invitations are sent by email).');
-    if (!config.rootDomain) throw new Error('ROOT_DOMAIN must be set in production (e.g. yucampus.yubhiantechnologies.in).');
+    if (!config.rootDomain) throw new Error('ROOT_DOMAIN must be set in production (e.g. yubhiantechnologies.in).');
     if (!config.storage) throw new Error('S3_ENDPOINT, S3_BUCKET, S3_ACCESS_KEY and S3_SECRET_KEY must be set in production.');
     if (!env.JWT_SECRET || env.JWT_SECRET.length < 32) {
       throw new Error('JWT_SECRET must be set to at least 32 characters in production.');

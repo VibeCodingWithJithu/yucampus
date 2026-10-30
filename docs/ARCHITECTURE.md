@@ -98,6 +98,17 @@ record for yucampus.yubhiantechnologies.in and a wildcard *.yucampus.yubhiantech
 for *.yubhiantechnologies.in does not cover these, as a wildcard covers one level only). Email is sent from
 no-reply@yubhiantechnologies.in. Nothing in the code depends on the name: moving to another domain later is a
 change of ROOT_DOMAIN, NEXT_PUBLIC_ROOT_DOMAIN, the SSO addresses and the provider registrations. college_id on every tenant row.
+Hosting change (decided 2026-10-30, later the same day): the pilot runs on Yubhian's own computer in India, reached
+through a Cloudflare Tunnel (free), instead of a rented server. Cloudflare's free certificate covers names one
+level below a domain only, so ROOT_DOMAIN becomes yubhiantechnologies.in itself: colleges are
+<subdomain>.yubhiantechnologies.in, with admin., auth. and files. as before. Requires moving the DNS of
+yubhiantechnologies.in from Hostinger to Cloudflare (free; the website and email records move with it). Colleges
+share the name space with the company's own addresses, so the company's names (www, mail, blog and the like) are
+reserved. Cloudflare ends HTTPS, so Caddy is not used in this setup (infra/production/docker-compose.tunnel.yml);
+the admin./ to /admin redirect moved into the web app so both setups have it. Guide: docs/DEPLOY_HOME.md. Traffic
+passes through Cloudflare (the open CDN question above); stored data stays on the computer in India. Moving to a
+rented server later means running the same tunnel setup there; the addresses stay. (docs/DEPLOY.md, with Caddy
+and yucampus.yubhiantechnologies.in, stays for a server without Cloudflare.) Needs: the computer always on, BitLocker on its disk.
 Premium option later: separate database per college.
 
 ## Performance rules

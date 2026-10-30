@@ -132,7 +132,7 @@ their own research entries.
 
 ## Super-admin panel and audit log (decided 2026-10-18)
 - The Yubhian team has separate platform accounts, not college accounts: their own sign-in (/admin, later
-  admin.yucampus.yubhiantechnologies.in) and their own token type. A platform token cannot call college APIs and a college token cannot
+  admin.yubhiantechnologies.in) and their own token type. A platform token cannot call college APIs and a college token cannot
   call platform APIs. The first platform admin is created with a command on the server; platform admins invite
   others from the panel.
 - What the team sees of a college: its profile, status and plan, the college admins' and principal's contact details,

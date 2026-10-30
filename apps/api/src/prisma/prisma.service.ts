@@ -28,7 +28,7 @@ export class PrismaService implements OnModuleDestroy {
     });
   }
 
-  /** Turns a subdomain (abc.yucampus.yubhiantechnologies.in -> "abc") into a college id. Used before sign-in. */
+  /** Turns a subdomain (abc.yubhiantechnologies.in -> "abc") into a college id. Used before sign-in. */
   async resolveCollegeId(subdomain: string): Promise<string | null> {
     const rows = await this.client.$queryRaw<{ id: string | null }[]>`SELECT resolve_college_id(${subdomain}) AS id`;
     return rows[0]?.id ?? null;

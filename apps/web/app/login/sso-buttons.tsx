@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { api } from '@/lib/api';
 import { collegeSubdomain } from '@/lib/tenant';
 
-/** The one address Google and Microsoft sign-in runs on (auth.yucampus.yubhiantechnologies.in in production; this site locally). */
+/** The one address Google and Microsoft sign-in runs on (auth.yubhiantechnologies.in in production; this site locally). */
 const SSO_URL = process.env.NEXT_PUBLIC_SSO_URL ?? '';
 
 const ERRORS: Record<string, string> = {

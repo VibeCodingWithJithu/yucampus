@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
 
   // The browser talks to /api/v1 on the web origin and Next forwards it to the API. Same origin means the
   // httpOnly refresh cookie just works on every college subdomain, with no cross-site cookie rules to fight.
+  // admin.<domain> is the team panel: its bare address opens the panel.
+  async redirects() {
+    return [{ source: '/', has: [{ type: 'host', value: 'admin\\..+' }], destination: '/admin', permanent: false }];
+  },
+
   async rewrites() {
     return [{ source: '/api/v1/:path*', destination: `${API_TARGET}/api/v1/:path*` }];
   },
