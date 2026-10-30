@@ -43,7 +43,9 @@ export function AppSidebar({ user, roles, grants }: { user: SessionUser; roles: 
   const items = NAV.filter((item) => canOpenSection(grants, item.section));
 
   return (
-    <aside className="flex flex-none flex-col border-b border-border bg-surface lg:min-h-screen lg:w-60 lg:border-r lg:border-b-0">
+    // On desktop the sidebar stays put at full screen height: the menu scrolls on its own and the college,
+    // person and Sign out stay at the bottom while the page scrolls.
+    <aside className="flex flex-none flex-col border-b border-border bg-surface lg:sticky lg:top-0 lg:h-screen lg:w-60 lg:border-r lg:border-b-0">
       <div className="flex items-center justify-between px-4 py-3 lg:px-6 lg:pt-6 lg:pb-0">
         <Logo />
         <button
@@ -60,9 +62,9 @@ export function AppSidebar({ user, roles, grants }: { user: SessionUser; roles: 
 
       <div
         id="main-nav"
-        className={cn('flex-1 flex-col gap-6 px-4 pt-2 pb-4 lg:flex lg:pt-7 lg:pb-6', open ? 'flex' : 'hidden')}
+        className={cn('flex-1 flex-col gap-6 px-4 pt-2 pb-4 lg:flex lg:min-h-0 lg:pt-7 lg:pb-6', open ? 'flex' : 'hidden')}
       >
-        <nav aria-label="Main">
+        <nav aria-label="Main" className="lg:-mx-1 lg:min-h-0 lg:overflow-y-auto lg:px-1">
           <ul className="flex flex-col gap-0.5">
             {items.map(({ label, href, icon }) => {
               const active = pathname === href || pathname.startsWith(`${href}/`);
@@ -87,7 +89,7 @@ export function AppSidebar({ user, roles, grants }: { user: SessionUser; roles: 
           </ul>
         </nav>
 
-        <div className="mt-auto flex flex-col gap-3">
+        <div className="mt-auto flex flex-none flex-col gap-3">
           <div className="flex flex-col gap-1.5 rounded-card bg-bg p-4">
             <span className="text-[13px] font-semibold">{user.college.name}</span>
             <span className="text-xs text-muted">{COLLEGE_TYPE_LABELS[user.college.type]}</span>
