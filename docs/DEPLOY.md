@@ -18,20 +18,43 @@ time someone opens its address, so the very first visit takes a few extra second
 
 ---
 
-## 1. Rent a server in India (about 15 minutes)
+## 1. Get a server in India (about 30 minutes)
 
-All data must stay in India (DPDP Act, docs/ARCHITECTURE.md). Example with
-[AWS Lightsail](https://lightsail.aws.amazon.com/):
+A domain only gives names; the app itself (web app, API, database, files) has to run on a computer that is always
+on. All data must stay in India (DPDP Act, docs/ARCHITECTURE.md).
 
-1. **Create instance** → region **Mumbai (ap-south-1)** → platform **Linux/Unix** → blueprint **OS Only → Ubuntu 24.04 LTS**.
-2. Plan: **4 GB RAM, 2 vCPUs** (about USD 24 a month). 2 GB is too small to build the app.
-3. Name it `yucampus-1` and click **Create instance**.
-4. **Networking** tab:
-   - **Create static IP** and attach it to the instance. Note the IP address, e.g. `13.233.10.20`.
-   - Under **IPv4 Firewall**, keep SSH (22) and HTTP (80) and **add HTTPS (443)**.
+### Free: Oracle Cloud Always Free (recommended for the pilot)
+Oracle gives one ARM server with up to 4 CPUs and 24 GB RAM free for as long as the account is used, in Mumbai or
+Hyderabad. Everything in this guide runs on it unchanged.
 
-Any other provider with an Indian region works the same way (DigitalOcean Bangalore, Oracle Cloud Mumbai or
-Hyderabad, Azure Pune, Google Mumbai): Ubuntu 24.04, 4 GB RAM, a fixed IP, and ports 22, 80 and 443 open.
+1. Sign up at [oracle.com/cloud/free](https://www.oracle.com/cloud/free/). Choose **India West (Mumbai)** or
+   **India South (Hyderabad)** as the **home region**: it cannot be changed later, and Always Free servers only
+   run in the home region. A card is asked for to check identity; Always Free resources are not charged.
+2. **Compute → Instances → Create instance**:
+   - Image: **Canonical Ubuntu 24.04**
+   - Shape: **Ampere → VM.Standard.A1.Flex**, **4 OCPUs, 24 GB memory** (all within Always Free)
+   - Networking: create a new virtual cloud network with a **public subnet**, and **assign a public IPv4 address**
+   - SSH keys: **Generate a key pair for me** and download both keys
+   - Click **Create**. If it says "Out of capacity", try again later or pick another availability domain.
+3. **Make the IP fixed**: instance → **Attached VNICs** → the VNIC → **IPv4 addresses** → edit → **Reserved public
+   IP** (free). Note the IP, e.g. `140.238.10.20`.
+4. **Open ports 80 and 443**, in two places:
+   - Instance → subnet → **Default Security List** → **Add Ingress Rules**: source `0.0.0.0/0`, TCP, destination
+     port `80,443`.
+   - On the server itself (Oracle's Ubuntu blocks them by default), after connecting in step 4:
+     ```sh
+     sudo iptables -I INPUT 6 -p tcp -m multiport --dports 80,443 -m state --state NEW -j ACCEPT
+     sudo netfilter-persistent save
+     ```
+5. Connect from your laptop: `ssh -i <downloaded private key> ubuntu@<your IP>`.
+
+Oracle may reclaim an Always Free server that sits almost idle for 7 days. A server running YuCampus is not idle,
+but upgrading the account to **Pay As You Go** (still free within the limits) removes that risk.
+
+### Paid alternative
+For example [AWS Lightsail](https://lightsail.aws.amazon.com/) **Mumbai**, Ubuntu 24.04, **4 GB RAM** (about USD 24
+a month): create the instance, attach a static IP, and add HTTPS (443) under **Networking → IPv4 Firewall**.
+DigitalOcean Bangalore, Azure Pune or Google Mumbai work the same way. 2 GB RAM is too small to build the app.
 
 ## 2. Point the addresses at the server, in Hostinger (about 10 minutes, then up to an hour to spread)
 
@@ -72,7 +95,7 @@ YuCampus sends invitations, password resets and reminders. Example with
 
 ## 4. Connect to the server and install Docker (about 10 minutes)
 
-In Lightsail, click **Connect using SSH** (or use `ssh ubuntu@<your IP>` with the downloaded key). Then:
+Connect with `ssh -i <private key> ubuntu@<your IP>` (in Lightsail you can also click **Connect using SSH**). Then:
 
 ```sh
 sudo apt update && sudo apt upgrade -y
@@ -150,7 +173,8 @@ crontab -e                        # choose nano if asked, then add this line at 
 `sudo mkdir -p /var/backups/yucampus && sudo chown $USER /var/backups/yucampus` first if the script cannot write
 there. It keeps 14 days on the server. **Before the first real college uses it**, also copy the folder to a second
 location in India every night, for example an S3 bucket in Mumbai with `aws s3 sync /var/backups/yucampus s3://<bucket>`,
-and in Lightsail turn on **automatic snapshots** for the instance.
+and turn on the provider's scheduled backups of the server disk (Oracle: **Block Storage → Boot Volumes → backup
+policy**, Bronze is free within the limits; Lightsail: **automatic snapshots**).
 
 ## 10. Google and Microsoft sign-in
 
