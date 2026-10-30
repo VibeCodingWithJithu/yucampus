@@ -14,6 +14,7 @@
     "infra:down": "docker compose -f infra/docker-compose.yml down",
     "db:migrate": "pnpm --filter @yucampus/api db:migrate",
     "db:seed": "pnpm --filter @yucampus/api db:seed",
+    "db:rules": "pnpm --filter @yucampus/api db:rules",
     "rules:import": "pnpm --filter @yucampus/api rules:import",
     "platform:create-admin": "pnpm --filter @yucampus/api platform:create-admin"
   },

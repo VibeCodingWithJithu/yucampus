@@ -18,3 +18,5 @@ allowBuilds:
   esbuild: true
   sharp: true
   '@scarf/scarf': false
+  # Optional native speed-up for the job queue; the plain JavaScript version is used without it.
+  msgpackr-extract: false

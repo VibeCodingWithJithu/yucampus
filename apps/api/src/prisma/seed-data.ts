@@ -74,7 +74,11 @@ const FRAMEWORKS = [
 /** Codes from earlier seeds that are no longer offered. */
 const RETIRED_CODES = ['NBA'];
 
-export async function seed(prisma: PrismaClient): Promise<void> {
+/**
+ * Loads the rules files (frameworks, NAAC templates, the NBA SAR and the data registers). Safe to run again. This is
+ * all a production database gets (pnpm db:rules); demo: false leaves out the made-up demo template.
+ */
+export async function seedRules(prisma: PrismaClient, { demo = true }: { demo?: boolean } = {}) {
   const frameworkIds = new Map<string, string>();
   for (const { body, code, name, selection, attachesTo } of FRAMEWORKS) {
     const row = await prisma.framework.upsert({
@@ -103,7 +107,8 @@ export async function seed(prisma: PrismaClient): Promise<void> {
   // NAAC RAF templates extracted from the official manuals (apps/api/rules; not yet checked line by line),
   // and the demo template used by automated tests.
   const templates: Record<string, string> = {};
-  for (const file of ['naac-raf-affiliated.json', 'naac-raf-autonomous.json', 'naac-raf-university.json', 'naac-raf-demo.json']) {
+  const files = ['naac-raf-affiliated.json', 'naac-raf-autonomous.json', 'naac-raf-university.json'];
+  for (const file of demo ? [...files, 'naac-raf-demo.json'] : files) {
     templates[file] = (await importTemplate(prisma, loadTemplate(file))).frameworkId;
   }
   // Data register definitions (apps/api/rules/registers).
@@ -112,6 +117,12 @@ export async function seed(prisma: PrismaClient): Promise<void> {
   }
   // The earlier criterion-names-only template is replaced by the extracted ones.
   await prisma.framework.updateMany({ where: { code: 'NAAC_RAF', version: '1' }, data: { status: 'retired' } });
+  return { frameworkIds, templates };
+}
+
+/** The rules plus one dummy college and the sample team account, for local work and tests. Never in production. */
+export async function seed(prisma: PrismaClient): Promise<void> {
+  const { frameworkIds, templates } = await seedRules(prisma);
   // The sample college is an affiliated college.
   const framework = { id: templates['naac-raf-affiliated.json']! };
 

@@ -123,4 +123,4 @@ export function platformActionLabel(action: string): string {
 }
 
 /** Subdomains a college can never take (they are YuCampus's own addresses). */
-export const RESERVED_SUBDOMAINS = ['admin', 'auth', 'api', 'app', 'www', 'mail', 'static', 'cdn', 'help', 'support', 'status', 'docs', 'demo'] as const;
+export const RESERVED_SUBDOMAINS = ['admin', 'auth', 'files', 'api', 'app', 'www', 'mail', 'static', 'cdn', 'help', 'support', 'status', 'docs', 'demo'] as const;

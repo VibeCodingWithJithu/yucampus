@@ -1,0 +1,54 @@
+# HTTPS and routing for YuCampus (decided 2026-10-30; see docs/ARCHITECTURE.md and docs/DEPLOY.md).
+# The fixed addresses get their certificates when Caddy starts. Each college address gets its own certificate the
+# first time someone opens it, and only after the API confirms the college exists.
+{
+	email {$ACME_EMAIL}
+	on_demand_tls {
+		ask http://api:4000/health/tls
+	}
+}
+
+(secure) {
+	header {
+		Strict-Transport-Security "max-age=31536000"
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+}
+
+# yucampus.yubhiantechnologies.in: nothing to show yet, so visitors go to the company site.
+{$ROOT_DOMAIN} {
+	import secure
+	redir https://yubhiantechnologies.in
+}
+
+# The YuCampus team panel.
+admin.{$ROOT_DOMAIN} {
+	import secure
+	redir / /admin
+	encode zstd gzip
+	reverse_proxy web:3000
+}
+
+# The one fixed address Google and Microsoft sign-in return to.
+auth.{$ROOT_DOMAIN} {
+	import secure
+	reverse_proxy web:3000
+}
+
+# Evidence files. Browsers upload and download here with short-lived signed links from the API.
+files.{$ROOT_DOMAIN} {
+	import secure
+	reverse_proxy storage:8333
+}
+
+# Every college: abc.yucampus.yubhiantechnologies.in
+*.{$ROOT_DOMAIN} {
+	import secure
+	tls {
+		on_demand
+	}
+	encode zstd gzip
+	reverse_proxy web:3000
+}

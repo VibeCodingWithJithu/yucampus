@@ -65,6 +65,23 @@ All YuCampus app data (database, files, backups) stays in India.
   Zoho WorkDrive / Zoho Catalyst. Zoho is only for Yubhian's own business operations (CRM, campaigns,
   bookings, billing).
 - Configuration lives in environment variables, documented in .env.example. Real secrets are never committed.
+- Pilot deployment (decided 2026-10-30): one Ubuntu server in an Indian region (any provider) runs Docker Compose
+  from infra/production: Caddy (HTTPS and routing), web, api, PostgreSQL, Redis and SeaweedFS. One Docker image holds
+  the whole built workspace and serves as web, api and the tools container (migrations, rules import, team
+  accounts). Step-by-step guide: docs/DEPLOY.md.
+  - HTTPS: the domain's DNS is at Hostinger, which Caddy cannot drive for a wildcard certificate (DNS challenge). So
+    the fixed names (yucampus., admin., auth., files.) get ordinary certificates, and each college subdomain gets its
+    own certificate the first time it is opened (Caddy on-demand TLS). Before issuing one, Caddy asks the API
+    (GET /health/tls?domain=..., reachable only inside the server) and the API agrees only for an existing college,
+    so strangers cannot make Caddy request certificates for made-up names. DNS needs only two A records.
+  - The bare yucampus. address redirects to yubhiantechnologies.in for now; admin./ redirects to /admin.
+  - Files: SeaweedFS on the same server, reached by browsers at files.<rootDomain> through Caddy (uploads stay
+    pre-signed and direct). S3_SETUP=true lets the API create the bucket and its CORS rule on start. Moving to S3
+    Mumbai later is a change of the S3_* settings and copying the files.
+  - A production database gets the rules files only (pnpm db:rules), never the sample college or sample team account.
+  - Backups: a nightly database dump and file archive on the server, kept 14 days, plus a copy to a second Indian
+    location (see docs/DEPLOY.md).
+  - "files" is a reserved subdomain.
 - Open question: whether app traffic may pass through a global CDN/proxy (CloudFront, Cloudflare). Static files
   are fine; API responses contain personal data, so check this against the DPDP Act and college contracts first.
 

@@ -34,7 +34,7 @@ describe.skipIf(!running)(`S3 storage at ${endpoint}`, () => {
   const body = new TextEncoder().encode('%PDF-1.4 sample evidence file');
 
   it('uploads with a pre-signed link, reports the stored size, downloads, and deletes', async () => {
-    await storage.prepareForDevelopment(['http://localhost:3000']);
+    await storage.prepareBucket(['http://localhost:3000']);
     expect(await storage.isReachable()).toBe(true);
     const key = newFileKey(COLLEGE, 'evidence', 'sample.pdf');
 

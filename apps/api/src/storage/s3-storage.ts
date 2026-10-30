@@ -112,12 +112,12 @@ export class S3Storage extends FileStorage {
   }
 
   /**
-   * Local development only: creates the bucket and lets the web app upload to it from the browser.
-   * In pilot and production the bucket, its region (India) and its CORS rule (UPLOAD_ORIGINS, e.g.
-   * https://*.yucampus.yubhiantechnologies.in, methods PUT and GET) are set up once by hand.
+   * Creates the bucket and lets the web app upload to it from the browser. Runs locally, and in production with
+   * S3_SETUP=true (SeaweedFS on the pilot server). A provider bucket (e.g. S3 Mumbai) and its CORS rule
+   * (UPLOAD_ORIGINS, e.g. https://*.yucampus.yubhiantechnologies.in, methods PUT and GET) are set up once by hand.
    * Origins already allowed are kept, so two local servers (e.g. dev and an end-to-end run) can share the bucket.
    */
-  async prepareForDevelopment(origins: readonly string[]) {
+  async prepareBucket(origins: readonly string[]) {
     if (!(await this.isReachable())) {
       await this.client.send(new CreateBucketCommand({ Bucket: this.settings.bucket }));
     }

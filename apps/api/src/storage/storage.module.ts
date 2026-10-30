@@ -15,9 +15,9 @@ import { S3Storage } from './s3-storage.js';
           return new UnconfiguredStorage();
         }
         const storage = new S3Storage(config.storage);
-        if (!config.isProduction) {
+        if (config.prepareStorage) {
           try {
-            await storage.prepareForDevelopment(config.uploadOrigins);
+            await storage.prepareBucket(config.uploadOrigins);
           } catch (error) {
             new Logger('Storage').warn(`Could not reach file storage at ${config.storage.endpoint}: ${String(error)}`);
           }

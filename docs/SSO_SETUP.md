@@ -96,26 +96,9 @@ If something goes wrong:
 
 ## Part B: Going live
 
-### B1. Server
-Host the API and web app in India (e.g. AWS Mumbai), as in docs/ARCHITECTURE.md. Startup credits such as
-[AWS Activate](https://aws.amazon.com/activate/) or [Google for Startups](https://startup.google.com/) can cover the
-first months.
-
-### B2. DNS, at the provider where yubhiantechnologies.in is registered
-| Type | Name | Points to |
-|---|---|---|
-| A (or CNAME) | `yucampus` | your server |
-| A (or CNAME) | `*.yucampus` | the same server (covers every college, `admin` and `auth`) |
-
-### B3. HTTPS certificate
-You need a certificate for `yucampus.yubhiantechnologies.in` and `*.yucampus.yubhiantechnologies.in`. A
-`*.yubhiantechnologies.in` certificate does not cover these. [Let's Encrypt](https://letsencrypt.org/) issues it free
-using the DNS challenge. Caddy, Certbot with a DNS plugin, or Cloudflare can renew it automatically.
-
-### B4. Email
-Use a sending service, e.g. [Amazon SES](https://aws.amazon.com/ses/) (Mumbai region). Add the SPF and DKIM records
-it gives you for `yubhiantechnologies.in`, so invites and reminders don't land in spam. Put its SMTP address in
-`SMTP_URL`.
+### B1 to B4. Server, DNS, HTTPS and email
+Follow [DEPLOY.md](DEPLOY.md), steps 1 to 9. It covers the server in India, the two DNS records at Hostinger,
+HTTPS (automatic) and email sending.
 
 ### B5. Google, for going live
 1. Verify `yubhiantechnologies.in` in [Google Search Console](https://search.google.com/search-console): add a
@@ -138,27 +121,8 @@ it gives you for `yubhiantechnologies.in`, so invites and reminders don't land i
    "verified publisher" instead of a warning.
 
 ### B7. Server settings
-```
-NODE_ENV=production
-ROOT_DOMAIN=yucampus.yubhiantechnologies.in
-NEXT_PUBLIC_ROOT_DOMAIN=yucampus.yubhiantechnologies.in
-WEB_ORIGIN=https://yucampus.yubhiantechnologies.in
-SSO_BASE_URL=https://auth.yucampus.yubhiantechnologies.in
-NEXT_PUBLIC_SSO_URL=https://auth.yucampus.yubhiantechnologies.in
-UPLOAD_ORIGINS=https://*.yucampus.yubhiantechnologies.in
-MAIL_FROM="YuCampus <no-reply@yubhiantechnologies.in>"
-SMTP_URL=<from B4>
-JWT_SECRET=<a long random value, at least 32 characters>
-GOOGLE_CLIENT_ID=...      GOOGLE_CLIENT_SECRET=...
-MICROSOFT_CLIENT_ID=...   MICROSOFT_CLIENT_SECRET=...
-```
-Also set the database and storage settings listed in `.env.example`. The two `NEXT_PUBLIC_` values are read when the
-web app is built, so set them before `pnpm build`. Keep secrets in the host's secret settings, never in the code.
-
-### B8. First team account
-On the server, run `pnpm platform:create-admin "Your Name" you@yubhiantechnologies.in`. Open the link it prints, choose a
-password and set up your authenticator app. Then onboard colleges from
-`https://admin.yucampus.yubhiantechnologies.in/admin`.
+Put the four Google and Microsoft values in the server's `infra/production/.env` (DEPLOY.md, step 6), then run
+`docker compose up -d` in `infra/production`. The sign-in addresses are set from `ROOT_DOMAIN` automatically.
 
 ---
 
@@ -183,5 +147,6 @@ password and set up your authenticator app. Then onboard colleges from
 - The Microsoft client secret expires (24 months at most). Make a new one and update `MICROSOFT_CLIENT_SECRET` before
   it does, or Microsoft sign-in stops.
 - If a secret leaks, delete it in the console, make a new one and update the server.
-- Moving to another domain later means changing the B7 settings, the DNS records and the redirect addresses.
+- Moving to another domain later means changing `ROOT_DOMAIN` on the server (then `docker compose build`), the DNS
+  records and the redirect addresses.
   No code changes.

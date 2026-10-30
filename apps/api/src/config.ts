@@ -97,6 +97,12 @@ export class AppConfig {
   }
 
   /** S3-compatible file storage. null when not configured (then uploads are unavailable). */
+  /**
+   * Whether the API creates the bucket and its upload rule (CORS) on start. Always locally; in production only with
+   * S3_SETUP=true, for storage YuCampus runs itself (SeaweedFS on the pilot server). A provider bucket is set up by hand.
+   */
+  prepareStorage = true;
+
   storage: { endpoint: string; region: string; bucket: string; accessKeyId: string; secretAccessKey: string; linkSeconds: number } | null =
     null;
 }
@@ -147,6 +153,8 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     : config.isProduction
       ? [`https://*.${env.ROOT_DOMAIN ?? 'yucampus.yubhiantechnologies.in'}`]
       : [...new Set([config.webOrigin, ...config.uploadOrigins])];
+
+  config.prepareStorage = !config.isProduction || env.S3_SETUP === 'true';
 
   if (config.isProduction) {
     config.defaultCollegeSubdomain = null;

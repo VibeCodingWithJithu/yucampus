@@ -1,0 +1,17 @@
+# Built inside the image; never copied from a developer's machine.
+**/node_modules
+**/dist
+**/.next
+**/.next-*
+**/.turbo
+**/.data
+**/*.tsbuildinfo
+apps/api/src/generated
+
+# Secrets and local-only material.
+**/.env
+**/.env.*
+!.env.example
+documents
+design-reference
+.git

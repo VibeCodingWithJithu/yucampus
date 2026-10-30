@@ -1,0 +1,129 @@
+# YuCampus on one server (pilot, decided 2026-10-30). Step-by-step guide: docs/DEPLOY.md
+#   cd infra/production && cp env.example .env   (fill it in)
+#   docker compose build
+#   docker compose run --rm tools pnpm db:migrate
+#   docker compose run --rm tools pnpm db:rules
+#   docker compose up -d
+# Settings come from .env next to this file. Every value below that is not in .env is fixed by this setup.
+name: yucampus
+
+x-app: &app
+  image: yucampus:latest
+  build:
+    context: ../..
+    args:
+      NEXT_PUBLIC_ROOT_DOMAIN: ${ROOT_DOMAIN:?set ROOT_DOMAIN in .env}
+      NEXT_PUBLIC_SSO_URL: https://auth.${ROOT_DOMAIN}
+  env_file: .env
+  environment:
+    NODE_ENV: production
+    API_PORT: '4000'
+    WEB_ORIGIN: https://${ROOT_DOMAIN}
+    SSO_BASE_URL: https://auth.${ROOT_DOMAIN}
+    DATABASE_URL: postgresql://yucampus_app:${APP_DB_PASSWORD:?set APP_DB_PASSWORD in .env}@postgres:5432/yucampus
+    DATABASE_MIGRATE_URL: postgresql://yucampus:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/yucampus
+    REDIS_URL: redis://redis:6379
+    # Browsers upload straight to storage at files.<domain>; the API reaches the same address inside the server.
+    S3_ENDPOINT: https://files.${ROOT_DOMAIN}
+    S3_REGION: ap-south-1
+    S3_BUCKET: yucampus-evidence
+    S3_SETUP: 'true'
+  restart: unless-stopped
+
+services:
+  # HTTPS for every address, and routing. College addresses get their certificate on first visit (see Caddyfile).
+  caddy:
+    image: caddy:2.10.2-alpine
+    ports: ['80:80', '443:443', '443:443/udp']
+    environment:
+      ROOT_DOMAIN: ${ROOT_DOMAIN}
+      ACME_EMAIL: ${ACME_EMAIL:?set ACME_EMAIL in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+    networks:
+      default:
+        # Lets the API reach file storage by its public name without leaving the server.
+        aliases: ['files.${ROOT_DOMAIN}']
+    restart: unless-stopped
+
+  web:
+    <<: *app
+    working_dir: /app/apps/web
+    command: ['node_modules/.bin/next', 'start', '-H', '0.0.0.0', '-p', '3000']
+    depends_on: [api]
+
+  api:
+    <<: *app
+    working_dir: /app/apps/api
+    command: ['node', 'dist/main.js']
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      storage: { condition: service_started }
+    healthcheck:
+      test: ['CMD', 'node', '-e', "fetch('http://localhost:4000/health').then((r) => process.exit(r.ok ? 0 : 1), () => process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  # Not started by `up`. Run commands with: docker compose run --rm tools pnpm <script>
+  tools:
+    <<: *app
+    working_dir: /app
+    command: ['pnpm', '--version']
+    profiles: ['tools']
+    restart: 'no'
+    depends_on:
+      postgres: { condition: service_healthy }
+
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: yucampus
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: yucampus
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./postgres-init.sh:/docker-entrypoint-initdb.d/init.sh:ro
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U yucampus -d yucampus']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ['redis-server', '--appendonly', 'yes']
+    volumes: ['redis-data:/data']
+    healthcheck:
+      test: ['CMD', 'redis-cli', 'ping']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  # Evidence files (S3-compatible). The access key comes from .env; the config file is written on each start.
+  storage:
+    image: chrislusf/seaweedfs:4.47
+    environment:
+      S3_ACCESS_KEY: ${S3_ACCESS_KEY:?set S3_ACCESS_KEY in .env}
+      S3_SECRET_KEY: ${S3_SECRET_KEY:?set S3_SECRET_KEY in .env}
+    entrypoint: ['/bin/sh', '-c']
+    command:
+      - >-
+        printf '{"identities":[{"name":"yucampus","credentials":[{"accessKey":"%s","secretKey":"%s"}],"actions":["Admin","Read","Write","List","Tagging"]}]}'
+        "$$S3_ACCESS_KEY" "$$S3_SECRET_KEY" > /tmp/s3.json &&
+        exec weed server -dir=/data -s3 -s3.port=8333 -s3.config=/tmp/s3.json -ip.bind=0.0.0.0
+    volumes: ['storage-data:/data']
+    restart: unless-stopped
+
+volumes:
+  caddy-data:
+  caddy-config:
+  postgres-data:
+  redis-data:
+  storage-data:

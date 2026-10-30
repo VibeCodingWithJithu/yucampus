@@ -9,7 +9,8 @@ import { SAMPLE_PASSWORD, SAMPLE_USERS } from './prisma/seed-data.js';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(AppConfig);
-  app.setGlobalPrefix('api/v1', { exclude: ['health'] });
+  // health/tls is for Caddy inside the server; outside /api/v1 the web app never forwards it.
+  app.setGlobalPrefix('api/v1', { exclude: ['health', 'health/tls'] });
   // credentials: the refresh token lives in an httpOnly cookie.
   app.enableCors({ origin: config.webOrigin, credentials: true });
   app.enableShutdownHooks();

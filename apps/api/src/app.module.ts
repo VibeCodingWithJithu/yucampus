@@ -4,6 +4,7 @@ import { AuthModule } from './auth/auth.module.js';
 import { ApiExceptionFilter } from './common/api-error.js';
 import { ConfigModule } from './config.module.js';
 import { HealthController } from './health/health.controller.js';
+import { TlsController } from './health/tls.controller.js';
 import { PermissionsModule } from './permissions/permissions.module.js';
 import { PrismaModule } from './prisma/prisma.module.js';
 import { AccreditationModule } from './accreditation/accreditation.module.js';
@@ -26,7 +27,7 @@ import { UsersModule } from './users/users.module.js';
 
 @Module({
   imports: [ConfigModule, PrismaModule, StorageModule, InfrastructureModule, NotificationsModule, PermissionsModule, AuthModule, SetupModule, UsersModule, AccreditationModule, EvidenceModule, TasksModule, DashboardModule, ReportsModule, RegistersModule, NbaModule, SurveysModule, NirfModule, AisheModule, AuditLogModule, PlatformModule],
-  controllers: [HealthController],
+  controllers: [HealthController, TlsController],
   providers: [{ provide: APP_FILTER, useClass: ApiExceptionFilter }],
 })
 export class AppModule {}

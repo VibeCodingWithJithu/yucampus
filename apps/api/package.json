@@ -13,6 +13,7 @@
     "db:generate": "prisma generate",
     "db:migrate": "prisma migrate deploy",
     "db:seed": "prisma db seed",
+    "db:rules": "tsx --env-file-if-exists=../../.env prisma/seed-rules.ts",
     "rules:import": "tsx --env-file-if-exists=../../.env scripts/import-rules.ts",
     "platform:create-admin": "tsx --env-file-if-exists=../../.env scripts/create-platform-admin.ts"
   },

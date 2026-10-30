@@ -6,3 +6,5 @@ Product, architecture, data model, design system, screens and build order are in
 Rules for working in this repository are in [CLAUDE.md](CLAUDE.md).
 
 
+
+Putting it online (one server in India, Docker, HTTPS): [docs/DEPLOY.md](docs/DEPLOY.md).
